@@ -1,3 +1,6 @@
+# this is command to run server:
+# flask run -h {your computer ipV4 address}
+
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 import pyautogui
