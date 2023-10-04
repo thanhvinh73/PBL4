@@ -15,6 +15,7 @@ class MainScreenCubit extends Cubit<MainScreenState> {
   late final ISlideService _slideService = SlideService(baseUrl: baseUrl);
 
   void next() async {
+    print("next");
     try {
       await _slideService.next().timeout(const Duration(seconds: 5));
     } on TimeoutException {
@@ -23,6 +24,7 @@ class MainScreenCubit extends Cubit<MainScreenState> {
   }
 
   void back() async {
+    print("back");
     try {
       await _slideService.back().timeout(const Duration(seconds: 5));
     } on TimeoutException {
@@ -31,6 +33,7 @@ class MainScreenCubit extends Cubit<MainScreenState> {
   }
 
   void start() async {
+    print("start");
     try {
       await _slideService.start().timeout(const Duration(seconds: 5));
     } on TimeoutException {
@@ -39,6 +42,7 @@ class MainScreenCubit extends Cubit<MainScreenState> {
   }
 
   void stop() async {
+    print("stop");
     try {
       await _slideService.stop().timeout(const Duration(seconds: 5));
     } on TimeoutException {
