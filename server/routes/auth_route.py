@@ -92,3 +92,10 @@ def whoami():
         "message": "Hello world!",
         "user_details": current_user.username
     }), 200
+
+@auth_bp.route("/check-connection", methods=["GET"])
+def check_connection():
+    return jsonify({
+        "status": 200,
+        "Message": "Connect to server successfully!"
+    }), 200

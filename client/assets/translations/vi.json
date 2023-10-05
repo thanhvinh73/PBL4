@@ -1,0 +1,30 @@
+{
+  "App": {
+    "Cancel": "Hủy",
+    "Confirm": "Xác nhận",
+    "Ok": "Ok",
+    "Close": "Đóng",
+    "ActionConfirm": "Bạn có chắc chắn thực hiện hành động này?",
+    "Success": "Thành công",
+    "YourActionMakingSuccessfully": "Hành động của bạn đã thực hiện thành công!"
+  },
+  "Auth": {
+    "Error": "Lỗi",
+    "RegisterSuccessfully": "Đăng ký tài khoản thành công!",
+    "ConnectToServerSuccessfully": "Yêu cầu tới hệ thống thành công!"
+  },
+  "Error": {
+    "InvalidEmail": "Email không hợp lệ!",
+    "PleaseEnterEmail": "Hãy điền Email",
+    "PasswordEmpty": "Mật khẩu trống",
+    "PasswordLength": "Mật khẩu phải có tối thiểu 8 kí tự!",
+    "PasswordFormat": "Định dạng mật khẩu không chính xác!",
+    "FieldEmpty": "Trường dữ liệu trống!",
+    "MinLength": "Thống tin phải có tối thiểu 8 kí tự!",
+    "MaxLength": "Thống tin có tối đa 32 kí tự!",
+    "PasswordConfirmNotMatch": "Mật khẩu xác nhận không khớp!",
+    "InvalidDateTime": "Thời gian không hợp lệ!",
+    "TimeoutException": "Thời gian yêu cầu tới hệ thống đã hết!",
+    "ERRAUTH001": "Tài khoản hoặc mật khẩu không chính xác"
+  }
+}

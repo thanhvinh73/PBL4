@@ -10,10 +10,6 @@ currentMouseX, currentMouseY = pyautogui.position()
 pyautogui.FAILSAFE = True
 
 
-@presentation_controller_bp.route("/")
-def home():
-    return jsonify({"status": 200}), 200
-
 
 @presentation_controller_bp.route("/next", methods=["POST"])
 def next_slide():
