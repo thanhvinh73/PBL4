@@ -18,7 +18,7 @@ DATA_PATH = os.path.join('MP_Data')
 actions = np.array(["Forward","Backward","Start","Stop"])
 
 #30 video chứa data
-no_sequences = 30
+no_sequences = 60
 
 #video sẽ mang 30 frames
 sequence_length = 30
@@ -151,7 +151,7 @@ else:
             labels.append(label_map[action])
     X = np.array(sequences)
     y = to_categorical(labels).astype(int)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
     print(np.array(sequences).shape)
     print(y_test.shape)
 
@@ -196,11 +196,9 @@ else:
     sequence = []
     sentence = []
     predictions = []
-    threshold = 0.5
+    threshold = 0.7
     
     cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT,720)
     #Đặt mediapipe model https://www.youtube.com/watch?v=doDUihpj6ro&t=422s 21:00 có giải thích
     #có thể chỉnh hai thông số cho phù hợp
     with mp_holistic.Holistic(min_detection_confidence= 0.5,min_tracking_confidence= 0.5) as holistic:
