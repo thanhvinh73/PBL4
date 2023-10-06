@@ -17,8 +17,11 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_logout.svg
   SvgGenImage get icLogout => const SvgGenImage('assets/icons/ic_logout.svg');
 
+  /// File path: assets/icons/ic_profile.svg
+  SvgGenImage get icProfile => const SvgGenImage('assets/icons/ic_profile.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [icLogout];
+  List<SvgGenImage> get values => [icLogout, icProfile];
 }
 
 class $AssetsImagesGen {

@@ -13,6 +13,7 @@ abstract class  LocaleKeys {
   static const App_SettingController = 'App.SettingController';
   static const App_Account = 'App.Account';
   static const App_Profile = 'App.Profile';
+  static const App_Setting = 'App.Setting';
   static const App = 'App';
   static const Auth_Error = 'Auth.Error';
   static const Auth_RegisterSuccessfully = 'Auth.RegisterSuccessfully';

@@ -7,7 +7,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # flutter pub run build_runner build --delete-conflicting-outputs
 # flutter pub run build_runner clean
 # flutter pub run easy_localization:generate --source-dir 'assets/translations' --output-dir 'lib/generated' --output-file 'translations.g.dart' --format keys
-#flutter build apk
+# flutter build apk
 
 version: 1.0.0+1
 

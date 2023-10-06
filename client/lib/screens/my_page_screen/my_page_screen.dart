@@ -20,6 +20,9 @@ class MyPageScreen extends StatelessWidget {
                 svgUrl: "assets/icons/ic_profile.svg",
                 title: tr(LocaleKeys.App_Profile)),
             MyPageRow(
+                svgUrl: "assets/icons/ic_setting.svg",
+                title: tr(LocaleKeys.App_Setting)),
+            MyPageRow(
                 svgUrl: "assets/icons/ic_logout.svg",
                 title: tr(LocaleKeys.App_Logout)),
             const Divider(

@@ -11,7 +11,8 @@
     "Home": "Trang chính",
     "SettingController": "Thiết lập điều khiển",
     "Account": "Tài khoản",
-    "Profile": "Thông tin cá nhân"
+    "Profile": "Thông tin cá nhân",
+    "Setting": "Cài đặt"
   },
   "Auth": {
     "Error": "Lỗi",
