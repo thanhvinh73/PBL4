@@ -4,7 +4,7 @@ part of 'main_screen_cubit.dart';
 class MainScreenState with _$MainScreenState {
   const factory MainScreenState({
     String? errorMessage,
-    required String baseUrl,
-    @Default("") String text,
+    @Default(ScreenStatus.init) ScreenStatus status,
+    @Default(BottomTabs.Home) BottomTabs currentTab,
   }) = _Initial;
 }

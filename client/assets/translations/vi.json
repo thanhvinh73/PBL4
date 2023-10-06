@@ -6,7 +6,12 @@
     "Close": "Đóng",
     "ActionConfirm": "Bạn có chắc chắn thực hiện hành động này?",
     "Success": "Thành công",
-    "YourActionMakingSuccessfully": "Hành động của bạn đã thực hiện thành công!"
+    "YourActionMakingSuccessfully": "Hành động của bạn đã thực hiện thành công!",
+    "Logout": "Đăng xuất",
+    "Home": "Trang chính",
+    "SettingController": "Thiết lập điều khiển",
+    "Account": "Tài khoản",
+    "Profile": "Thông tin cá nhân"
   },
   "Auth": {
     "Error": "Lỗi",

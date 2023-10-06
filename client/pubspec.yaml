@@ -2,7 +2,12 @@ name: client
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
+# Script
+# Launch icon: flutter pub run flutter_launcher_icons
 # flutter pub run build_runner build --delete-conflicting-outputs
+# flutter pub run build_runner clean
+# flutter pub run easy_localization:generate --source-dir 'assets/translations' --output-dir 'lib/generated' --output-file 'translations.g.dart' --format keys
+#flutter build apk
 
 version: 1.0.0+1
 
@@ -48,7 +53,7 @@ dev_dependencies:
   retrofit_generator: ^6.0.0+1
 
 flutter_gen:
-  output: lib/gen/ # Optional (default: lib/gen/)
+  output: lib/generated/ # Optional (default: lib/gen/)
   line_length: 80 # Optional (default: 80)
 
   # Optional
@@ -63,3 +68,4 @@ flutter:
   assets:
     - assets/images/
     - assets/translations/
+    - assets/icons/

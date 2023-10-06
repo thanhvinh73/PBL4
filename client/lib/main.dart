@@ -1,7 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:client/public_providers/app_user_cubit/app_user_cubit.dart';
+import 'package:client/public_providers/page_router_cubit/page_router_cubit.dart';
+import 'package:client/router_observer.dart';
 import 'package:client/routes/app_router.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -26,18 +30,31 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        useInheritedMediaQuery: true,
-        locale: context.locale,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        initialRoute: Routes.splash,
-        routes: Routes.routes,
-        builder: (context, child) => botToastBuilder(context, child),
-        navigatorObservers: [BotToastNavigatorObserver()],
-      );
-    });
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => PageRouterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AppUserCubit(),
+        ),
+      ],
+      child: Builder(builder: (context) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          useInheritedMediaQuery: true,
+          locale: context.locale,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          initialRoute: Routes.splash,
+          routes: Routes.routes,
+          builder: (context, child) => botToastBuilder(context, child),
+          navigatorObservers: [
+            BotToastNavigatorObserver(),
+            AppRouteObserver(context)
+          ],
+        );
+      }),
+    );
   }
 }

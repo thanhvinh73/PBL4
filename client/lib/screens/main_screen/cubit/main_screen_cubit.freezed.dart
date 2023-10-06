@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MainScreenState {
   String? get errorMessage => throw _privateConstructorUsedError;
-  String get baseUrl => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
+  ScreenStatus get status => throw _privateConstructorUsedError;
+  BottomTabs get currentTab => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MainScreenStateCopyWith<MainScreenState> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $MainScreenStateCopyWith<$Res> {
           MainScreenState value, $Res Function(MainScreenState) then) =
       _$MainScreenStateCopyWithImpl<$Res, MainScreenState>;
   @useResult
-  $Res call({String? errorMessage, String baseUrl, String text});
+  $Res call({String? errorMessage, ScreenStatus status, BottomTabs currentTab});
 }
 
 /// @nodoc
@@ -48,22 +48,22 @@ class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
   @override
   $Res call({
     Object? errorMessage = freezed,
-    Object? baseUrl = null,
-    Object? text = null,
+    Object? status = null,
+    Object? currentTab = null,
   }) {
     return _then(_value.copyWith(
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      baseUrl: null == baseUrl
-          ? _value.baseUrl
-          : baseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ScreenStatus,
+      currentTab: null == currentTab
+          ? _value.currentTab
+          : currentTab // ignore: cast_nullable_to_non_nullable
+              as BottomTabs,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$_InitialCopyWith<$Res>
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? errorMessage, String baseUrl, String text});
+  $Res call({String? errorMessage, ScreenStatus status, BottomTabs currentTab});
 }
 
 /// @nodoc
@@ -90,22 +90,22 @@ class __$$_InitialCopyWithImpl<$Res>
   @override
   $Res call({
     Object? errorMessage = freezed,
-    Object? baseUrl = null,
-    Object? text = null,
+    Object? status = null,
+    Object? currentTab = null,
   }) {
     return _then(_$_Initial(
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      baseUrl: null == baseUrl
-          ? _value.baseUrl
-          : baseUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ScreenStatus,
+      currentTab: null == currentTab
+          ? _value.currentTab
+          : currentTab // ignore: cast_nullable_to_non_nullable
+              as BottomTabs,
     ));
   }
 }
@@ -113,19 +113,23 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial({this.errorMessage, required this.baseUrl, this.text = ""});
+  const _$_Initial(
+      {this.errorMessage,
+      this.status = ScreenStatus.init,
+      this.currentTab = BottomTabs.Home});
 
   @override
   final String? errorMessage;
   @override
-  final String baseUrl;
+  @JsonKey()
+  final ScreenStatus status;
   @override
   @JsonKey()
-  final String text;
+  final BottomTabs currentTab;
 
   @override
   String toString() {
-    return 'MainScreenState(errorMessage: $errorMessage, baseUrl: $baseUrl, text: $text)';
+    return 'MainScreenState(errorMessage: $errorMessage, status: $status, currentTab: $currentTab)';
   }
 
   @override
@@ -135,12 +139,14 @@ class _$_Initial implements _Initial {
             other is _$_Initial &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl) &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.currentTab, currentTab) ||
+                other.currentTab == currentTab));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorMessage, baseUrl, text);
+  int get hashCode =>
+      Object.hash(runtimeType, errorMessage, status, currentTab);
 
   @JsonKey(ignore: true)
   @override
@@ -152,15 +158,15 @@ class _$_Initial implements _Initial {
 abstract class _Initial implements MainScreenState {
   const factory _Initial(
       {final String? errorMessage,
-      required final String baseUrl,
-      final String text}) = _$_Initial;
+      final ScreenStatus status,
+      final BottomTabs currentTab}) = _$_Initial;
 
   @override
   String? get errorMessage;
   @override
-  String get baseUrl;
+  ScreenStatus get status;
   @override
-  String get text;
+  BottomTabs get currentTab;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

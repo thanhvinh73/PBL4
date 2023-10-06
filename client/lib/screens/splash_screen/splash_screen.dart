@@ -1,8 +1,9 @@
 import 'package:client/generated/translations.g.dart';
 import 'package:client/routes/app_router.dart';
 import 'package:client/screens/splash_screen/cubit/splash_screen_cubit.dart';
+import 'package:client/services/base_url.dart';
 import 'package:client/shared/helpers/dialog_helper.dart';
-import 'package:client/shared/utils/app_layout.dart';
+import 'package:client/shared/widgets/app_layout.dart';
 import 'package:client/shared/widgets/app_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +35,10 @@ class SplashScreen extends StatelessWidget {
                             title: tr(LocaleKeys.App_Success),
                             content:
                                 tr(LocaleKeys.Auth_ConnectToServerSuccessfully))
-                        .then((value) =>
-                            Get.toNamed(Routes.main, arguments: state.baseUrl));
+                        .then((value) {
+                      BaseUrl.baseUrl = state.baseUrl!;
+                      Get.toNamed(Routes.main);
+                    });
                   },
                 ),
                 BlocListener<SplashScreenCubit, SplashScreenState>(
