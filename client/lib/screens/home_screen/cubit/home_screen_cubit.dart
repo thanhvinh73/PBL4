@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:client/generated/translations.g.dart';
 import 'package:client/services/base_url.dart';
-import 'package:client/services/slide_service.dart';
+import 'package:client/services/apis/slide_service.dart';
 import 'package:client/shared/helpers/bot_toast_helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

@@ -34,8 +34,14 @@ dependencies:
   pretty_dio_logger: ^1.3.1
   http: ^0.13.6
 
+  # Utils
   bot_toast: ^4.0.4
   easy_localization: ^3.0.3
+  shared_preferences: ^2.2.1
+  permission_handler: ^11.0.1
+
+  # Camera
+  camera: ^0.10.5+5
 
 dev_dependencies:
   flutter_test:

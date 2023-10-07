@@ -1,8 +1,10 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:camera/camera.dart';
 import 'package:client/public_providers/app_user_cubit/app_user_cubit.dart';
 import 'package:client/public_providers/page_router_cubit/page_router_cubit.dart';
 import 'package:client/router_observer.dart';
 import 'package:client/routes/app_router.dart';
+import 'package:client/shared/utils/camera.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  AppCamera.cameras = await availableCameras();
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('vi')],
       startLocale: const Locale('vi'),

@@ -1,3 +1,4 @@
+import 'package:client/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
@@ -12,6 +13,7 @@ class AppButton extends StatelessWidget {
   final Gradient? gradient;
   final bool? hasGradient;
   final Color? color;
+  final double borderRadius;
   const AppButton(
       {super.key,
       required this.title,
@@ -20,11 +22,12 @@ class AppButton extends StatelessWidget {
       this.titleColor,
       this.borderColor,
       this.style,
-      this.height,
+      this.height = 48,
       this.width,
       this.gradient,
       this.hasGradient = true,
-      this.color = Colors.deepPurpleAccent});
+      this.color = AppColors.primaryColor,
+      this.borderRadius = 8});
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +35,16 @@ class AppButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         width: width ?? MediaQuery.of(context).size.width / 3 * 2 - 48,
-        height: 48,
+        height: height,
         decoration: BoxDecoration(
             color: color,
             border:
                 Border.all(width: 1, color: borderColor ?? Colors.transparent),
-            borderRadius: const BorderRadius.all(Radius.circular(4))),
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
         child: Center(
             child: Text(
           title,
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: onPressed == null ? Colors.grey : titleColor ?? Colors.white,
             fontWeight: FontWeight.w700,
