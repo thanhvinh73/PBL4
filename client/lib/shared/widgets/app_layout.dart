@@ -12,7 +12,7 @@ class AppLayout extends StatelessWidget {
       this.showAppBar = true,
       this.showLeading = true,
       this.backgroundColor = AppColors.bgColor,
-      this.appBarColor = Colors.deepPurpleAccent,
+      this.appBarColor = AppColors.primaryColor,
       this.bottomNavigationBar,
       this.action,
       required this.child,

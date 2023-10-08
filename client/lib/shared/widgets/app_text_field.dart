@@ -1,3 +1,5 @@
+import 'package:client/shared/extensions/string_ext.dart';
+import 'package:client/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatefulWidget {
@@ -21,7 +23,7 @@ class AppTextField extends StatefulWidget {
   final double radius;
   final int? minLine;
   final int? maxLine;
-  final bool? isRequired;
+  final bool isRequired;
   final bool? showCursor;
   const AppTextField(
       {super.key,
@@ -43,7 +45,7 @@ class AppTextField extends StatefulWidget {
       this.onTap,
       this.backgroundColor = Colors.transparent,
       this.focusBorderColor,
-      this.radius = 8,
+      this.radius = 50,
       this.maxLine = 1,
       this.minLine = 1,
       this.isRequired = true,
@@ -65,9 +67,26 @@ class _AppTextFieldState extends State<AppTextField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // if (widget.label!.isNotEmptyOrNull)
-          //   PrimaryRequiredLabel(widget.label!, widget.isRequired!),
-          // if (widget.label.isNotEmptyOrNull) const SizedBox(height: 0),
+          if (widget.label.isNotEmptyOrNull)
+            RichText(
+                text: TextSpan(children: [
+              TextSpan(
+                  text: widget.label,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.titleText,
+                      )),
+              if (widget.isRequired)
+                const TextSpan(
+                    text: ' *',
+                    style: TextStyle(
+                        color: AppColors.red,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16)),
+            ])),
+
+          if (widget.label.isNotEmptyOrNull) const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
                 color: widget.backgroundColor ?? Colors.white,
@@ -77,7 +96,7 @@ class _AppTextFieldState extends State<AppTextField> {
                   isDense: true,
                   hintStyle: const TextStyle(
                       fontWeight: FontWeight.w400,
-                      color: Colors.grey,
+                      color: AppColors.grey,
                       fontSize: 16),
                   hintText: widget.placeholder,
                   contentPadding: widget.contentPadding ??
@@ -85,32 +104,32 @@ class _AppTextFieldState extends State<AppTextField> {
                   border: OutlineInputBorder(
                       borderSide: const BorderSide(
                         width: 1,
-                        color: Colors.grey,
+                        color: AppColors.grey,
                       ),
                       borderRadius: BorderRadius.circular(widget.radius)),
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           width: 1,
                           color: widget.errorLabel != null
-                              ? Colors.red
-                              : widget.focusBorderColor ?? Colors.grey),
+                              ? AppColors.red
+                              : widget.focusBorderColor ?? AppColors.grey),
                       borderRadius: BorderRadius.circular(widget.radius)),
                   errorBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.grey,
+                            color: AppColors.grey,
                           ),
                           borderRadius: BorderRadius.circular(widget.radius))
                       .copyWith(
                           borderSide: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                     width: 1,
-                                    color: Colors.grey,
+                                    color: AppColors.grey,
                                   ),
                                   borderRadius:
                                       BorderRadius.circular(widget.radius))
                               .borderSide
-                              .copyWith(color: Colors.red)),
+                              .copyWith(color: AppColors.red)),
                   // suffixIcon: widget.suffixIcon ??
                   //     (widget.obscureText == true
                   //         ? InkWell(
@@ -139,21 +158,21 @@ class _AppTextFieldState extends State<AppTextField> {
                   focusedBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
                             width: 1,
-                            color: Colors.grey,
+                            color: AppColors.grey,
                           ),
                           borderRadius: BorderRadius.circular(widget.radius))
                       .copyWith(
                           borderSide: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                     width: 1,
-                                    color: Colors.grey,
+                                    color: AppColors.grey,
                                   ),
                                   borderRadius:
                                       BorderRadius.circular(widget.radius))
                               .borderSide
                               .copyWith(
                                   color: widget.errorLabel != null
-                                      ? Colors.red
+                                      ? AppColors.red
                                       : widget.focusBorderColor ??
                                           Colors.deepPurpleAccent))),
               onChanged: (value) {

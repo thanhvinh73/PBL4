@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SplashScreenState {
-  String? get baseUrl => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
-  bool get isConfirmed => throw _privateConstructorUsedError;
+  bool get isInit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SplashScreenStateCopyWith<SplashScreenState> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $SplashScreenStateCopyWith<$Res> {
           SplashScreenState value, $Res Function(SplashScreenState) then) =
       _$SplashScreenStateCopyWithImpl<$Res, SplashScreenState>;
   @useResult
-  $Res call({String? baseUrl, String? errorMessage, bool isConfirmed});
+  $Res call({String? errorMessage, bool isInit});
 }
 
 /// @nodoc
@@ -47,22 +46,17 @@ class _$SplashScreenStateCopyWithImpl<$Res, $Val extends SplashScreenState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? baseUrl = freezed,
     Object? errorMessage = freezed,
-    Object? isConfirmed = null,
+    Object? isInit = null,
   }) {
     return _then(_value.copyWith(
-      baseUrl: freezed == baseUrl
-          ? _value.baseUrl
-          : baseUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      isConfirmed: null == isConfirmed
-          ? _value.isConfirmed
-          : isConfirmed // ignore: cast_nullable_to_non_nullable
+      isInit: null == isInit
+          ? _value.isInit
+          : isInit // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -76,7 +70,7 @@ abstract class _$$_InitialCopyWith<$Res>
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? baseUrl, String? errorMessage, bool isConfirmed});
+  $Res call({String? errorMessage, bool isInit});
 }
 
 /// @nodoc
@@ -89,22 +83,17 @@ class __$$_InitialCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? baseUrl = freezed,
     Object? errorMessage = freezed,
-    Object? isConfirmed = null,
+    Object? isInit = null,
   }) {
     return _then(_$_Initial(
-      baseUrl: freezed == baseUrl
-          ? _value.baseUrl
-          : baseUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      isConfirmed: null == isConfirmed
-          ? _value.isConfirmed
-          : isConfirmed // ignore: cast_nullable_to_non_nullable
+      isInit: null == isInit
+          ? _value.isInit
+          : isInit // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -113,19 +102,17 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial({this.baseUrl, this.errorMessage, this.isConfirmed = false});
+  const _$_Initial({this.errorMessage, this.isInit = false});
 
-  @override
-  final String? baseUrl;
   @override
   final String? errorMessage;
   @override
   @JsonKey()
-  final bool isConfirmed;
+  final bool isInit;
 
   @override
   String toString() {
-    return 'SplashScreenState(baseUrl: $baseUrl, errorMessage: $errorMessage, isConfirmed: $isConfirmed)';
+    return 'SplashScreenState(errorMessage: $errorMessage, isInit: $isInit)';
   }
 
   @override
@@ -133,16 +120,13 @@ class _$_Initial implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.isConfirmed, isConfirmed) ||
-                other.isConfirmed == isConfirmed));
+            (identical(other.isInit, isInit) || other.isInit == isInit));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, baseUrl, errorMessage, isConfirmed);
+  int get hashCode => Object.hash(runtimeType, errorMessage, isInit);
 
   @JsonKey(ignore: true)
   @override
@@ -152,17 +136,13 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements SplashScreenState {
-  const factory _Initial(
-      {final String? baseUrl,
-      final String? errorMessage,
-      final bool isConfirmed}) = _$_Initial;
+  const factory _Initial({final String? errorMessage, final bool isInit}) =
+      _$_Initial;
 
-  @override
-  String? get baseUrl;
   @override
   String? get errorMessage;
   @override
-  bool get isConfirmed;
+  bool get isInit;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

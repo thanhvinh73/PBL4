@@ -27,7 +27,7 @@ class AppButton extends StatelessWidget {
       this.gradient,
       this.hasGradient = true,
       this.color = AppColors.primaryColor,
-      this.borderRadius = 8});
+      this.borderRadius = 50});
 
   @override
   Widget build(BuildContext context) {

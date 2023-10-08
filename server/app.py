@@ -3,6 +3,7 @@ from flask_cors import CORS
 from routes.auth_route import auth_bp
 from routes.users_route import user_bp
 from routes.presentation_controller_route import presentation_controller_bp
+from routes.mediapipe import mediapipe_bp
 from config import Config
 from utils import  init_db, jwt
 from models.user import User
@@ -23,6 +24,7 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(user_bp, url_prefix="/api/users")
     app.register_blueprint(presentation_controller_bp, url_prefix="/api/presentation-controller")
+    app.register_blueprint(mediapipe_bp, url_prefix="/api/mediapipe")
 
     @jwt.user_lookup_loader
     def user_lookup_callback(jwt_headers, jwt_data):

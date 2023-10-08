@@ -47,6 +47,10 @@ class _SettingControllerScreenState extends State<SettingControllerScreen> {
         print("Check CameraException's code: ${err.code}");
       }
     });
+    // _cameraController!.startImageStream((image) {
+    //   image.
+
+    // });
   }
 
   @override
