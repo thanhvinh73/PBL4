@@ -2,7 +2,9 @@ import 'package:client/generated/assets.gen.dart';
 import 'package:client/generated/translations.g.dart';
 import 'package:client/routes/app_router.dart';
 import 'package:client/screens/connect_to_server_screen/cubit/connect_to_server_screen_cubit.dart';
-import 'package:client/services/base_url.dart';
+import 'package:client/services/apis/api_client.dart';
+import 'package:client/services/app_dio.dart';
+import 'package:client/services/public_api.dart';
 import 'package:client/shared/helpers/dialog_helper.dart';
 import 'package:client/shared/utils/app_colors.dart';
 import 'package:client/shared/widgets/app_button.dart';
@@ -40,7 +42,9 @@ class ConnectToServerScreen extends StatelessWidget {
                             content:
                                 tr(LocaleKeys.Auth_ConnectToServerSuccessfully))
                         .then((value) {
-                      BaseUrl.baseUrl = state.baseUrl!;
+                      PublicApi.baseUrl = state.baseUrl!;
+                      PublicApi.apis =
+                          APIClient(AppDio(), baseUrl: state.baseUrl!);
                       Get.toNamed(Routes.login);
                     });
                   },
@@ -86,6 +90,7 @@ class ConnectToServerScreen extends StatelessWidget {
                             AppTextField(
                               placeholder: "Nhập địa chỉ url của bạn tại đây",
                               controller: _textController,
+                              initValue: "http://10.0.2.2:8080",
                               onChanged: context
                                   .read<ConnectToServerScreenCubit>()
                                   .updateBaseUrl,

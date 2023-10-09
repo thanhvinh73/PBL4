@@ -8,6 +8,7 @@ class User with _$User {
   const factory User({
     String? id,
     String? email,
+    String? username,
   }) = _User;
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

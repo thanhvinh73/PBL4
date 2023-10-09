@@ -21,7 +21,7 @@ def register():
         return jsonify({"status": 400, "error":{"code": "ERR.AUTH001"}}), 400
     user = User.get_user_by_username(username=req.get('username'))
     if user is not None:
-        return jsonify({"status": 400, "error":{"code": "ERR.AUTH002"}}), 403
+        return jsonify({"status": 400, "error":{"code": "ERR.AUTH002"}}), 400
 
     new_user = User(
         id=uniqueid(),
@@ -33,7 +33,7 @@ def register():
         
     return jsonify({"status": 200, "data": new_user.toJson()}), 200
 
-@auth_bp.route("/refresh-token", methods=["GET"])
+@auth_bp.route("/refresh_token", methods=["POST"])
 @jwt_required(refresh=True)
 def refresh_token():
     identity = get_jwt_identity()

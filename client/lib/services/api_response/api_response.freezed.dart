@@ -21,9 +21,10 @@ ApiResponse<T> _$ApiResponseFromJson<T>(
 
 /// @nodoc
 mixin _$ApiResponse<T> {
-  String? get status => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   T? get data => throw _privateConstructorUsedError;
+  Map<String, List<String>>? get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
       throw _privateConstructorUsedError;
@@ -38,7 +39,11 @@ abstract class $ApiResponseCopyWith<T, $Res> {
           ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
       _$ApiResponseCopyWithImpl<T, $Res, ApiResponse<T>>;
   @useResult
-  $Res call({String? status, String? message, T? data});
+  $Res call(
+      {int? status,
+      String? message,
+      T? data,
+      Map<String, List<String>>? errors});
 }
 
 /// @nodoc
@@ -57,12 +62,13 @@ class _$ApiResponseCopyWithImpl<T, $Res, $Val extends ApiResponse<T>>
     Object? status = freezed,
     Object? message = freezed,
     Object? data = freezed,
+    Object? errors = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -71,6 +77,10 @@ class _$ApiResponseCopyWithImpl<T, $Res, $Val extends ApiResponse<T>>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T?,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<String>>?,
     ) as $Val);
   }
 }
@@ -83,7 +93,11 @@ abstract class _$$_ApiResponseCopyWith<T, $Res>
       __$$_ApiResponseCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({String? status, String? message, T? data});
+  $Res call(
+      {int? status,
+      String? message,
+      T? data,
+      Map<String, List<String>>? errors});
 }
 
 /// @nodoc
@@ -100,12 +114,13 @@ class __$$_ApiResponseCopyWithImpl<T, $Res>
     Object? status = freezed,
     Object? message = freezed,
     Object? data = freezed,
+    Object? errors = freezed,
   }) {
     return _then(_$_ApiResponse<T>(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -114,6 +129,10 @@ class __$$_ApiResponseCopyWithImpl<T, $Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T?,
+      errors: freezed == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<String>>?,
     ));
   }
 }
@@ -121,22 +140,36 @@ class __$$_ApiResponseCopyWithImpl<T, $Res>
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
 class _$_ApiResponse<T> implements _ApiResponse<T> {
-  _$_ApiResponse({this.status, this.message, this.data});
+  _$_ApiResponse(
+      {this.status,
+      this.message,
+      this.data,
+      final Map<String, List<String>>? errors})
+      : _errors = errors;
 
   factory _$_ApiResponse.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
       _$$_ApiResponseFromJson(json, fromJsonT);
 
   @override
-  final String? status;
+  final int? status;
   @override
   final String? message;
   @override
   final T? data;
+  final Map<String, List<String>>? _errors;
+  @override
+  Map<String, List<String>>? get errors {
+    final value = _errors;
+    if (value == null) return null;
+    if (_errors is EqualUnmodifiableMapView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'ApiResponse<$T>(status: $status, message: $message, data: $data)';
+    return 'ApiResponse<$T>(status: $status, message: $message, data: $data, errors: $errors)';
   }
 
   @override
@@ -146,13 +179,18 @@ class _$_ApiResponse<T> implements _ApiResponse<T> {
             other is _$_ApiResponse<T> &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.data, data) &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, message, const DeepCollectionEquality().hash(data));
+      runtimeType,
+      status,
+      message,
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
   @override
@@ -168,20 +206,23 @@ class _$_ApiResponse<T> implements _ApiResponse<T> {
 
 abstract class _ApiResponse<T> implements ApiResponse<T> {
   factory _ApiResponse(
-      {final String? status,
+      {final int? status,
       final String? message,
-      final T? data}) = _$_ApiResponse<T>;
+      final T? data,
+      final Map<String, List<String>>? errors}) = _$_ApiResponse<T>;
 
   factory _ApiResponse.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =
       _$_ApiResponse<T>.fromJson;
 
   @override
-  String? get status;
+  int? get status;
   @override
   String? get message;
   @override
   T? get data;
+  @override
+  Map<String, List<String>>? get errors;
   @override
   @JsonKey(ignore: true)
   _$$_ApiResponseCopyWith<T, _$_ApiResponse<T>> get copyWith =>

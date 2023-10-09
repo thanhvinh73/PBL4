@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:client/generated/translations.g.dart';
-import 'package:client/services/base_url.dart';
+import 'package:client/services/public_api.dart';
 import 'package:client/services/apis/slide_service.dart';
 import 'package:client/shared/helpers/bot_toast_helper.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,7 +16,7 @@ part 'home_screen_cubit.freezed.dart';
 class HomeScreenCubit extends Cubit<HomeScreenState> {
   HomeScreenCubit() : super(const HomeScreenState.initial());
   late final ISlideService _slideService =
-      SlideService(baseUrl: BaseUrl.baseUrl);
+      SlideService(baseUrl: PublicApi.baseUrl);
 
   void next() async {
     final cancel = showLoading();

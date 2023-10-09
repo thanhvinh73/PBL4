@@ -19,6 +19,12 @@ abstract class  LocaleKeys {
   static const Auth_RegisterSuccessfully = 'Auth.RegisterSuccessfully';
   static const Auth_ConnectToServerSuccessfully = 'Auth.ConnectToServerSuccessfully';
   static const Auth = 'Auth';
+  static const Error_UnexpectedError = 'Error.UnexpectedError';
+  static const Error_SendTimeoutError = 'Error.SendTimeoutError';
+  static const Error_ConnectionTimeoutError = 'Error.ConnectionTimeoutError';
+  static const Error_CancalledApiError = 'Error.CancalledApiError';
+  static const Error_ConnectionError = 'Error.ConnectionError';
+  static const Error_ReceiveTimeoutError = 'Error.ReceiveTimeoutError';
   static const Error_InvalidEmail = 'Error.InvalidEmail';
   static const Error_PleaseEnterEmail = 'Error.PleaseEnterEmail';
   static const Error_PasswordEmpty = 'Error.PasswordEmpty';
@@ -31,6 +37,12 @@ abstract class  LocaleKeys {
   static const Error_InvalidDateTime = 'Error.InvalidDateTime';
   static const Error_TimeoutException = 'Error.TimeoutException';
   static const Error_ERRAUTH001 = 'Error.ERRAUTH001';
+  static const Error_ERRAUTH002 = 'Error.ERRAUTH002';
+  static const Error_ERRAUTH003 = 'Error.ERRAUTH003';
+  static const Error_ERRTOK001 = 'Error.ERRTOK001';
+  static const Error_ERRTOK002 = 'Error.ERRTOK002';
+  static const Error_ERRTOK003 = 'Error.ERRTOK003';
+  static const Error_ERRTOK004 = 'Error.ERRTOK004';
   static const Error = 'Error';
 
 }

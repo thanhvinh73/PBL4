@@ -20,6 +20,12 @@
     "ConnectToServerSuccessfully": "Yêu cầu tới hệ thống thành công!"
   },
   "Error": {
+    "UnexpectedError": "Một lỗi không mong muốn đã xảy ra.",
+    "SendTimeoutError": "Đã xảy ra lỗi thời gian chờ truyền khi kết nối với máy chủ API.",
+    "ConnectionTimeoutError": "Hết thời gian kết nối với máy chủ API.",
+    "CancalledApiError": "Yêu cầu tới máy chủ API đã bị hủy.",
+    "ConnectionError": "Kết nối với máy chủ API không thành công do kết nối Internet.",
+    "ReceiveTimeoutError": "Lỗi nhận thời gian chờ khi kết nối với máy chủ API.",
     "InvalidEmail": "Email không hợp lệ!",
     "PleaseEnterEmail": "Hãy điền Email",
     "PasswordEmpty": "Mật khẩu trống",
@@ -31,6 +37,12 @@
     "PasswordConfirmNotMatch": "Mật khẩu xác nhận không khớp!",
     "InvalidDateTime": "Thời gian không hợp lệ!",
     "TimeoutException": "Thời gian yêu cầu tới hệ thống đã hết!",
-    "ERRAUTH001": "Tài khoản hoặc mật khẩu không chính xác"
+    "ERRAUTH001": "Tài khoản và mật khẩu không được trống!",
+    "ERRAUTH002": "Tài khoản đã tồn tại!",
+    "ERRAUTH003": "Tài khoản hoặc mật khẩu không chính xác!",
+    "ERRTOK001": "Mã đăng nhập không hợp lệ!",
+    "ERRTOK002": "Mã đăng nhập đã hết hạn!",
+    "ERRTOK003": "Bạn không có quyền truy cập!",
+    "ERRTOK004": "Mã đăng nhập đã bị thu hồi!"
   }
 }

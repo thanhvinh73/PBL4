@@ -8,9 +8,10 @@ part 'api_response.g.dart';
 )
 class ApiResponse<T> with _$ApiResponse<T> {
   factory ApiResponse({
-    String? status,
+    int? status,
     String? message,
     T? data,
+    Map<String, List<String>>? errors,
   }) = _ApiResponse<T>;
 
   factory ApiResponse.fromJson(

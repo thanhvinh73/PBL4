@@ -14,6 +14,10 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ic_error_warning_fill.svg
+  SvgGenImage get icErrorWarningFill =>
+      const SvgGenImage('assets/icons/ic_error_warning_fill.svg');
+
   /// File path: assets/icons/ic_logout.svg
   SvgGenImage get icLogout => const SvgGenImage('assets/icons/ic_logout.svg');
 
@@ -24,7 +28,8 @@ class $AssetsIconsGen {
   SvgGenImage get icSetting => const SvgGenImage('assets/icons/ic_setting.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [icLogout, icProfile, icSetting];
+  List<SvgGenImage> get values =>
+      [icErrorWarningFill, icLogout, icProfile, icSetting];
 }
 
 class $AssetsImagesGen {

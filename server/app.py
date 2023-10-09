@@ -37,35 +37,35 @@ def create_app():
         pass
 
     #JWT error handlers
-    @jwt.expired_token_loader
-    def expired_token_callback(jwt_header, jwt_data):
-        return jsonify({
-            "status": 401,
-            "error": {
-                "code": "ERR.AUTH004",
-                "message": "Token has expired!",
-            }
-        }), 401
-    
     @jwt.invalid_token_loader
     def invalid_token_callback(error):
         return jsonify({
             "status": 401,
             "error": {
-                "code": "ERR.AUTH005",
+                "code": "ERR.TOK001",
                 "message": "Signature verification failed!",
+            }
+        }), 401
+    
+    @jwt.expired_token_loader
+    def expired_token_callback(jwt_header, jwt_data):
+        return jsonify({
+            "status": 401,
+            "error": {
+                "code": "ERR.TOK002",
+                "message": "Token has expired!",
             }
         }), 401
     
     @jwt.unauthorized_loader
     def missing_token_callback(error):
         return jsonify({
-            "status": 401,
+            "status": 403,
             "error": {
-                "code": "ERR.AUTH006",
+                "code": "ERR.TOK003",
                 "message": "You don't have permission to access!",
             }
-        }), 401
+        }), 403
     
     @jwt.token_in_blocklist_loader
     def token_in_block_list_callback(jwt_header, jwt_data):
@@ -78,7 +78,7 @@ def create_app():
         return jsonify({
             "status": 401,
             "error": {
-                "code": "ERR.AUTH007",
+                "code": "ERR.TOK004",
                 "message": "Token has been revoked!",
             }
         }), 401

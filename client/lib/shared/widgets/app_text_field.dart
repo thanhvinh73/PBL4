@@ -1,3 +1,4 @@
+import 'package:client/generated/assets.gen.dart';
 import 'package:client/shared/extensions/string_ext.dart';
 import 'package:client/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class AppTextField extends StatefulWidget {
   final int? maxLine;
   final bool isRequired;
   final bool? showCursor;
+  final String? initValue;
   const AppTextField(
       {super.key,
       //
@@ -49,7 +51,8 @@ class AppTextField extends StatefulWidget {
       this.maxLine = 1,
       this.minLine = 1,
       this.isRequired = true,
-      this.showCursor = true
+      this.showCursor = true,
+      this.initValue
       //
       });
 
@@ -59,6 +62,16 @@ class AppTextField extends StatefulWidget {
 
 class _AppTextFieldState extends State<AppTextField> {
   late bool obscureText = widget.obscureText;
+  late TextEditingController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller = widget.controller ?? TextEditingController();
+    if (widget.initValue.isNotEmptyOrNull) {
+      controller.text = widget.initValue!;
+      widget.onChanged?.call(widget.initValue!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +98,6 @@ class _AppTextFieldState extends State<AppTextField> {
                         fontWeight: FontWeight.w500,
                         fontSize: 16)),
             ])),
-
           if (widget.label.isNotEmptyOrNull) const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
@@ -192,29 +204,29 @@ class _AppTextFieldState extends State<AppTextField> {
               maxLines: widget.maxLine,
             ),
           ),
-          // if (widget.errorLabel != null) const SizedBox(height: 8),
-          // if (widget.errorLabel != null)
-          //   RichText(
-          //     textAlign: TextAlign.start,
-          //     text: TextSpan(
-          //       children: [
-          //         WidgetSpan(
-          //           child: Padding(
-          //             padding: const EdgeInsets.only(right: 2),
-          //             child: Assets.icons.icErrorWarningFill
-          //                 .svg(width: 16, height: 16, color: Colors.red),
-          //           ),
-          //         ),
-          //         TextSpan(
-          //           text: tr(widget.errorLabel!),
-          //           style: GoogleFonts.notoSans(
-          //               color: AppColors.red,
-          //               fontSize: 12,
-          //               fontWeight: FontWeight.w400),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
+          if (widget.errorLabel != null) const SizedBox(height: 8),
+          if (widget.errorLabel != null)
+            RichText(
+              textAlign: TextAlign.start,
+              text: TextSpan(
+                children: [
+                  WidgetSpan(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 2),
+                      child: Assets.icons.icErrorWarningFill
+                          .svg(width: 16, height: 16, color: Colors.red),
+                    ),
+                  ),
+                  TextSpan(
+                    text: widget.errorLabel!,
+                    style: const TextStyle(
+                        color: AppColors.red,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
     );

@@ -25,7 +25,7 @@ class MyPageScreen extends StatelessWidget {
                 svgUrl: "assets/icons/ic_setting.svg",
                 title: tr(LocaleKeys.App_Setting)),
             MyPageRow(
-                onTap: () => Get.toNamed(Routes.splash),
+                onTap: () => Get.toNamed(Routes.login),
                 svgUrl: "assets/icons/ic_logout.svg",
                 title: tr(LocaleKeys.App_Logout)),
             const Divider(
