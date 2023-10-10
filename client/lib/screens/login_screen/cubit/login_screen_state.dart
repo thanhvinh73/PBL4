@@ -5,9 +5,8 @@ class LoginScreenState with _$LoginScreenState {
   const factory LoginScreenState.initial({
     String? username,
     String? password,
-    String? invalidUsername,
-    String? invalidPassword,
     String? errorMessage,
+    User? user,
     @Default(ScreenStatus.init) ScreenStatus status,
   }) = _Initial;
 }

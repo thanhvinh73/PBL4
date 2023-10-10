@@ -39,10 +39,12 @@ abstract class  LocaleKeys {
   static const Error_ERRAUTH001 = 'Error.ERRAUTH001';
   static const Error_ERRAUTH002 = 'Error.ERRAUTH002';
   static const Error_ERRAUTH003 = 'Error.ERRAUTH003';
+  static const Error_ERRAUTH004 = 'Error.ERRAUTH004';
   static const Error_ERRTOK001 = 'Error.ERRTOK001';
   static const Error_ERRTOK002 = 'Error.ERRTOK002';
   static const Error_ERRTOK003 = 'Error.ERRTOK003';
   static const Error_ERRTOK004 = 'Error.ERRTOK004';
+  static const Error_ERRNOTFOUND = 'Error.ERRNOTFOUND';
   static const Error = 'Error';
 
 }

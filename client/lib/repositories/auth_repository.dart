@@ -12,7 +12,13 @@ class AuthRepository {
 
   Future logout() => apis.logout();
 
-  Future<ApiResponse<User>> register(User user) => apis.register(user.toJson());
+  Future<ApiResponse<User>> register(User user) {
+    return apis.register(user.toJson()
+      ..addAll({
+        "password": user.password,
+        "confirm_password": user.confirmPassword,
+      }));
+  }
 
   Future<ApiResponse<Credential>> refreshToken(String refreshToken) =>
       apis.refreshToken({"refresh_token": refreshToken});

@@ -1,7 +1,12 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:client/models/user/user.dart';
+import 'package:client/services/api_response/api_response.dart';
+import 'package:client/services/public_api.dart';
+import 'package:client/shared/extensions/string_ext.dart';
 import 'package:client/shared/helpers/bot_toast_helper.dart';
+import 'package:client/shared/utils/shared_preference.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,6 +36,24 @@ class ConnectToServerScreenCubit extends Cubit<ConnectToServerScreenState> {
       }
     } else {
       emit(state.copyWith(errorMessage: "Định dạng url không chính xác"));
+    }
+  }
+
+  Future<User?> checkToken() async {
+    if (sp.accessToken.isEmptyOrNull && sp.refreshToken.isEmptyOrNull) {
+      return null;
+    }
+    final cancel = showLoading();
+    try {
+      ApiResponse<User> res = await PublicApi.apis.getUser();
+      cancel();
+      if (res.data != null) {
+        return res.data;
+      }
+      return null;
+    } catch (e) {
+      cancel();
+      return null;
     }
   }
 }

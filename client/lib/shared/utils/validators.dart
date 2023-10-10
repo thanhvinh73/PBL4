@@ -83,7 +83,7 @@ class Validators {
             int.parse(text.split('/')[1]) > 0,
             int.parse(text.split('/')[2]) <= 31,
             int.parse(text.split('/')[2]) > 0,
-            DateFormat('yyyy/MM/dd').parse(text) != null
+            // DateFormat('yyyy/MM/dd').parse(text) != null
           ].every((element) => element)) {
         return null;
       } else {

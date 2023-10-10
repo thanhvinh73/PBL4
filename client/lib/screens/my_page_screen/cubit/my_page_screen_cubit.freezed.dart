@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'connect_to_server_screen_cubit.dart';
+part of 'my_page_screen_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,30 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ConnectToServerScreenState {
-  String? get baseUrl => throw _privateConstructorUsedError;
+mixin _$MyPageScreenState {
   String? get errorMessage => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
-  bool get isConfirmed => throw _privateConstructorUsedError;
+  bool get isLogout => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String? baseUrl, String? errorMessage, User? user, bool isConfirmed)
-        initial,
+    required TResult Function(String? errorMessage, bool isLogout) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? baseUrl, String? errorMessage, User? user,
-            bool isConfirmed)?
-        initial,
+    TResult? Function(String? errorMessage, bool isLogout)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? baseUrl, String? errorMessage, User? user,
-            bool isConfirmed)?
-        initial,
+    TResult Function(String? errorMessage, bool isLogout)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,28 +52,23 @@ mixin _$ConnectToServerScreenState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ConnectToServerScreenStateCopyWith<ConnectToServerScreenState>
-      get copyWith => throw _privateConstructorUsedError;
+  $MyPageScreenStateCopyWith<MyPageScreenState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConnectToServerScreenStateCopyWith<$Res> {
-  factory $ConnectToServerScreenStateCopyWith(ConnectToServerScreenState value,
-          $Res Function(ConnectToServerScreenState) then) =
-      _$ConnectToServerScreenStateCopyWithImpl<$Res,
-          ConnectToServerScreenState>;
+abstract class $MyPageScreenStateCopyWith<$Res> {
+  factory $MyPageScreenStateCopyWith(
+          MyPageScreenState value, $Res Function(MyPageScreenState) then) =
+      _$MyPageScreenStateCopyWithImpl<$Res, MyPageScreenState>;
   @useResult
-  $Res call(
-      {String? baseUrl, String? errorMessage, User? user, bool isConfirmed});
-
-  $UserCopyWith<$Res>? get user;
+  $Res call({String? errorMessage, bool isLogout});
 }
 
 /// @nodoc
-class _$ConnectToServerScreenStateCopyWithImpl<$Res,
-        $Val extends ConnectToServerScreenState>
-    implements $ConnectToServerScreenStateCopyWith<$Res> {
-  _$ConnectToServerScreenStateCopyWithImpl(this._value, this._then);
+class _$MyPageScreenStateCopyWithImpl<$Res, $Val extends MyPageScreenState>
+    implements $MyPageScreenStateCopyWith<$Res> {
+  _$MyPageScreenStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -91,62 +78,36 @@ class _$ConnectToServerScreenStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? baseUrl = freezed,
     Object? errorMessage = freezed,
-    Object? user = freezed,
-    Object? isConfirmed = null,
+    Object? isLogout = null,
   }) {
     return _then(_value.copyWith(
-      baseUrl: freezed == baseUrl
-          ? _value.baseUrl
-          : baseUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      isConfirmed: null == isConfirmed
-          ? _value.isConfirmed
-          : isConfirmed // ignore: cast_nullable_to_non_nullable
+      isLogout: null == isLogout
+          ? _value.isLogout
+          : isLogout // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
 /// @nodoc
 abstract class _$$_InitialCopyWith<$Res>
-    implements $ConnectToServerScreenStateCopyWith<$Res> {
+    implements $MyPageScreenStateCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? baseUrl, String? errorMessage, User? user, bool isConfirmed});
-
-  @override
-  $UserCopyWith<$Res>? get user;
+  $Res call({String? errorMessage, bool isLogout});
 }
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$ConnectToServerScreenStateCopyWithImpl<$Res, _$_Initial>
+    extends _$MyPageScreenStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -154,27 +115,17 @@ class __$$_InitialCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? baseUrl = freezed,
     Object? errorMessage = freezed,
-    Object? user = freezed,
-    Object? isConfirmed = null,
+    Object? isLogout = null,
   }) {
     return _then(_$_Initial(
-      baseUrl: freezed == baseUrl
-          ? _value.baseUrl
-          : baseUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      isConfirmed: null == isConfirmed
-          ? _value.isConfirmed
-          : isConfirmed // ignore: cast_nullable_to_non_nullable
+      isLogout: null == isLogout
+          ? _value.isLogout
+          : isLogout // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -183,22 +134,17 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial(
-      {this.baseUrl, this.errorMessage, this.user, this.isConfirmed = false});
+  const _$_Initial({this.errorMessage, this.isLogout = false});
 
-  @override
-  final String? baseUrl;
   @override
   final String? errorMessage;
   @override
-  final User? user;
-  @override
   @JsonKey()
-  final bool isConfirmed;
+  final bool isLogout;
 
   @override
   String toString() {
-    return 'ConnectToServerScreenState.initial(baseUrl: $baseUrl, errorMessage: $errorMessage, user: $user, isConfirmed: $isConfirmed)';
+    return 'MyPageScreenState.initial(errorMessage: $errorMessage, isLogout: $isLogout)';
   }
 
   @override
@@ -206,17 +152,14 @@ class _$_Initial implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.isConfirmed, isConfirmed) ||
-                other.isConfirmed == isConfirmed));
+            (identical(other.isLogout, isLogout) ||
+                other.isLogout == isLogout));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, baseUrl, errorMessage, user, isConfirmed);
+  int get hashCode => Object.hash(runtimeType, errorMessage, isLogout);
 
   @JsonKey(ignore: true)
   @override
@@ -227,33 +170,27 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String? baseUrl, String? errorMessage, User? user, bool isConfirmed)
-        initial,
+    required TResult Function(String? errorMessage, bool isLogout) initial,
   }) {
-    return initial(baseUrl, errorMessage, user, isConfirmed);
+    return initial(errorMessage, isLogout);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? baseUrl, String? errorMessage, User? user,
-            bool isConfirmed)?
-        initial,
+    TResult? Function(String? errorMessage, bool isLogout)? initial,
   }) {
-    return initial?.call(baseUrl, errorMessage, user, isConfirmed);
+    return initial?.call(errorMessage, isLogout);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? baseUrl, String? errorMessage, User? user,
-            bool isConfirmed)?
-        initial,
+    TResult Function(String? errorMessage, bool isLogout)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(baseUrl, errorMessage, user, isConfirmed);
+      return initial(errorMessage, isLogout);
     }
     return orElse();
   }
@@ -287,21 +224,14 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ConnectToServerScreenState {
-  const factory _Initial(
-      {final String? baseUrl,
-      final String? errorMessage,
-      final User? user,
-      final bool isConfirmed}) = _$_Initial;
+abstract class _Initial implements MyPageScreenState {
+  const factory _Initial({final String? errorMessage, final bool isLogout}) =
+      _$_Initial;
 
-  @override
-  String? get baseUrl;
   @override
   String? get errorMessage;
   @override
-  User? get user;
-  @override
-  bool get isConfirmed;
+  bool get isLogout;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

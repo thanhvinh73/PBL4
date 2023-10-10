@@ -9,6 +9,9 @@ class User with _$User {
     String? id,
     String? email,
     String? username,
+    @JsonKey(includeFromJson: false, includeToJson: false) String? password,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    String? confirmPassword,
   }) = _User;
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

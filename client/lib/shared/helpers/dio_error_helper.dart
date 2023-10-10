@@ -39,7 +39,7 @@ String parseError(Object error) {
         errorDescription = tr(LocaleKeys.Error_SendTimeoutError);
         break;
       case DioExceptionType.badCertificate:
-        errorDescription = '[ValidateCertificate] で構成された証明書が正しくないことが原因です。';
+        errorDescription = tr(LocaleKeys.Error_UnexpectedError);
         break;
       case DioExceptionType.unknown:
         errorDescription = tr(LocaleKeys.Error_UnexpectedError);

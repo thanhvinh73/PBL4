@@ -18,6 +18,13 @@ class $AssetsIconsGen {
   SvgGenImage get icErrorWarningFill =>
       const SvgGenImage('assets/icons/ic_error_warning_fill.svg');
 
+  /// File path: assets/icons/ic_eye.svg
+  SvgGenImage get icEye => const SvgGenImage('assets/icons/ic_eye.svg');
+
+  /// File path: assets/icons/ic_eye_slash.svg
+  SvgGenImage get icEyeSlash =>
+      const SvgGenImage('assets/icons/ic_eye_slash.svg');
+
   /// File path: assets/icons/ic_logout.svg
   SvgGenImage get icLogout => const SvgGenImage('assets/icons/ic_logout.svg');
 
@@ -29,7 +36,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values =>
-      [icErrorWarningFill, icLogout, icProfile, icSetting];
+      [icErrorWarningFill, icEye, icEyeSlash, icLogout, icProfile, icSetting];
 }
 
 class $AssetsImagesGen {

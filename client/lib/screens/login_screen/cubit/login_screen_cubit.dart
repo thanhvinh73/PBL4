@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:client/models/credential/credential.dart';
+import 'package:client/models/user/user.dart';
 import 'package:client/repositories/auth_repository.dart';
 import 'package:client/services/api_response/api_response.dart';
 import 'package:client/services/public_api.dart';
@@ -24,12 +25,19 @@ class LoginScreenCubit extends Cubit<LoginScreenState> {
           await _authRepository.login(state.username!, state.password!);
       if (res.data != null) {
         await sp.setToken(res.data!.accessToken, res.data!.refreshToken);
-        emit(state.copyWith(status: ScreenStatus.success));
+        await _getUser();
       }
       cancel();
     } catch (err) {
       cancel();
       emit(state.copyWith(errorMessage: parseError(err)));
+    }
+  }
+
+  Future<void> _getUser() async {
+    ApiResponse<User> res = await PublicApi.apis.getUser();
+    if (res.data != null) {
+      emit(state.copyWith(user: res.data));
     }
   }
 

@@ -15,10 +15,12 @@ auth_bp = Blueprint("auth", __name__)
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
-    requires = ["username", "password"]
+    requires = ["username", "password", "confirm_password"]
     req = request.get_json()
     if not valid_request(req, requires):
         return jsonify({"status": 400, "error":{"code": "ERR.AUTH001"}}), 400
+    if req.get("password") != req.get("confirm_password"): 
+        return jsonify({"status": 400, "error":{"code": "ERR.AUTH004"}}), 400
     user = User.get_user_by_username(username=req.get('username'))
     if user is not None:
         return jsonify({"status": 400, "error":{"code": "ERR.AUTH002"}}), 400
@@ -57,8 +59,8 @@ def login():
         return jsonify({
             "status": 200,
             "data": {
-                "access_token": create_access_token(identity=user.username),
-                "refresh_token": create_refresh_token(identity=user.username),
+                "access_token": create_access_token(identity=user.id),
+                "refresh_token": create_refresh_token(identity=user.id),
             }
         }), 200
     return jsonify({

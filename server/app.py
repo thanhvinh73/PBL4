@@ -26,10 +26,11 @@ def create_app():
     app.register_blueprint(presentation_controller_bp, url_prefix="/api/presentation-controller")
     app.register_blueprint(mediapipe_bp, url_prefix="/api/mediapipe")
 
+    
     @jwt.user_lookup_loader
     def user_lookup_callback(jwt_headers, jwt_data):
         identity = jwt_data['sub']
-        return User.get_user_by_username(identity)
+        return User.get_user_by_id(identity)
         
     # additional claims
     @jwt.additional_claims_loader
@@ -87,4 +88,14 @@ def create_app():
 
 if (__name__) == "__main__":
     app = create_app()
+    # Handle 404 error
+    @app.errorhandler(404)
+    def not_found_url(e):
+        return jsonify({
+            "status": 404,
+            "error": {
+                "code": "ERR.NOTFOUND",
+                "message": "URL is not found!"
+            }
+        }), 400
     app.run(debug=True, port=8080)

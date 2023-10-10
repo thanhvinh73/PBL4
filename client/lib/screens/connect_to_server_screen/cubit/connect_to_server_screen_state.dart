@@ -5,5 +5,6 @@ class ConnectToServerScreenState with _$ConnectToServerScreenState {
   const factory ConnectToServerScreenState.initial(
       {String? baseUrl,
       String? errorMessage,
+      User? user,
       @Default(false) bool isConfirmed}) = _Initial;
 }

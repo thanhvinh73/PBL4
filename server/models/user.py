@@ -16,7 +16,6 @@ class User:
         return {
             "id": self.id,
             "username": self.username,
-            "password": self.password,
             "email": self.email
         }
     
@@ -34,6 +33,15 @@ class User:
         return None
     
     @classmethod
+    def get_user_by_id(cls, userId):
+        cursor = get_db().connection.cursor()
+        cursor.execute('SELECT * FROM user WHERE id = %s', [userId])
+        user = cursor.fetchone()
+        if user is not None:
+            return User(id=user[0], username=user[1], password=None, email=user[3])
+        return None
+    
+    @classmethod
     def get_list_users(cls):
         cursor = get_db().connection.cursor()
         cursor.execute('SELECT * FROM user')
@@ -47,7 +55,7 @@ class User:
     def save(self):
         db = get_db()
         cursor = db.connection.cursor()
-        cursor.execute('INSERT INTO user VALUES (%s, %s, %s, %s)', [self.id, self.username, self.password, self.email])
+        cursor.execute('INSERT INTO user (id, username, password, email) VALUES (%s, %s, %s, %s)', [self.id, self.username, self.password, self.email])
         db.connection.commit()
         cursor.close()
 

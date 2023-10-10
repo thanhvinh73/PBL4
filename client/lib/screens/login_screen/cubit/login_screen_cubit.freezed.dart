@@ -18,43 +18,27 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginScreenState {
   String? get username => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
-  String? get invalidUsername => throw _privateConstructorUsedError;
-  String? get invalidPassword => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
   ScreenStatus get status => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String? username,
-            String? password,
-            String? invalidUsername,
-            String? invalidPassword,
-            String? errorMessage,
-            ScreenStatus status)
+    required TResult Function(String? username, String? password,
+            String? errorMessage, User? user, ScreenStatus status)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String? username,
-            String? password,
-            String? invalidUsername,
-            String? invalidPassword,
-            String? errorMessage,
-            ScreenStatus status)?
+    TResult? Function(String? username, String? password, String? errorMessage,
+            User? user, ScreenStatus status)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String? username,
-            String? password,
-            String? invalidUsername,
-            String? invalidPassword,
-            String? errorMessage,
-            ScreenStatus status)?
+    TResult Function(String? username, String? password, String? errorMessage,
+            User? user, ScreenStatus status)?
         initial,
     required TResult orElse(),
   }) =>
@@ -90,10 +74,11 @@ abstract class $LoginScreenStateCopyWith<$Res> {
   $Res call(
       {String? username,
       String? password,
-      String? invalidUsername,
-      String? invalidPassword,
       String? errorMessage,
+      User? user,
       ScreenStatus status});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -111,9 +96,8 @@ class _$LoginScreenStateCopyWithImpl<$Res, $Val extends LoginScreenState>
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
-    Object? invalidUsername = freezed,
-    Object? invalidPassword = freezed,
     Object? errorMessage = freezed,
+    Object? user = freezed,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
@@ -125,23 +109,31 @@ class _$LoginScreenStateCopyWithImpl<$Res, $Val extends LoginScreenState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      invalidUsername: freezed == invalidUsername
-          ? _value.invalidUsername
-          : invalidUsername // ignore: cast_nullable_to_non_nullable
-              as String?,
-      invalidPassword: freezed == invalidPassword
-          ? _value.invalidPassword
-          : invalidPassword // ignore: cast_nullable_to_non_nullable
-              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ScreenStatus,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -156,10 +148,12 @@ abstract class _$$_InitialCopyWith<$Res>
   $Res call(
       {String? username,
       String? password,
-      String? invalidUsername,
-      String? invalidPassword,
       String? errorMessage,
+      User? user,
       ScreenStatus status});
+
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -174,9 +168,8 @@ class __$$_InitialCopyWithImpl<$Res>
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
-    Object? invalidUsername = freezed,
-    Object? invalidPassword = freezed,
     Object? errorMessage = freezed,
+    Object? user = freezed,
     Object? status = null,
   }) {
     return _then(_$_Initial(
@@ -188,18 +181,14 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      invalidUsername: freezed == invalidUsername
-          ? _value.invalidUsername
-          : invalidUsername // ignore: cast_nullable_to_non_nullable
-              as String?,
-      invalidPassword: freezed == invalidPassword
-          ? _value.invalidPassword
-          : invalidPassword // ignore: cast_nullable_to_non_nullable
-              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -214,9 +203,8 @@ class _$_Initial implements _Initial {
   const _$_Initial(
       {this.username,
       this.password,
-      this.invalidUsername,
-      this.invalidPassword,
       this.errorMessage,
+      this.user,
       this.status = ScreenStatus.init});
 
   @override
@@ -224,18 +212,16 @@ class _$_Initial implements _Initial {
   @override
   final String? password;
   @override
-  final String? invalidUsername;
-  @override
-  final String? invalidPassword;
-  @override
   final String? errorMessage;
+  @override
+  final User? user;
   @override
   @JsonKey()
   final ScreenStatus status;
 
   @override
   String toString() {
-    return 'LoginScreenState.initial(username: $username, password: $password, invalidUsername: $invalidUsername, invalidPassword: $invalidPassword, errorMessage: $errorMessage, status: $status)';
+    return 'LoginScreenState.initial(username: $username, password: $password, errorMessage: $errorMessage, user: $user, status: $status)';
   }
 
   @override
@@ -247,18 +233,15 @@ class _$_Initial implements _Initial {
                 other.username == username) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.invalidUsername, invalidUsername) ||
-                other.invalidUsername == invalidUsername) &&
-            (identical(other.invalidPassword, invalidPassword) ||
-                other.invalidPassword == invalidPassword) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username, password,
-      invalidUsername, invalidPassword, errorMessage, status);
+  int get hashCode =>
+      Object.hash(runtimeType, username, password, errorMessage, user, status);
 
   @JsonKey(ignore: true)
   @override
@@ -269,51 +252,33 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String? username,
-            String? password,
-            String? invalidUsername,
-            String? invalidPassword,
-            String? errorMessage,
-            ScreenStatus status)
+    required TResult Function(String? username, String? password,
+            String? errorMessage, User? user, ScreenStatus status)
         initial,
   }) {
-    return initial(username, password, invalidUsername, invalidPassword,
-        errorMessage, status);
+    return initial(username, password, errorMessage, user, status);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String? username,
-            String? password,
-            String? invalidUsername,
-            String? invalidPassword,
-            String? errorMessage,
-            ScreenStatus status)?
+    TResult? Function(String? username, String? password, String? errorMessage,
+            User? user, ScreenStatus status)?
         initial,
   }) {
-    return initial?.call(username, password, invalidUsername, invalidPassword,
-        errorMessage, status);
+    return initial?.call(username, password, errorMessage, user, status);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String? username,
-            String? password,
-            String? invalidUsername,
-            String? invalidPassword,
-            String? errorMessage,
-            ScreenStatus status)?
+    TResult Function(String? username, String? password, String? errorMessage,
+            User? user, ScreenStatus status)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(username, password, invalidUsername, invalidPassword,
-          errorMessage, status);
+      return initial(username, password, errorMessage, user, status);
     }
     return orElse();
   }
@@ -351,9 +316,8 @@ abstract class _Initial implements LoginScreenState {
   const factory _Initial(
       {final String? username,
       final String? password,
-      final String? invalidUsername,
-      final String? invalidPassword,
       final String? errorMessage,
+      final User? user,
       final ScreenStatus status}) = _$_Initial;
 
   @override
@@ -361,11 +325,9 @@ abstract class _Initial implements LoginScreenState {
   @override
   String? get password;
   @override
-  String? get invalidUsername;
-  @override
-  String? get invalidPassword;
-  @override
   String? get errorMessage;
+  @override
+  User? get user;
   @override
   ScreenStatus get status;
   @override

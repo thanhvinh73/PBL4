@@ -23,6 +23,10 @@ mixin _$User {
   String? get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String? get password => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String? get confirmPassword => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +38,13 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String? id, String? email, String? username});
+  $Res call(
+      {String? id,
+      String? email,
+      String? username,
+      @JsonKey(includeFromJson: false, includeToJson: false) String? password,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      String? confirmPassword});
 }
 
 /// @nodoc
@@ -53,6 +63,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? id = freezed,
     Object? email = freezed,
     Object? username = freezed,
+    Object? password = freezed,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -67,6 +79,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      confirmPassword: freezed == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -77,7 +97,13 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$_UserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? email, String? username});
+  $Res call(
+      {String? id,
+      String? email,
+      String? username,
+      @JsonKey(includeFromJson: false, includeToJson: false) String? password,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      String? confirmPassword});
 }
 
 /// @nodoc
@@ -92,6 +118,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? id = freezed,
     Object? email = freezed,
     Object? username = freezed,
+    Object? password = freezed,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_$_User(
       id: freezed == id
@@ -106,6 +134,14 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      confirmPassword: freezed == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -113,7 +149,13 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 /// @nodoc
 @JsonSerializable()
 class _$_User implements _User {
-  const _$_User({this.id, this.email, this.username});
+  const _$_User(
+      {this.id,
+      this.email,
+      this.username,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.password,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      this.confirmPassword});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -123,10 +165,16 @@ class _$_User implements _User {
   final String? email;
   @override
   final String? username;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final String? password;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final String? confirmPassword;
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, username: $username)';
+    return 'User(id: $id, email: $email, username: $username, password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -137,12 +185,17 @@ class _$_User implements _User {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.username, username) ||
-                other.username == username));
+                other.username == username) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, username);
+  int get hashCode =>
+      Object.hash(runtimeType, id, email, username, password, confirmPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +215,11 @@ abstract class _User implements User {
   const factory _User(
       {final String? id,
       final String? email,
-      final String? username}) = _$_User;
+      final String? username,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final String? password,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final String? confirmPassword}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -172,6 +229,12 @@ abstract class _User implements User {
   String? get email;
   @override
   String? get username;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String? get password;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String? get confirmPassword;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

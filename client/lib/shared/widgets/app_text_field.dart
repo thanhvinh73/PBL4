@@ -22,39 +22,41 @@ class AppTextField extends StatefulWidget {
   final Color? backgroundColor;
   final Color? focusBorderColor;
   final double radius;
-  final int? minLine;
-  final int? maxLine;
+  final int? minLines;
+  final int? maxLines;
   final bool isRequired;
   final bool? showCursor;
   final String? initValue;
-  const AppTextField(
-      {super.key,
-      //
-      this.label,
-      this.controller,
-      this.errorLabel,
-      this.padding = EdgeInsets.zero,
-      this.contentPadding,
-      this.placeholder,
-      required this.onChanged,
-      this.textInputAction = TextInputAction.next,
-      this.textInputType = TextInputType.text,
-      this.onSubmit,
-      this.readOnly = false,
-      this.obscureText = false,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.onTap,
-      this.backgroundColor = Colors.transparent,
-      this.focusBorderColor,
-      this.radius = 50,
-      this.maxLine = 1,
-      this.minLine = 1,
-      this.isRequired = true,
-      this.showCursor = true,
-      this.initValue
-      //
-      });
+  final TextStyle? textStyle;
+  const AppTextField({
+    super.key,
+    //
+    this.label,
+    this.controller,
+    this.errorLabel,
+    this.padding = EdgeInsets.zero,
+    this.contentPadding,
+    this.placeholder,
+    required this.onChanged,
+    this.textInputAction = TextInputAction.next,
+    this.textInputType = TextInputType.text,
+    this.onSubmit,
+    this.readOnly = false,
+    this.obscureText = false,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.onTap,
+    this.backgroundColor = Colors.transparent,
+    this.focusBorderColor,
+    this.radius = 50,
+    this.maxLines = 1,
+    this.minLines = 1,
+    this.isRequired = true,
+    this.showCursor = true,
+    this.initValue,
+    this.textStyle,
+    //
+  });
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -69,7 +71,9 @@ class _AppTextFieldState extends State<AppTextField> {
     controller = widget.controller ?? TextEditingController();
     if (widget.initValue.isNotEmptyOrNull) {
       controller.text = widget.initValue!;
-      widget.onChanged?.call(widget.initValue!);
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        widget.onChanged?.call(widget.initValue!);
+      });
     }
   }
 
@@ -142,23 +146,23 @@ class _AppTextFieldState extends State<AppTextField> {
                                       BorderRadius.circular(widget.radius))
                               .borderSide
                               .copyWith(color: AppColors.red)),
-                  // suffixIcon: widget.suffixIcon ??
-                  //     (widget.obscureText == true
-                  //         ? InkWell(
-                  //             onTap: () => setState(() {
-                  //               obscureText = !obscureText;
-                  //             }),
-                  //             child: Container(
-                  //                 color: Colors.transparent,
-                  //                 padding: const EdgeInsets.all(5),
-                  //                 margin: const EdgeInsets.only(right: 8),
-                  //                 child: obscureText
-                  //                     ? Assets.icons.icEye
-                  //                         .svg(width: 20, height: 20)
-                  //                     : Assets.icons.icEyeOff
-                  //                         .svg(width: 20, height: 20)),
-                  //           )
-                  //         : null),
+                  suffixIcon: widget.suffixIcon ??
+                      (widget.obscureText == true
+                          ? InkWell(
+                              onTap: () => setState(() {
+                                obscureText = !obscureText;
+                              }),
+                              child: Container(
+                                  color: Colors.transparent,
+                                  padding: const EdgeInsets.all(5),
+                                  margin: const EdgeInsets.only(right: 8),
+                                  child: obscureText
+                                      ? Assets.icons.icEye
+                                          .svg(width: 20, height: 20)
+                                      : Assets.icons.icEyeSlash
+                                          .svg(width: 20, height: 20)),
+                            )
+                          : null),
                   suffixIconConstraints: const BoxConstraints(
                     maxHeight: 42,
                     maxWidth: 56,
@@ -188,20 +192,20 @@ class _AppTextFieldState extends State<AppTextField> {
                                       : widget.focusBorderColor ??
                                           Colors.deepPurpleAccent))),
               onChanged: (value) {
-                setState(() {});
                 widget.onChanged?.call(value);
               },
+              style: widget.textStyle,
               textInputAction: widget.textInputAction,
               onSubmitted: widget.onSubmit,
               keyboardType: widget.textInputType,
-              controller: widget.controller ?? TextEditingController(),
+              controller: controller,
               readOnly: widget.readOnly,
               onTap: widget.onTap,
               obscureText: obscureText,
               showCursor: widget.showCursor,
               cursorColor: Colors.deepPurpleAccent,
-              minLines: widget.minLine,
-              maxLines: widget.maxLine,
+              minLines: widget.minLines,
+              maxLines: widget.obscureText ? 1 : widget.maxLines,
             ),
           ),
           if (widget.errorLabel != null) const SizedBox(height: 8),

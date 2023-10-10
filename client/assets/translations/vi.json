@@ -40,9 +40,11 @@
     "ERRAUTH001": "Tài khoản và mật khẩu không được trống!",
     "ERRAUTH002": "Tài khoản đã tồn tại!",
     "ERRAUTH003": "Tài khoản hoặc mật khẩu không chính xác!",
+    "ERRAUTH004": "Mật khẩu xác nhận không trùng khớp!",
     "ERRTOK001": "Mã đăng nhập không hợp lệ!",
     "ERRTOK002": "Mã đăng nhập đã hết hạn!",
     "ERRTOK003": "Bạn không có quyền truy cập!",
-    "ERRTOK004": "Mã đăng nhập đã bị thu hồi!"
+    "ERRTOK004": "Mã đăng nhập đã bị thu hồi!",
+    "ERRNOTFOUND": "Địa chỉ URL không tồn tại!"
   }
 }
