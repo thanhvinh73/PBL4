@@ -1,7 +1,0 @@
-# run file with command to install all lib: 
-# pip install -r setup.txt
-mediapipe
-pandas
-opencv-python-headless
-tensorflow
-scikit-learn

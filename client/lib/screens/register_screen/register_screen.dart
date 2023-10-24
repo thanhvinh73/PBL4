@@ -74,8 +74,8 @@ class RegisterScreen extends StatelessWidget {
                                 validations: const [
                                   Validators.validateNotEmpty
                                 ],
-                                label: "Tên đăng nhập",
-                                placeholder: "Nhập tên đăng nhập",
+                                label: tr(LocaleKeys.Auth_Username),
+                                placeholder: tr(LocaleKeys.Auth_EnterUsername),
                                 onchanged: (_) {
                                   context
                                       .read<RegisterScreenCubit>()
@@ -86,8 +86,8 @@ class RegisterScreen extends StatelessWidget {
                                 validations: const [
                                   Validators.validatePassword
                                 ],
-                                label: "Mật khẩu",
-                                placeholder: "Nhập mật khẩu",
+                                label: tr(LocaleKeys.Auth_Password),
+                                placeholder: tr(LocaleKeys.Auth_EnterPassword),
                                 obscureText: true,
                                 onchanged: (_) {
                                   context
@@ -100,9 +100,10 @@ class RegisterScreen extends StatelessWidget {
                                   (data) => Validators.validateConfirmPassword(
                                       state.password, data)
                                 ],
-                                label: "Mật khẩu xác nhận",
+                                label: tr(LocaleKeys.Auth_ConfirmPassword),
                                 obscureText: true,
-                                placeholder: "Nhập mật khẩu xác nhận",
+                                placeholder:
+                                    tr(LocaleKeys.Auth_EnterConfirmPassword),
                                 onchanged: (_) {
                                   context
                                       .read<RegisterScreenCubit>()
@@ -111,8 +112,8 @@ class RegisterScreen extends StatelessWidget {
                                 }),
                             AppTextFormField(
                                 validations: const [Validators.validateEmail],
-                                label: "Email",
-                                placeholder: "Nhập email",
+                                label: tr(LocaleKeys.Auth_Email),
+                                placeholder: tr(LocaleKeys.Auth_EnterEmail),
                                 onchanged: (_) {
                                   context
                                       .read<RegisterScreenCubit>()
@@ -121,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
                                 }),
                             AppButton(
                                 width: MediaQuery.of(context).size.width,
-                                title: "Đăng ký",
+                                title: tr(LocaleKeys.Auth_Register),
                                 onPressed: () {
                                   if (_formKey.currentState != null &&
                                       _formKey.currentState!.validate()) {
@@ -138,11 +139,11 @@ class RegisterScreen extends StatelessWidget {
                                     spacing: 4,
                                     children: [
                                       AppText(
-                                        "Bạn đã có tài khoản?",
+                                        tr(LocaleKeys.Auth_DoYouHaveAccount),
                                         fontSize: 15,
                                       ),
                                       AppText(
-                                        "Đăng nhập",
+                                        tr(LocaleKeys.Auth_Login),
                                         color: AppColors.darkPurple,
                                         fontSize: 15,
                                       ),

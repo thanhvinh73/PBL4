@@ -11,6 +11,8 @@ import 'package:client/shared/widgets/app_text.dart';
 import 'package:client/shared/widgets/forms/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:client/generated/translations.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -62,16 +64,16 @@ class LoginScreen extends StatelessWidget {
                         runSpacing: 16,
                         children: [
                           AppTextFormField(
-                              label: "Tên đăng nhập",
-                              placeholder: "Nhập tên đăng nhập",
+                              label: tr(LocaleKeys.Auth_Username),
+                              placeholder: tr(LocaleKeys.Auth_EnterUsername),
                               validations: const [Validators.validateNotEmpty],
                               onchanged: (_) {
                                 context.read<LoginScreenCubit>().updateState(
                                     (p0) => p0.copyWith(username: _));
                               }),
                           AppTextFormField(
-                              label: "Mật khẩu",
-                              placeholder: "Nhập mật khẩu",
+                              label: tr(LocaleKeys.Auth_Password),
+                              placeholder: tr(LocaleKeys.Auth_EnterPassword),
                               validations: const [Validators.validatePassword],
                               obscureText: true,
                               onchanged: (_) {
@@ -80,10 +82,11 @@ class LoginScreen extends StatelessWidget {
                               }),
                           Align(
                               alignment: Alignment.centerRight,
-                              child: AppText("Quên mật khẩu?")),
+                              child: AppText(tr(LocaleKeys.Auth_ForgotPassword),
+                                  fontSize: 15)),
                           AppButton(
                             width: MediaQuery.of(context).size.width,
-                            title: "Đăng nhập",
+                            title: tr(LocaleKeys.Auth_Login),
                             onPressed: () {
                               if (_formKey.currentState != null &&
                                   _formKey.currentState!.validate()) {
@@ -99,11 +102,11 @@ class LoginScreen extends StatelessWidget {
                                   spacing: 4,
                                   children: [
                                     AppText(
-                                      "Bạn chưa có tài khoản?",
+                                      tr(LocaleKeys.Auth_DoYouNotHaveAccount),
                                       fontSize: 15,
                                     ),
                                     AppText(
-                                      "Đăng ký",
+                                      tr(LocaleKeys.Auth_Register),
                                       color: AppColors.darkPurple,
                                       fontSize: 15,
                                     ),

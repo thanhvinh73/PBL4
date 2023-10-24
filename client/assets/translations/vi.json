@@ -17,7 +17,20 @@
   "Auth": {
     "Error": "Lỗi",
     "RegisterSuccessfully": "Đăng ký tài khoản thành công!",
-    "ConnectToServerSuccessfully": "Yêu cầu tới hệ thống thành công!"
+    "ConnectToServerSuccessfully": "Yêu cầu tới hệ thống thành công!",
+    "Username": "Tên đăng nhập",
+    "EnterUsername": "Nhập tên đăng nhập",
+    "Password": "Mật khẩu",
+    "EnterPassword": "Nhập mật khẩu",
+    "ConfirmPassword": "Mật khẩu xác nhận",
+    "EnterConfirmPassword": "Nhập mật khẩu xác nhận",
+    "Email": "Email",
+    "EnterEmail": "Nhập email",
+    "Login": "Đăng nhập",
+    "Register": "Đăng ký",
+    "DoYouHaveAccount": "Bạn đã có tài khoản?",
+    "DoYouNotHaveAccount": "Bạn chưa có tài khoản?",
+    "ForgotPassword": "Quên mật khẩu"
   },
   "Error": {
     "UnexpectedError": "Một lỗi không mong muốn đã xảy ra.",
