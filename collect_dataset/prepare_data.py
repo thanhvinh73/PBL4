@@ -1,18 +1,13 @@
 import cv2
 import os
-import numpy as np
 from moviepy.editor import VideoFileClip
 import moviepy.video.fx.all as vfx
+from public_data import actions, no_sequences
 
 target_width = 900
 target_height = 600
-max_frames = 30
-frame_count = 0
 
 DATA_PATH = os.path.join('prepared_data')
-no_sequences = 30
-sequence_length = 30
-actions = np.array(["Forward", "Backward", "Start", "Stop"])
 
 
 def check_video_values(action: str, sequence: str, input_video_path: str):
@@ -25,19 +20,18 @@ def check_video_values(action: str, sequence: str, input_video_path: str):
 
 def makeOutputDirs():
     for action in actions:
-        for sequence in range(no_sequences):
-            try:
-                os.makedirs(os.path.join(DATA_PATH, action))
-                os.makedirs(os.path.join(f"{DATA_PATH}/Final_Result", action))
-            except:
-                pass
+        try:
+            os.makedirs(os.path.join(DATA_PATH, action))
+            os.makedirs(os.path.join(f"{DATA_PATH}/Final_Result", action))
+        except:
+            pass
 
 
 def change_fps_color_size():
     for action in actions:
         for sequence in range(no_sequences):
             input_video_path = os.path.join(
-                f"raw_data/nhan_data", action, "{}.mp4".format(sequence))
+                f"raw_data", action, "{}.mp4".format(sequence))
             output_video_path = f'{DATA_PATH}/{action}/{sequence}.mp4'
 
             cap = cv2.VideoCapture(input_video_path)

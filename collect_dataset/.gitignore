@@ -3,6 +3,8 @@ env/
 numpy_data/
 prepared_data/
 raw_data/
+data_test/
+MP_Data/
 
 *.pyc
 __pycache__/
