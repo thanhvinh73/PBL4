@@ -5,7 +5,7 @@ from public_data import actions, sequence_length, mediapipe_detection, draw_styl
 import pandas as pd
 
 DATA_INPUT_PATH = os.path.join("prepared_data/Final_Result")
-DATA_OUTPUT_PATH = os.path.join("numpy_data_test")
+DATA_OUTPUT_PATH = os.path.join("numpy_data")
 DATA_INPUT_TEST_PATH = os.path.join("data_test/prepared/Final_Result")
 
 no_sequences = 10
@@ -22,7 +22,7 @@ for action in actions:
 for action in actions:
     for sequence in range(no_sequences):
         cap = cv2.VideoCapture(os.path.join(
-            DATA_INPUT_TEST_PATH, action, "{}.mp4".format(sequence)))
+            DATA_INPUT_PATH, action, "{}.mp4".format(sequence)))
         with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
             while cap.isOpened():
                 for frame_num in range(sequence_length):

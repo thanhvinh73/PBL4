@@ -48,7 +48,7 @@ model = load_model()
 model.compile(optimizer='Adam', loss='categorical_crossentropy',
               metrics=['categorical_accuracy'])
 model.fit(X, y, epochs=120, callbacks=[tb_callback])
-model.save(os.path.join('trained_model', 'action_test.keras'))
+model.save(os.path.join('trained_model', 'action.keras'))
 
 # model.load_weights(os.path.join(
 #     'trained_model', 'action_with_all.keras'))
