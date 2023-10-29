@@ -1,8 +1,11 @@
 env/
 
 numpy_data/
+numpy_data_with_one/
+numpy_data_with_all/
+numpy_data_test/
 prepared_data/
-raw_data/
+# raw_data/
 data_test/
 MP_Data/
 
