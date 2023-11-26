@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-26T06:38:05.583Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" etag="IQ3AYY_fNk_TKUrqhRUy" version="22.1.4" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-11-26T06:38:45.264Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" etag="Lqmxbdq6gtDQ8qgxwdJa" version="22.1.4" type="github" pages="2">
   <diagram name="ERD" id="lMEs5e1A_-VOneBFKFSz">
     <mxGraphModel dx="996" dy="614" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -111,7 +111,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="L5UDp4rwYnVXYb-ExI24" name="Mobile App Features Flow">
-    <mxGraphModel dx="2045" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1907" dy="682" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
