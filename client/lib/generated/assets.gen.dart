@@ -34,20 +34,35 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_setting.svg
   SvgGenImage get icSetting => const SvgGenImage('assets/icons/ic_setting.svg');
 
+  /// File path: assets/icons/pc_fetch_api.svg
+  SvgGenImage get pcFetchApi =>
+      const SvgGenImage('assets/icons/pc_fetch_api.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [icErrorWarningFill, icEye, icEyeSlash, icLogout, icProfile, icSetting];
+  List<SvgGenImage> get values => [
+        icErrorWarningFill,
+        icEye,
+        icEyeSlash,
+        icLogout,
+        icProfile,
+        icSetting,
+        pcFetchApi
+      ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/image_loading.png
+  AssetGenImage get imageLoading =>
+      const AssetGenImage('assets/images/image_loading.png');
 
   /// File path: assets/images/pc_fetch_api.png
   AssetGenImage get pcFetchApi =>
       const AssetGenImage('assets/images/pc_fetch_api.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [pcFetchApi];
+  List<AssetGenImage> get values => [imageLoading, pcFetchApi];
 }
 
 class $AssetsTranslationsGen {
