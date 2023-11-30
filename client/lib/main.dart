@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           locale: context.locale,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
-          initialRoute: Routes.splash,
+          initialRoute: Routes.connectToServer,
           routes: Routes.routes,
           builder: (context, child) => botToastBuilder(context, child),
           navigatorObservers: [

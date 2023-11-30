@@ -24,7 +24,7 @@ class _SettingControllerScreenState extends State<SettingControllerScreen> {
     super.initState();
     AppPermission.requestCamera().then((value) {
       if (value) {
-        _loadCamera();
+        // _loadCamera();
       }
     });
   }
@@ -43,20 +43,14 @@ class _SettingControllerScreenState extends State<SettingControllerScreen> {
         setState(() {});
       }
     }).catchError((err) {
-      if (err is CameraException) {
-        print("Check CameraException's code: ${err.code}");
-      }
+      if (err is CameraException) {}
     });
-    // _cameraController!.startImageStream((image) {
-    //   image.
-
-    // });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _cameraController!.dispose();
+    // _cameraController!.dispose();
   }
 
   @override
@@ -71,32 +65,32 @@ class _SettingControllerScreenState extends State<SettingControllerScreen> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    BlocBuilder<SettingControllerCubit, SettingControllerState>(
-                      buildWhen: (previous, current) =>
-                          previous.onCamera != current.onCamera,
-                      builder: (context, state) {
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.45,
-                            decoration: BoxDecoration(
-                                color: AppColors.grey,
-                                border: Border.all(color: AppColors.bgColor),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(30),
-                                )),
-                            child: state.onCamera
-                                ? _cameraController?.value.isInitialized ??
-                                        false
-                                    ? ClipRRect(
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(30),
-                                        ),
-                                        child:
-                                            CameraPreview(_cameraController!))
-                                    : const SizedBox.shrink()
-                                : const SizedBox.shrink());
-                      },
-                    ),
+                    // BlocBuilder<SettingControllerCubit, SettingControllerState>(
+                    //   buildWhen: (previous, current) =>
+                    //       previous.onCamera != current.onCamera,
+                    //   builder: (context, state) {
+                    //     return Container(
+                    //         width: MediaQuery.of(context).size.width,
+                    //         height: MediaQuery.of(context).size.height * 0.45,
+                    //         decoration: BoxDecoration(
+                    //             color: AppColors.grey,
+                    //             border: Border.all(color: AppColors.bgColor),
+                    //             borderRadius: const BorderRadius.all(
+                    //               Radius.circular(30),
+                    //             )),
+                    //         child: state.onCamera
+                    //             ? _cameraController?.value.isInitialized ??
+                    //                     false
+                    //                 ? ClipRRect(
+                    //                     borderRadius: const BorderRadius.all(
+                    //                       Radius.circular(30),
+                    //                     ),
+                    //                     child:
+                    //                         CameraPreview(_cameraController!))
+                    //                 : const SizedBox.shrink()
+                    //             : const SizedBox.shrink());
+                    //   },
+                    // ),
                     BlocBuilder<SettingControllerCubit, SettingControllerState>(
                       buildWhen: (previous, current) =>
                           previous.onCamera != current.onCamera,

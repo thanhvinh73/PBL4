@@ -20,13 +20,20 @@ class ConnectToServerScreenCubit extends Cubit<ConnectToServerScreenState> {
   void updateBaseUrl(String? baseUrl) => emit(state.copyWith(baseUrl: baseUrl));
   void resetErrorMessage() => emit(state.copyWith(errorMessage: null));
 
-  void confirmBaseUrl() async {
+  Future confirmBaseUrl() async {
     if (state.baseUrl != null && state.baseUrl!.contains("http://") ||
         state.baseUrl != null && state.baseUrl!.contains("https://")) {
       final cancel = showLoading();
       try {
-        http.Response res = await http
-            .get(Uri.parse("${state.baseUrl!}/api/auth/check-connection"));
+        http.Response? res = await http
+            .get(Uri.parse("${state.baseUrl!}/api/auth/check-connection"))
+            .timeout(
+          const Duration(seconds: 30),
+          onTimeout: () {
+            emit(state);
+            throw "Không thể kết nối đén máy chủ!";
+          },
+        );
         Map<String, dynamic> data = jsonDecode(res.body);
         emit(state.copyWith(isConfirmed: data['status'] == 200));
         cancel();

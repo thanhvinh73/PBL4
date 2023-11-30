@@ -11,8 +11,21 @@
     "Home": "Trang chính",
     "SettingController": "Thiết lập điều khiển",
     "Account": "Tài khoản",
-    "Profile": "Thông tin cá nhân",
-    "Setting": "Cài đặt"
+    "Profile": "Hồ sơ của tôi",
+    "Setting": "Cài đặt",
+    "LogoutConfirm": "Bạn có chắc chắn muốn đăng xuất khỏi ứng dụng không?",
+    "Menu": "Menu",
+    "Tutorial": "Hướng dẫn sử dụng",
+    "NotUpdate": "Chưa cập nhật"
+  },
+  "Profile": {
+    "NotUpdate": "Hồ sơ của bạn chưa được cập nhật!",
+    "Edit": "Chỉnh sửa",
+    "Name": "Họ và tên",
+    "EnterName": "Nhập họ và tên",
+    "UpdateProfile": "Cập nhật hồ sơ",
+    "Update": "Cập nhật",
+    "UpdateProfileSuccessfully": "Cập nhật hồ sơ thành công!"
   },
   "Auth": {
     "Error": "Lỗi",
@@ -58,6 +71,16 @@
     "ERRTOK002": "Mã đăng nhập đã hết hạn!",
     "ERRTOK003": "Bạn không có quyền truy cập!",
     "ERRTOK004": "Mã đăng nhập đã bị thu hồi!",
-    "ERRNOTFOUND": "Địa chỉ URL không tồn tại!"
+    "ERRNOTFOUND": "Địa chỉ URL không tồn tại!",
+    "ERRUSER001": "Không tìm thấy người dùng!",
+    "ERRUSER002": "Cập nhật hồ sơ người dùng thất bại!",
+    "ERRUSER003": "Địa chỉ email và tên người dùng không được trống!",
+    "ERRURL001": "Không tìm thấy đường dẫn của camera!",
+    "ERRURL002": "Thay đổi trạng thái của đường dẫn không thành công!",
+    "ERRURL003": "Đường dẫn camera và thời gian tạo không được trống!",
+    "ERRURL004": "Tạo đường dẫn camera thất bại!",
+    "ERRLABEL001": "Các nhãn mặc định đã được khởi tạo cho người dùng này!",
+    "ERRLABEL002": "Hai nhãn được đổi với nhau không được trống!",
+    "ERRLABEL003": "Không tìm thấy nhãn!"
   }
 }

@@ -4,6 +4,8 @@ from routes.auth_route import auth_bp
 from routes.users_route import user_bp
 from routes.presentation_controller_route import presentation_controller_bp
 from routes.mediapipe import mediapipe_bp
+from routes.camera_url_route import camera_url_bp
+from routes.label_order_route import label_order_bp
 from config import Config
 from utils import  init_db, jwt
 from models.user import User
@@ -25,6 +27,8 @@ def create_app():
     app.register_blueprint(user_bp, url_prefix="/api/users")
     app.register_blueprint(presentation_controller_bp, url_prefix="/api/presentation-controller")
     app.register_blueprint(mediapipe_bp, url_prefix="/api/mediapipe")
+    app.register_blueprint(camera_url_bp, url_prefix="/api/camera-url")
+    app.register_blueprint(label_order_bp, url_prefix="/api/label-order")
 
     
     @jwt.user_lookup_loader

@@ -5,6 +5,6 @@ class MainScreenState with _$MainScreenState {
   const factory MainScreenState({
     String? errorMessage,
     @Default(ScreenStatus.init) ScreenStatus status,
-    @Default(BottomTabs.Home) BottomTabs currentTab,
+    @Default(MainTabs.home) MainTabs currentTab,
   }) = _Initial;
 }

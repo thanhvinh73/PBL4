@@ -14,7 +14,19 @@ abstract class  LocaleKeys {
   static const App_Account = 'App.Account';
   static const App_Profile = 'App.Profile';
   static const App_Setting = 'App.Setting';
+  static const App_LogoutConfirm = 'App.LogoutConfirm';
+  static const App_Menu = 'App.Menu';
+  static const App_Tutorial = 'App.Tutorial';
+  static const App_NotUpdate = 'App.NotUpdate';
   static const App = 'App';
+  static const Profile_NotUpdate = 'Profile.NotUpdate';
+  static const Profile_Edit = 'Profile.Edit';
+  static const Profile_Name = 'Profile.Name';
+  static const Profile_EnterName = 'Profile.EnterName';
+  static const Profile_UpdateProfile = 'Profile.UpdateProfile';
+  static const Profile_Update = 'Profile.Update';
+  static const Profile_UpdateProfileSuccessfully = 'Profile.UpdateProfileSuccessfully';
+  static const Profile = 'Profile';
   static const Auth_Error = 'Auth.Error';
   static const Auth_RegisterSuccessfully = 'Auth.RegisterSuccessfully';
   static const Auth_ConnectToServerSuccessfully = 'Auth.ConnectToServerSuccessfully';
@@ -58,6 +70,16 @@ abstract class  LocaleKeys {
   static const Error_ERRTOK003 = 'Error.ERRTOK003';
   static const Error_ERRTOK004 = 'Error.ERRTOK004';
   static const Error_ERRNOTFOUND = 'Error.ERRNOTFOUND';
+  static const Error_ERRUSER001 = 'Error.ERRUSER001';
+  static const Error_ERRUSER002 = 'Error.ERRUSER002';
+  static const Error_ERRUSER003 = 'Error.ERRUSER003';
+  static const Error_ERRURL001 = 'Error.ERRURL001';
+  static const Error_ERRURL002 = 'Error.ERRURL002';
+  static const Error_ERRURL003 = 'Error.ERRURL003';
+  static const Error_ERRURL004 = 'Error.ERRURL004';
+  static const Error_ERRLABEL001 = 'Error.ERRLABEL001';
+  static const Error_ERRLABEL002 = 'Error.ERRLABEL002';
+  static const Error_ERRLABEL003 = 'Error.ERRLABEL003';
   static const Error = 'Error';
 
 }

@@ -51,7 +51,7 @@ class ConnectToServerScreen extends StatelessWidget {
                           .checkToken()
                           .then((user) {
                         if (user != null) {
-                          context.read<AppUserCubit>().updateUser(state.user);
+                          context.read<AppUserCubit>().updateUser(user);
                           Get.toNamed(Routes.main);
                           return;
                         }
@@ -79,9 +79,9 @@ class ConnectToServerScreen extends StatelessWidget {
                   ConnectToServerScreenState>(
                 builder: (context, state) {
                   return AppLayout(
-                    showLeading: false,
                     resizeToAvoidBottomInset: true,
                     title: "Kết nối đến hệ thống".toUpperCase(),
+                    leading: const SizedBox.shrink(),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
@@ -90,8 +90,8 @@ class ConnectToServerScreen extends StatelessWidget {
                           runAlignment: WrapAlignment.start,
                           alignment: WrapAlignment.center,
                           children: [
-                            Assets.images.pcFetchApi.image(
-                                width: MediaQuery.of(context).size.width * 0.8),
+                            Assets.icons.pcFetchApi
+                                .svg(width: MediaQuery.of(context).size.width),
                             AppText(
                               "Vì sản phẩm đang trong giai đoạn phát triển. Để có thể sử dụng các dịch vụ, vui lòng nhập địa chỉ liên kết đến máy chủ ở bên dưới.",
                               textAlign: TextAlign.justify,

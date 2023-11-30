@@ -1,22 +1,26 @@
 from werkzeug.security import check_password_hash
 from utils import get_db
-import json
+from helpers.enums.roles import Roles
 
 class User:
-    def __init__(self, id, username, password, email = None):
+    def __init__(self, id, username, password, email = None, role = Roles.USER, name = None):
         self.id = id
         self.username = username
         self.password = password
         self.email = email
+        self.role = role
+        self.name = name
 
     def __repr__(self) -> str:
-        return f"<User {self.username}"
+        return f"<User 'id': {self.id},'username': {self.username},'email': {self.email},'role': {self.role.value},'name':{ self.name}>"
     
     def toJson(self):
         return {
             "id": self.id,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
+            "role": self.role.value,
+            "name": self.name,
         }
     
 
@@ -29,7 +33,7 @@ class User:
         cursor.execute('SELECT * FROM user WHERE username = %s', [username])
         user = cursor.fetchone()
         if user is not None:
-            return User(id=user[0], username=user[1], password=user[2], email=user[3])
+            return User(id=user[0], username=user[1], password=user[2], email=user[3], role=Roles.from_string(user[4]), name=user[5])
         return None
     
     @classmethod
@@ -38,7 +42,7 @@ class User:
         cursor.execute('SELECT * FROM user WHERE id = %s', [userId])
         user = cursor.fetchone()
         if user is not None:
-            return User(id=user[0], username=user[1], password=None, email=user[3])
+            return User(id=user[0], username=user[1], password=user[2], email=user[3], role=Roles.from_string(user[4]), name=user[5])
         return None
     
     @classmethod
@@ -48,14 +52,22 @@ class User:
         listUsers = cursor.fetchall()
         result = []
         for user in listUsers:
-            result.append(User(id=user[0], username=user[1], password=user[2], email=user[3]))
+            result.append(User(id=user[0], username=user[1], password=user[2], email=user[3], role=Roles.from_string(user[4]), name=user[5]))
         return result
 
+    def update(self):
+        db = get_db()
+        cursor = db.connection.cursor()
+        cursor.execute('UPDATE user SET email = %s, name = %s WHERE id = %s', [self.email, self.name, self.id])
+        db.connection.commit()
+        cursor.close()
+
+        
 
     def save(self):
         db = get_db()
         cursor = db.connection.cursor()
-        cursor.execute('INSERT INTO user (id, username, password, email) VALUES (%s, %s, %s, %s)', [self.id, self.username, self.password, self.email])
+        cursor.execute('INSERT INTO user (id, username, password, email, role, name) VALUES (%s, %s, %s, %s, %s, %s)', [self.id, self.username, self.password, self.email, self.role.value, self.name])
         db.connection.commit()
         cursor.close()
 

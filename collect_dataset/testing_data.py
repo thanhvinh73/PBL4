@@ -10,7 +10,7 @@ from public_data import actions, mp_holistic, mp_drawing, mediapipe_detection, d
 DATA_PATH = os.path.join("data_test")
 DATA_OUTPUT_PATH = os.path.join("data_test/prepared")
 DATA_INPUT_PATH = os.path.join("data_test/raw")
-no_sequences_tesing_data = 13
+no_sequences_tesing_data = 10
 
 
 def makeOutputDirs():
@@ -53,10 +53,14 @@ def testing_live():
         'trained_model', 'actionwithvalid125.keras'))
 
     sequence = []
-    threshold = 0.7
+    threshold = 0.98
     count_frame = 0
+<<<<<<< Updated upstream
     
     cap = cv2.VideoCapture("http://192.168.107.158:81/stream")
+=======
+    cap = cv2.VideoCapture(0)
+>>>>>>> Stashed changes
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 900)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
@@ -118,6 +122,7 @@ def testing_live():
                         draw_styled_landmarks(image, results)
                         sequence.append(extract_keypoints(results))
                         if len(sequence) == 30:
+<<<<<<< Updated upstream
                             res = model.predict(np.expand_dims(sequence, axis=0))[0]
                             if res[np.argmax(res)] > threshold:
                                 predicted_action = actions[np.argmax(res)]
@@ -134,6 +139,19 @@ def testing_live():
                                     
                                 holis = False
                             
+=======
+                            # Predict the action for the sequence of frames
+                            res = model.predict(
+                                np.expand_dims(sequence, axis=0))[0]
+
+                            # Check if the maximum prediction score is above the threshold
+                            if res[np.argmax(res)] > threshold:
+                                predicted_action = actions[np.argmax(res)]
+                                print(
+                                    f'{predicted_action}: {res[np.argmax(res)]}')
+                                holis = False
+
+>>>>>>> Stashed changes
                             # Reset the sequence for the next 30 frames
                             sequence = []
                         cv2.imshow('OpenCV Feed', image)

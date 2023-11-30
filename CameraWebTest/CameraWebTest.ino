@@ -7,7 +7,7 @@
 //            Partial images will be transmitted if image exceeds buffer size
 //
 //            You must select partition scheme from the board menu that has at least 3MB APP space.
-//            Face Recognition is DISABLED for ESP32 and ESP32-S2, because it takes up from 15 
+//            Face Recognition is DISABLED for ESP32 and ESP32-S2, because it takes up from 15
 //            seconds to process single frame. Face Detection is ENABLED if PSRAM is enabled as well
 
 // ===================
@@ -21,7 +21,7 @@
 //#define CAMERA_MODEL_M5STACK_WIDE // Has PSRAM
 //#define CAMERA_MODEL_M5STACK_ESP32CAM // No PSRAM
 //#define CAMERA_MODEL_M5STACK_UNITCAM // No PSRAM
-#define CAMERA_MODEL_AI_THINKER // Has PSRAM
+#define CAMERA_MODEL_AI_THINKER  // Has PSRAM
 //#define CAMERA_MODEL_TTGO_T_JOURNAL // No PSRAM
 //#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
 // ** Espressif Internal Boards **
@@ -31,12 +31,16 @@
 //#define CAMERA_MODEL_DFRobot_FireBeetle2_ESP32S3 // Has PSRAM
 //#define CAMERA_MODEL_DFRobot_Romeo_ESP32S3 // Has PSRAM
 #include "camera_pins.h"
+#include <HTTPClient.h>
 
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char* ssid = "Waduh Wite";
-const char* password = "diznutzz";
+const char* ssid = "DOI TUI CO DON";
+const char* password = "12345679@";
+
+String serverHost = "https://4rmv3lht-8080.asse.devtunnels.ms/api";
+bool isCreatedCameraUrl = false;
 
 void startCameraServer();
 void setupLedFlash(int pin);
@@ -67,17 +71,17 @@ void setup() {
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
   config.frame_size = FRAMESIZE_SVGA;
-  config.pixel_format = PIXFORMAT_JPEG; // for streaming
+  config.pixel_format = PIXFORMAT_JPEG;  // for streaming
   //config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
   config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
   config.fb_location = CAMERA_FB_IN_PSRAM;
   config.jpeg_quality = 12;
   config.fb_count = 1;
-  
+
   // if PSRAM IC present, init with UXGA resolution and higher JPEG quality
   //                      for larger pre-allocated frame buffer.
-  if(config.pixel_format == PIXFORMAT_JPEG){
-    if(psramFound()){
+  if (config.pixel_format == PIXFORMAT_JPEG) {
+    if (psramFound()) {
       config.jpeg_quality = 10;
       config.fb_count = 2;
       config.grab_mode = CAMERA_GRAB_LATEST;
@@ -106,15 +110,15 @@ void setup() {
     return;
   }
 
-  sensor_t * s = esp_camera_sensor_get();
+  sensor_t* s = esp_camera_sensor_get();
   // initial sensors are flipped vertically and colors are a bit saturated
   if (s->id.PID == OV3660_PID) {
-    s->set_vflip(s, 1); // flip it back
-    s->set_brightness(s, 1); // up the brightness just a bit
-    s->set_saturation(s, -2); // lower the saturation
+    s->set_vflip(s, 1);        // flip it back
+    s->set_brightness(s, 1);   // up the brightness just a bit
+    s->set_saturation(s, -2);  // lower the saturation
   }
   // drop down frame size for higher initial frame rate
-  if(config.pixel_format == PIXFORMAT_JPEG){
+  if (config.pixel_format == PIXFORMAT_JPEG) {
     s->set_framesize(s, FRAMESIZE_SVGA);
   }
 
@@ -135,12 +139,12 @@ void setup() {
   WiFi.begin(ssid, password);
   WiFi.setSleep(false);
 
-    while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
-    }
-    Serial.println("");
-    Serial.println("WiFi connected");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("WiFi connected");
 
   startCameraServer();
 
@@ -149,7 +153,37 @@ void setup() {
   Serial.println("' to connect");
 }
 
+void createCameraUrl() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin((serverHost + "/camera-url").c_str());
+    Serial.println(serverHost + "/camera-url");
+
+    http.addHeader("Content-Type", "application/json");
+    http.addHeader("Accept", "*/*");
+
+    String body = "{\"url\": \"" + WiFi.localIP().toString() + ":81/stream\", \"ssid\": \"" + String(ssid) + "\"}";
+    int httpResponseCode = http.POST(body);
+
+    if (httpResponseCode > 0) {
+      Serial.println("HTTP Response code: " + httpResponseCode);
+      String payload = http.getString();
+      Serial.println(payload);
+      isCreatedCameraUrl = true;
+    } else {
+      Serial.print("Error code: ");
+      Serial.println(http.errorToString(httpResponseCode));
+    }
+    http.end();
+  } else {
+    Serial.println("WiFi Disconnected");
+  }
+}
+
 void loop() {
-  // Do nothing. Everything is done in another task by the web server
-  delay(10000);
+  if (!isCreatedCameraUrl) {
+    createCameraUrl();
+  }
+
+  delay(5000);
 }

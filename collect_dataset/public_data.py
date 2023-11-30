@@ -10,7 +10,7 @@ from main_action_enum import get_main_action, MainAction
 
 no_sequences = 105
 sequence_length = 30
-actions = np.array(["Forward", "Backward", "Start", "Stop"])
+actions = np.array(["Forward", "Backward", "Start"])
 
 
 mp_holistic = mp.solutions.holistic

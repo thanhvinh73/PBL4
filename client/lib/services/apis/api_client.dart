@@ -27,4 +27,10 @@ abstract class APIClient {
   // User
   @GET('/api/users')
   Future<ApiResponse<User>> getUser();
+
+  @PATCH('/api/users')
+  Future<ApiResponse<User>> updateInfoUser(@Body() Map<String, dynamic> body);
+
+  @GET('/api/users/{userId}')
+  Future<ApiResponse<User>> getUserById(@Path("userId") String userId);
 }

@@ -39,9 +39,13 @@ dependencies:
   easy_localization: ^3.0.3
   shared_preferences: ^2.2.1
   permission_handler: ^11.0.1
+  cached_network_image: ^3.2.3
 
   # Camera
   camera: ^0.10.5+5
+
+  # For show video from esp32
+  flutter_mjpeg: ^2.0.4
 
 dev_dependencies:
   flutter_test:

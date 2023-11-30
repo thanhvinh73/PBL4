@@ -3,8 +3,7 @@ from flask_jwt_extended import (create_access_token,
                                 create_refresh_token, 
                                 jwt_required, 
                                 get_jwt, 
-                                get_jwt_identity,
-                                current_user)
+                                get_jwt_identity)
 from werkzeug.security import generate_password_hash
 from models.user import User
 from models.token_block_list import TokenBlockList
@@ -87,15 +86,7 @@ def logout():
         "data": token_b.toJson()
     }), 200
 
-@auth_bp.route("/whoami", methods=["GET"])
-@jwt_required()
-def whoami():
-    return jsonify({
-        "message": "Hello world!",
-        "user_details": current_user.username
-    }), 200
-
-@auth_bp.route("/check-connection", methods=["GET"])
+@auth_bp.route("/check-connection", methods=["POST"])
 def check_connection():
     return jsonify({
         "status": 200,

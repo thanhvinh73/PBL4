@@ -12,7 +12,12 @@ class AppDismissKeyboard extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(onWillPop),
-        child: child,
+        child: onWillPop
+            ? child
+            : WillPopScope(
+                onWillPop: () => Future.value(false),
+                child: child,
+              ),
       ),
     );
   }
