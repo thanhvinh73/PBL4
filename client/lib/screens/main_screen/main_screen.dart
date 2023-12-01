@@ -39,6 +39,7 @@ class MainScreen extends StatelessWidget {
               selector: (state) => state.currentTab,
               builder: (context, currentTab) {
                 return AppLayout(
+                  resizeToAvoidBottomInset: true,
                   useSafeArea: true,
                   title: context.read<MainScreenCubit>().state.currentTab.label,
                   leading: Builder(builder: (context) {

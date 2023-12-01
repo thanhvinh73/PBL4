@@ -19,6 +19,9 @@ abstract class  LocaleKeys {
   static const App_Tutorial = 'App.Tutorial';
   static const App_NotUpdate = 'App.NotUpdate';
   static const App = 'App';
+  static const CameraUrl_Active = 'CameraUrl.Active';
+  static const CameraUrl_Inactive = 'CameraUrl.Inactive';
+  static const CameraUrl = 'CameraUrl';
   static const Profile_NotUpdate = 'Profile.NotUpdate';
   static const Profile_Edit = 'Profile.Edit';
   static const Profile_Name = 'Profile.Name';

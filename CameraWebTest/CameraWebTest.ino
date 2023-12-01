@@ -36,8 +36,8 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char* ssid = "DOI TUI CO DON";
-const char* password = "12345679@";
+const char* ssid = "Giangvien";
+const char* password = "dhbk@2023";
 
 String serverHost = "https://4rmv3lht-8080.asse.devtunnels.ms/api";
 bool isCreatedCameraUrl = false;

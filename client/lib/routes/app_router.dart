@@ -30,7 +30,7 @@ class Routes {
     main: (context) {
       return const MainScreen();
     },
-    home: (context) => const HomeScreen(),
+    home: (context) => HomeScreen(),
     login: (context) => LoginScreen(),
     register: (context) => RegisterScreen(),
     profileScreen: (context) => const ProfileScreen(),

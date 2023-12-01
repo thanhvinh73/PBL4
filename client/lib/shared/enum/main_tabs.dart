@@ -9,7 +9,7 @@ enum MainTabs { home, settingController, account }
 
 extension MainTabsExt on MainTabs {
   Widget get widget => {
-        MainTabs.home: const HomeScreen(),
+        MainTabs.home: HomeScreen(),
         MainTabs.settingController: const SettingControllerScreen(),
         MainTabs.account: const MyPageScreen(),
       }[this]!;

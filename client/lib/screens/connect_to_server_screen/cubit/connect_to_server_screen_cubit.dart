@@ -26,12 +26,12 @@ class ConnectToServerScreenCubit extends Cubit<ConnectToServerScreenState> {
       final cancel = showLoading();
       try {
         http.Response? res = await http
-            .get(Uri.parse("${state.baseUrl!}/api/auth/check-connection"))
+            .post(Uri.parse("${state.baseUrl!}/api/auth/check-connection"))
             .timeout(
           const Duration(seconds: 30),
           onTimeout: () {
             emit(state);
-            throw "Không thể kết nối đén máy chủ!";
+            throw "Không thể kết nối đến máy chủ!";
           },
         );
         Map<String, dynamic> data = jsonDecode(res.body);

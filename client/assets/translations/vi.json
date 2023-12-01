@@ -18,6 +18,10 @@
     "Tutorial": "Hướng dẫn sử dụng",
     "NotUpdate": "Chưa cập nhật"
   },
+  "CameraUrl": {
+    "Active": "Đang hoạt động",
+    "Inactive": "Không hoạt động"
+  },
   "Profile": {
     "NotUpdate": "Hồ sơ của bạn chưa được cập nhật!",
     "Edit": "Chỉnh sửa",
