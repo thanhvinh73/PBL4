@@ -1,11 +1,57 @@
 import 'package:client/generated/translations.g.dart';
+import 'package:client/models/label_order/label_order.dart';
+import 'package:client/shared/helpers/app_dialog_content/hint_show_camera_content.dart';
+import 'package:client/shared/helpers/app_dialog_content/rotate_phone_content.dart';
+import 'package:client/shared/helpers/app_dialog_content/select_label_content.dart';
 import 'package:client/shared/utils/app_colors.dart';
 import 'package:client/shared/widgets/app_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-Future<dynamic> showErrorDialog(BuildContext context,
-        {String? title, String? content}) =>
+Future<LabelOrder?> showSelectLabelDialog(
+  BuildContext context, {
+  required LabelOrder initLabel,
+  required List<LabelOrder> list,
+}) {
+  return showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      return Center(
+          child: SelectLabelContent(initLabel: initLabel, list: list));
+    },
+  );
+}
+
+Future showRotatePhoneDialog(BuildContext context) {
+  return showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => Material(
+      color: AppColors.gray.withOpacity(0.1),
+      child: Center(
+        child: RotatePhoneContentWidget(context: _),
+      ),
+    ),
+  );
+}
+
+Future showHintLiveCameraDialog(BuildContext context) => showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => const Material(
+        color: AppColors.transparent,
+        child: Center(
+          child: HintShowCameraContentWidget(),
+        ),
+      ),
+    );
+
+Future<dynamic> showErrorDialog(
+  BuildContext context, {
+  String? title,
+  String? content,
+}) =>
     showDialog(
       context: context,
       builder: (context) {

@@ -99,13 +99,11 @@ class _APIClient implements APIClient {
   }
 
   @override
-  Future<ApiResponse<Credential>> refreshToken(
-      Map<String, dynamic> body) async {
+  Future<ApiResponse<Credential>> refreshToken() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ApiResponse<Credential>>(Options(
       method: 'POST',
@@ -114,7 +112,7 @@ class _APIClient implements APIClient {
     )
             .compose(
               _dio.options,
-              '/api/refresh_token',
+              '/api/auth/refresh_token',
               queryParameters: queryParameters,
               data: _data,
             )

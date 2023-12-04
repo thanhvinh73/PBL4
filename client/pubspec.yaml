@@ -22,6 +22,7 @@ dependencies:
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.5
   get: ^4.6.5
+  lottie: ^2.7.0
 
   # For Model
   freezed_annotation: ^2.2.0
@@ -40,12 +41,18 @@ dependencies:
   shared_preferences: ^2.2.1
   permission_handler: ^11.0.1
   cached_network_image: ^3.2.3
+  after_layout: ^1.2.0
+  connectivity_plus: ^5.0.2
 
   # Camera
   camera: ^0.10.5+5
 
   # For show video from esp32
   flutter_mjpeg: ^2.0.4
+
+  # For video
+  video_player: ^2.8.1
+  chewie: ^1.7.4
 
 dev_dependencies:
   flutter_test:
@@ -79,3 +86,4 @@ flutter:
     - assets/images/
     - assets/translations/
     - assets/icons/
+    - assets/lotties/

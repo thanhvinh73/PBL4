@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:client/models/camera_url/camera_url.dart';
 import 'package:client/models/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,4 +10,7 @@ class AppUserCubit extends Cubit<AppUserState> {
   AppUserCubit() : super(const AppUserState.initial());
 
   updateUser(User? user) => emit(state.copyWith(user: user));
+
+  updateState(AppUserState Function(AppUserState) onUpdate) =>
+      emit(onUpdate(state));
 }

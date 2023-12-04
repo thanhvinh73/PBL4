@@ -22,9 +22,8 @@ abstract class APIClient {
   @POST("/api/auth/register")
   Future<ApiResponse<User>> register(@Body() Map<String, dynamic> body);
 
-  @POST('/api/refresh_token')
-  Future<ApiResponse<Credential>> refreshToken(
-      @Body() Map<String, dynamic> body);
+  @POST('/api/auth/refresh_token')
+  Future<ApiResponse<Credential>> refreshToken();
 
   // User
   @GET('/api/users')

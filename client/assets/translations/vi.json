@@ -8,8 +8,9 @@
     "Success": "Thành công",
     "YourActionMakingSuccessfully": "Hành động của bạn đã thực hiện thành công!",
     "Logout": "Đăng xuất",
-    "Home": "Trang chính",
+    "Home": "Hiển thị video",
     "SettingController": "Thiết lập điều khiển",
+    "ChangeAction": "Hành động",
     "Account": "Tài khoản",
     "Profile": "Hồ sơ của tôi",
     "Setting": "Cài đặt",
@@ -20,7 +21,16 @@
   },
   "CameraUrl": {
     "Active": "Đang hoạt động",
-    "Inactive": "Không hoạt động"
+    "Inactive": "Không hoạt động",
+    "HintTitle1": "Lựa chọn đường dẫn",
+    "HintTitle2": "Hiển thị video",
+    "HintTitle3": "Điều chỉnh camera",
+    "HintLabelButton1": "Tiếp tục",
+    "HintLabelButton2": "Tiếp tục",
+    "HintLabelButton3": "Kết thúc",
+    "HintDescription1": "Hãy lựa chọn đường dẫn video thích hợp từ camera mà bạn muốn sử dụng. Có thể sử dụng tính năng tìm kiếm đường dẫn dựa theo tên wifi mà camera đó đang kết nối.",
+    "HintDescription2": "Mục đích của việc hiển thị video từ camera là giúp bạn có thể quan sát được vị trí của bản thân.",
+    "HintDescription3": "Để có ứng dụng của chúng tôi nhận diện tốt hơn, bạn vui lòng điều chỉnh camera sao cho vị trí của bạn ở chính giữa khung hình nhé!"
   },
   "Profile": {
     "NotUpdate": "Hồ sơ của bạn chưa được cập nhật!",

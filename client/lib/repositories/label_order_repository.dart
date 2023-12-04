@@ -10,7 +10,7 @@ class LabelRepository {
   Future<ApiResponse<List<LabelOrder>>> changeOrder(
       String userId, LabelOrderEnum label1, LabelOrderEnum label2) {
     return apis.changeLabelOrder(userId, {
-      "swap_labels": [label1.name, label2.name]
+      "swap_labels": [label1.name.toUpperCase(), label2.name.toUpperCase()]
     });
   }
 }

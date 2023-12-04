@@ -11,6 +11,7 @@ abstract class  LocaleKeys {
   static const App_Logout = 'App.Logout';
   static const App_Home = 'App.Home';
   static const App_SettingController = 'App.SettingController';
+  static const App_ChangeAction = 'App.ChangeAction';
   static const App_Account = 'App.Account';
   static const App_Profile = 'App.Profile';
   static const App_Setting = 'App.Setting';
@@ -21,6 +22,15 @@ abstract class  LocaleKeys {
   static const App = 'App';
   static const CameraUrl_Active = 'CameraUrl.Active';
   static const CameraUrl_Inactive = 'CameraUrl.Inactive';
+  static const CameraUrl_HintTitle1 = 'CameraUrl.HintTitle1';
+  static const CameraUrl_HintTitle2 = 'CameraUrl.HintTitle2';
+  static const CameraUrl_HintTitle3 = 'CameraUrl.HintTitle3';
+  static const CameraUrl_HintLabelButton1 = 'CameraUrl.HintLabelButton1';
+  static const CameraUrl_HintLabelButton2 = 'CameraUrl.HintLabelButton2';
+  static const CameraUrl_HintLabelButton3 = 'CameraUrl.HintLabelButton3';
+  static const CameraUrl_HintDescription1 = 'CameraUrl.HintDescription1';
+  static const CameraUrl_HintDescription2 = 'CameraUrl.HintDescription2';
+  static const CameraUrl_HintDescription3 = 'CameraUrl.HintDescription3';
   static const CameraUrl = 'CameraUrl';
   static const Profile_NotUpdate = 'Profile.NotUpdate';
   static const Profile_Edit = 'Profile.Edit';

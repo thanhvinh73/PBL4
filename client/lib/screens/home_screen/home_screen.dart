@@ -1,12 +1,16 @@
+import 'package:client/generated/assets.gen.dart';
 import 'package:client/generated/translations.g.dart';
 import 'package:client/models/camera_url/camera_url.dart';
+import 'package:client/public_providers/app_user_cubit/app_user_cubit.dart';
 import 'package:client/screens/home_screen/components/url_row_item.dart';
 import 'package:client/screens/home_screen/cubit/home_screen_cubit.dart';
+import 'package:client/shared/extensions/list_ext.dart';
 import 'package:client/shared/helpers/dialog_helper.dart';
 import 'package:client/shared/utils/app_colors.dart';
 import 'package:client/shared/widgets/app_container.dart';
 import 'package:client/shared/widgets/app_dismiss_keyboard.dart';
 import 'package:client/shared/widgets/app_mjpeg.dart';
+import 'package:client/shared/widgets/app_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,10 +56,10 @@ class HomeScreen extends StatelessWidget {
                             CameraUrl?>(
                           selector: (state) => state.currentUrl,
                           builder: (context, currentCameraUrl) {
-                            print(currentCameraUrl);
                             return AppMjpeg(
                               url: currentCameraUrl?.url ?? "",
                               width: MediaQuery.of(context).size.width,
+                              showFullScreen: true,
                               height: 250,
                             );
                           },
@@ -85,35 +89,43 @@ class HomeScreen extends StatelessWidget {
                         //     )
                         //   ],
                         // ),
+
                         BlocSelector<HomeScreenCubit, HomeScreenState,
                             List<CameraUrl>>(
                           selector: (state) => state.cameraUrls,
                           builder: (context, cameraUrls) {
                             return Wrap(
-                              children: cameraUrls
-                                  .map((e) => UrlRowItem(
-                                        cameraUrl: e,
-                                        onTap: () {
-                                          context
-                                              .read<HomeScreenCubit>()
-                                              .updateState((p0) =>
-                                                  p0.copyWith(currentUrl: e));
-                                        },
-                                        onLongPress: () {
-                                          showConfirmDialog(
-                                            context,
-                                            title: e.url,
-                                            content:
-                                                "Bạn có chắc muốn tắt trạng thái hoạt động của đường dẫn này ",
-                                            onAccept: () {
+                              children: cameraUrls.isNullOrEmpty
+                                  ? [_buildEmptyListUrl(context)]
+                                  : cameraUrls
+                                      .map((e) => UrlRowItem(
+                                            cameraUrl: e,
+                                            onTap: () {
                                               context
                                                   .read<HomeScreenCubit>()
-                                                  .inactiveUrl(e.id);
+                                                  .updateState((p0) => p0
+                                                      .copyWith(currentUrl: e));
+                                              context
+                                                  .read<AppUserCubit>()
+                                                  .updateState((p0) =>
+                                                      p0.copyWith(
+                                                          currentCameraUrl: e));
                                             },
-                                          );
-                                        },
-                                      ))
-                                  .toList(),
+                                            onLongPress: () {
+                                              showConfirmDialog(
+                                                context,
+                                                title: e.url,
+                                                content:
+                                                    "Bạn có chắc muốn tắt trạng thái hoạt động của đường dẫn này ",
+                                                onAccept: () {
+                                                  context
+                                                      .read<HomeScreenCubit>()
+                                                      .inactiveUrl(e.id);
+                                                },
+                                              );
+                                            },
+                                          ))
+                                      .toList(),
                             );
                           },
                         ),
@@ -125,6 +137,26 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildEmptyListUrl(BuildContext context) {
+    return AppContainer(
+      alignment: Alignment.center,
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        runAlignment: WrapAlignment.center,
+        children: [
+          Assets.icons.pcNoData
+              .svg(height: 250, width: MediaQuery.of(context).size.width),
+          AppText(
+            "Không tìm thấy đường dẫn nào!",
+            color: AppColors.darkPurple,
+            fontStyle: FontStyle.italic,
+          )
+        ],
       ),
     );
   }

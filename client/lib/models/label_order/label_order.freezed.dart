@@ -22,7 +22,7 @@ LabelOrder _$LabelOrderFromJson(Map<String, dynamic> json) {
 mixin _$LabelOrder {
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: "label_order")
-  String? get labelOrder => throw _privateConstructorUsedError;
+  int? get labelOrder => throw _privateConstructorUsedError;
   LabelOrderEnum? get label => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $LabelOrderCopyWith<$Res> {
   @useResult
   $Res call(
       {String? userId,
-      @JsonKey(name: "label_order") String? labelOrder,
+      @JsonKey(name: "label_order") int? labelOrder,
       LabelOrderEnum? label});
 }
 
@@ -68,7 +68,7 @@ class _$LabelOrderCopyWithImpl<$Res, $Val extends LabelOrder>
       labelOrder: freezed == labelOrder
           ? _value.labelOrder
           : labelOrder // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -87,7 +87,7 @@ abstract class _$$_LabelOrderCopyWith<$Res>
   @useResult
   $Res call(
       {String? userId,
-      @JsonKey(name: "label_order") String? labelOrder,
+      @JsonKey(name: "label_order") int? labelOrder,
       LabelOrderEnum? label});
 }
 
@@ -114,7 +114,7 @@ class __$$_LabelOrderCopyWithImpl<$Res>
       labelOrder: freezed == labelOrder
           ? _value.labelOrder
           : labelOrder // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ class _$_LabelOrder implements _LabelOrder {
   final String? userId;
   @override
   @JsonKey(name: "label_order")
-  final String? labelOrder;
+  final int? labelOrder;
   @override
   final LabelOrderEnum? label;
 
@@ -177,7 +177,7 @@ class _$_LabelOrder implements _LabelOrder {
 abstract class _LabelOrder implements LabelOrder {
   const factory _LabelOrder(
       {final String? userId,
-      @JsonKey(name: "label_order") final String? labelOrder,
+      @JsonKey(name: "label_order") final int? labelOrder,
       final LabelOrderEnum? label}) = _$_LabelOrder;
 
   factory _LabelOrder.fromJson(Map<String, dynamic> json) =
@@ -187,7 +187,7 @@ abstract class _LabelOrder implements LabelOrder {
   String? get userId;
   @override
   @JsonKey(name: "label_order")
-  String? get labelOrder;
+  int? get labelOrder;
   @override
   LabelOrderEnum? get label;
   @override

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,7 +8,7 @@ import '../../routes/app_router.dart';
 import '../utils/app_colors.dart';
 import 'app_text.dart';
 
-class AppLayout extends StatelessWidget {
+class AppLayout extends StatefulWidget {
   const AppLayout({
     super.key,
     required this.child,
@@ -50,34 +53,52 @@ class AppLayout extends StatelessWidget {
   final FloatingActionButtonLocation floatingActionButtonLocation;
 
   @override
+  State<AppLayout> createState() => _AppLayoutState();
+}
+
+class _AppLayoutState extends State<AppLayout> with AfterLayoutMixin {
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: AppColors.white,
+      systemNavigationBarDividerColor: AppColors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarColor: widget.statusBarColor,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+      systemStatusBarContrastEnforced: true,
+    ));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
-      drawer: drawer,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      appBar: !showAppBar && !useSafeArea
+      backgroundColor: widget.backgroundColor,
+      drawer: widget.drawer,
+      resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+      appBar: !widget.showAppBar && !widget.useSafeArea
           ? null
           : AppBar(
-              toolbarHeight: showAppBar ? null : 0,
-              shadowColor: appbarShadowColor ?? AppColors.transparent,
-              elevation: elevation,
-              backgroundColor: appBarColor,
+              toolbarHeight: widget.showAppBar ? null : 0,
+              shadowColor: widget.appbarShadowColor ?? AppColors.transparent,
+              elevation: widget.elevation,
+              backgroundColor: widget.appBarColor,
               systemOverlayStyle: SystemUiOverlayStyle(
                 systemNavigationBarColor: AppColors.white,
                 systemNavigationBarDividerColor: AppColors.white,
                 systemNavigationBarIconBrightness: Brightness.dark,
-                statusBarColor: statusBarColor,
+                statusBarColor: widget.statusBarColor,
                 statusBarBrightness: Brightness.light,
                 statusBarIconBrightness: Brightness.dark,
                 systemStatusBarContrastEnforced: true,
               ),
-              leadingWidth: leading != null ? 85 : null,
+              leadingWidth: widget.leading != null ? 85 : null,
               leading: Builder(
                 builder: (context) {
-                  return leading ??
+                  return widget.leading ??
                       GestureDetector(
                         onTap: () {
-                          onWillPop?.call().then((value) {
+                          widget.onWillPop?.call().then((value) {
                             if (value != false) {
                               if (Navigator.of(context).canPop()) {
                                 Navigator.of(context).pop();
@@ -95,7 +116,7 @@ class AppLayout extends StatelessWidget {
                             AppColors.darkPurple,
                             AppColors.lightPurple,
                             AppColors.primaryColor
-                          ].contains(appBarColor)
+                          ].contains(widget.appBarColor)
                               ? AppColors.white
                               : AppColors.darkPurple,
                         ),
@@ -104,25 +125,25 @@ class AppLayout extends StatelessWidget {
               ),
               titleSpacing: 0,
               centerTitle: true,
-              title: titleWidget ??
+              title: widget.titleWidget ??
                   AppText(
-                    title ?? "",
+                    widget.title ?? "",
                     textAlign: TextAlign.center,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                     maxLines: 1,
-                    color: titleColor ?? AppColors.white,
+                    color: widget.titleColor ?? AppColors.white,
                   ),
-              actions: action,
+              actions: widget.action,
             ),
       body: SafeArea(
-        top: useSafeArea,
-        bottom: useSafeArea,
-        child: child,
+        top: widget.useSafeArea,
+        bottom: widget.useSafeArea,
+        child: widget.child,
       ),
-      bottomNavigationBar: bottomNavigationBar,
-      floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: floatingActionButtonLocation,
+      bottomNavigationBar: widget.bottomNavigationBar,
+      floatingActionButton: widget.floatingActionButton,
+      floatingActionButtonLocation: widget.floatingActionButtonLocation,
     );
   }
 }

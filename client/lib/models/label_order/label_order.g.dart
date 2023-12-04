@@ -9,7 +9,7 @@ part of 'label_order.dart';
 _$_LabelOrder _$$_LabelOrderFromJson(Map<String, dynamic> json) =>
     _$_LabelOrder(
       userId: json['userId'] as String?,
-      labelOrder: json['label_order'] as String?,
+      labelOrder: json['label_order'] as int?,
       label: $enumDecodeNullable(_$LabelOrderEnumEnumMap, json['label']),
     );
 

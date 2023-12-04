@@ -128,15 +128,20 @@ class _DrawerItemsState extends State<DrawerItems> {
                                       Get.back();
                                     },
                                   ),
-                                  const Divider(thickness: 1),
                                   RowItem(
-                                    title: tr(LocaleKeys.App_Setting),
+                                    title: tr(LocaleKeys.App_ChangeAction),
                                     leading: const Icon(
-                                      Icons.settings,
+                                      Icons.wifi_protected_setup_rounded,
                                       size: 25,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      context
+                                          .read<MainScreenCubit>()
+                                          .changeTab(MainTabs.action);
+                                      Get.back();
+                                    },
                                   ),
+                                  const Divider(thickness: 1),
                                   RowItem(
                                     title: tr(LocaleKeys.App_Tutorial),
                                     leading: const Icon(

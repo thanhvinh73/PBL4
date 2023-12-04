@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:after_layout/after_layout.dart';
 import 'package:client/generated/assets.gen.dart';
 import 'package:client/generated/translations.g.dart';
 import 'package:client/public_providers/app_user_cubit/app_user_cubit.dart';
@@ -12,17 +15,64 @@ import 'package:client/shared/widgets/app_button.dart';
 import 'package:client/shared/widgets/app_layout.dart';
 import 'package:client/shared/widgets/app_text.dart';
 import 'package:client/shared/widgets/app_text_field.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class ConnectToServerScreen extends StatelessWidget {
-  ConnectToServerScreen({super.key});
+class ConnectToServerScreen extends StatefulWidget {
+  const ConnectToServerScreen({super.key});
 
+  @override
+  State<ConnectToServerScreen> createState() => _ConnectToServerScreenState();
+}
+
+class _ConnectToServerScreenState extends State<ConnectToServerScreen>
+    with AfterLayoutMixin {
   final _textController = TextEditingController();
+  late final StreamSubscription<ConnectivityResult> _subscription;
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    _subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      switch (result) {
+        case ConnectivityResult.wifi:
+          debugPrint("WIFI: on");
+          context
+              .read<AppUserCubit>()
+              .updateState((p0) => p0.copyWith(checkInternet: true));
+          break;
+        case ConnectivityResult.none:
+          debugPrint("WIFI: off");
+          context
+              .read<AppUserCubit>()
+              .updateState((p0) => p0.copyWith(checkInternet: false));
+          Get.toNamed(Routes.noInternetScreen);
+          break;
+
+        default:
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Material(
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

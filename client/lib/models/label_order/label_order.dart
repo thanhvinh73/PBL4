@@ -10,7 +10,7 @@ part 'label_order.freezed.dart';
 class LabelOrder with _$LabelOrder {
   const factory LabelOrder({
     String? userId,
-    @JsonKey(name: "label_order") String? labelOrder,
+    @JsonKey(name: "label_order") int? labelOrder,
     LabelOrderEnum? label,
   }) = _LabelOrder;
   factory LabelOrder.fromJson(Map<String, dynamic> json) =>

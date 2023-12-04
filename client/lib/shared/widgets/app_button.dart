@@ -15,21 +15,25 @@ class AppButton extends StatelessWidget {
   final Color? color;
   final double borderRadius;
   final EdgeInsets padding;
-  const AppButton(
-      {super.key,
-      required this.title,
-      required this.onPressed,
-      this.shadowColor,
-      this.titleColor,
-      this.padding = const EdgeInsets.all(16),
-      this.borderColor,
-      this.style,
-      this.height = 48,
-      this.width,
-      this.gradient,
-      this.hasGradient = true,
-      this.color,
-      this.borderRadius = 6});
+  final Widget? child;
+
+  const AppButton({
+    super.key,
+    required this.title,
+    required this.onPressed,
+    this.shadowColor,
+    this.titleColor,
+    this.padding = const EdgeInsets.all(16),
+    this.borderColor,
+    this.style,
+    this.height,
+    this.width,
+    this.gradient,
+    this.hasGradient = true,
+    this.color,
+    this.borderRadius = 6,
+    this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +60,18 @@ class AppButton extends StatelessWidget {
             border:
                 Border.all(width: 1, color: borderColor ?? Colors.transparent),
             borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
-        child: Center(
-            child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: onPressed == null ? Colors.grey : titleColor ?? Colors.white,
-            fontWeight: FontWeight.w700,
-          ),
-        )),
+        child: child ??
+            Center(
+                child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: onPressed == null
+                    ? Colors.grey
+                    : titleColor ?? Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+            )),
       ),
     );
   }
