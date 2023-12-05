@@ -6,23 +6,23 @@ import pandas as pd
 
 DATA_INPUT_PATH = os.path.join("prepared_data/Final_Result")
 DATA_OUTPUT_PATH = os.path.join("numpy_data")
-DATA_INPUT_TEST_PATH = os.path.join("data_test/prepared/Final_Result")
-
-no_sequences = 10
+DATA_INPUT_TEST_PATH = os.path.join("prepared_test_data/Final_Result")
+DATA_OUTPUT_TEST_PATH = os.path.join("numpy_data_test")
+no_sequences = 125
 
 for action in actions:
-    for sequence in range(no_sequences):
+    for sequence in range(10):
         try:
             os.makedirs(os.path.join(
-                DATA_OUTPUT_PATH, action, str(sequence)))
+                DATA_OUTPUT_TEST_PATH, action, str(sequence)))
         except:
             pass
 
 
 for action in actions:
-    for sequence in range(no_sequences):
+    for sequence in range(10):
         cap = cv2.VideoCapture(os.path.join(
-            DATA_INPUT_PATH, action, "{}.mp4".format(sequence)))
+            DATA_INPUT_TEST_PATH, action, "{}.mp4".format(sequence)))
         with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
             while cap.isOpened():
                 for frame_num in range(sequence_length):
@@ -32,7 +32,7 @@ for action in actions:
                     keypoints = extract_keypoints(results)
                     cv2.imshow('OpenCV Feed', image)
                     npy_path = os.path.join(
-                        DATA_OUTPUT_PATH,  action, str(sequence), str(frame_num))
+                        DATA_OUTPUT_TEST_PATH,  action, str(sequence), str(frame_num))
                     np.save(npy_path, keypoints)
                     pd.DataFrame({"data": keypoints}).to_csv(
                         f"{npy_path}.csv", header=False, index=False)

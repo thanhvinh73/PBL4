@@ -1,54 +1,11 @@
 import os
 import time
 import cv2
-import pandas as pd
 import numpy as np
 import mediapipe as mp
 import pyautogui
 from public_data import actions, mp_holistic, mp_drawing, mediapipe_detection, draw_styled_landmarks, extract_keypoints, load_model, normalize_video, load_model_rnn
-from flask import Flask, render_template, Response
-import base64
-DATA_PATH = os.path.join("data_test")
-DATA_OUTPUT_PATH = os.path.join("data_test/prepared")
-DATA_INPUT_PATH = os.path.join("data_test/raw")
-no_sequences_tesing_data = 13
-app = Flask(__name__)
-
-
-
-def makeOutputDirs():
-    for action in actions:
-        try:
-            os.makedirs(os.path.join(DATA_OUTPUT_PATH, action))
-            os.makedirs(os.path.join(
-                f"{DATA_OUTPUT_PATH}/Final_Result", action))
-        except:
-            pass
-
-
-def label_prediction(res) -> str:
-    percent = res[np.argmax(res)]
-    if percent < 0.7:
-        return "No action"
-    return actions[np.argmax(res)]
-
-
-def print_prediction_to_csv(action: str, sequence: str, res):
-    print(
-        f"Actual Action: {action} - File: {sequence}.mp4 - Prediction: {label_prediction(res)}: {res[np.argmax(res)]}")
-    df = pd.DataFrame({
-        "Actual action": [action],
-        "File": [f"{sequence}.mp4"],
-        "Prediction": [label_prediction(res)],
-        "Max_predict_percent": [res[np.argmax(res)]],
-        "Percent_sumary": [f"{res}"]
-    })
-    df.to_csv(f"{DATA_PATH}/testing_data.csv",
-              mode="a", header=False, index=False)
-
-import websocket
-
-def testing_live():
+def testing_espservo():
     holis = False
     scaling_factor = 1.5
     mp_hands = mp.solutions.hands
@@ -144,70 +101,6 @@ def testing_live():
                         break
                 cap.release()
                 cv2.destroyAllWindows()
-def testing():
-
-    predictions = []
-    sequence = []
-    model = load_model()
-    model.load_weights(os.path.join(
-        'trained_model', 'action_85.keras'))
-    correct_prediction_counter = []
-    for action in actions:
-        counter = 0
-        for no_sequence in range(no_sequences_tesing_data):
-            cap = cv2.VideoCapture(
-                f"{DATA_OUTPUT_PATH}/Final_Result/{action}/{no_sequence}.mp4")
-
-            with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-                while cap.isOpened():
-                    for frame_num in range(30):
-                        ret, frame = cap.read()
-                        image, results = mediapipe_detection(frame, holistic)
-                        draw_styled_landmarks(image, results)
-                        keypoints = extract_keypoints(results)
-                        sequence.append(keypoints)
-                        sequence = sequence[-30:]
-                        cv2.imshow('OpenCV Feed', image)
-
-                        if cv2.waitKey(25) & 0xFF == ord("q"):
-                            break
-
-                    res = model.predict(np.expand_dims(sequence, axis=0))[0]
-                    print_prediction_to_csv(action, no_sequence, res)
-                    if (action == actions[np.argmax(res)]):
-                        counter += 1
-                    predictions.append(np.argmax(res))
-                    cap.release()
-                    cv2.destroyAllWindows()
-        correct_prediction_counter.append(counter)
-
-    pd.DataFrame({
-        "actions": actions,
-        "total_video": np.full(4, no_sequences_tesing_data),
-        "correct": correct_prediction_counter}).to_csv(f"{DATA_PATH}/test_data_sumary.csv", index=False)
-
-
-
+                
 if __name__ == "__main__":
-    # data = {"Actual_action": ["Actual_action"],
-    #         "File": ["File"],
-    #         "Prediction": ["Prediction"],
-    #         "Max_predict_percent": ["Max_predict_percent"],
-    #         "Percent_sumary": ["Percent_sumary"]}
-    # df = pd.DataFrame(data)
-    # df.to_csv(f"{DATA_PATH}/testing_data.csv",
-    #           index=False, header=False)
-    print("-------------- TESTING MODEL --------------")
-    print("   0. With preparing data")
-    print("   1. Without preparing data")
-    print("   2. Live")
-    fun = input("Your choice: ")
-    if fun == "0":
-        makeOutputDirs()
-        normalize_video(DATA_INPUT_PATH, DATA_OUTPUT_PATH,
-                        total_videos=no_sequences_tesing_data)
-        testing()
-    elif fun == "1":
-        testing()
-    elif fun == "2":
-        testing_live()
+    testing_espservo()
