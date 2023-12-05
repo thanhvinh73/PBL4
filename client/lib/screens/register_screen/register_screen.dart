@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
+import '../../shared/widgets/app_container.dart';
+
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -58,103 +60,143 @@ class RegisterScreen extends StatelessWidget {
           ],
           child: AppLayout(
               showAppBar: false,
-              showLeading: false,
-              resizeToAvoidBottomInset: true,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: BlocBuilder<RegisterScreenCubit, RegisterScreenState>(
-                  builder: (context, state) {
-                    return Form(
-                      key: _formKey,
-                      child: SingleChildScrollView(
-                        child: Wrap(
-                          runSpacing: 16,
-                          children: [
-                            AppTextFormField(
-                                validations: const [
-                                  Validators.validateNotEmpty
+              statusBarColor: AppColors.primaryColor,
+              child: Scaffold(
+                backgroundColor: AppColors.primaryColor,
+                appBar: AppBar(
+                  toolbarHeight: 70,
+                  elevation: 0,
+                  leading: const SizedBox.shrink(),
+                  backgroundColor: AppColors.primaryColor,
+                  shadowColor: AppColors.transparent,
+                ),
+                resizeToAvoidBottomInset: true,
+                body: SafeArea(
+                  child: BlocBuilder<RegisterScreenCubit, RegisterScreenState>(
+                    builder: (context, state) {
+                      return LayoutBuilder(builder: (context, constraints) {
+                        return SingleChildScrollView(
+                          child: AppContainer(
+                            padding: const EdgeInsets.all(16),
+                            color: AppColors.white,
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(22),
+                                topRight: Radius.circular(22)),
+                            constraints: BoxConstraints(
+                                minHeight: constraints.maxHeight),
+                            child: Form(
+                              key: _formKey,
+                              child: Wrap(
+                                runSpacing: 18,
+                                alignment: WrapAlignment.center,
+                                children: [
+                                  AppText(
+                                    tr(LocaleKeys.Auth_Register),
+                                    fontSize: 35,
+                                    color: AppColors.darkPurple,
+                                    fontWeight: FontWeight.bold,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 22),
+                                  ),
+                                  const SizedBox(height: 40, width: 1),
+                                  AppTextFormField(
+                                      validations: const [
+                                        Validators.validateNotEmpty
+                                      ],
+                                      label: tr(LocaleKeys.Auth_Username),
+                                      placeholder:
+                                          tr(LocaleKeys.Auth_EnterUsername),
+                                      onchanged: (_) {
+                                        context
+                                            .read<RegisterScreenCubit>()
+                                            .updateState((p0) =>
+                                                p0.copyWith(username: _));
+                                      }),
+                                  AppTextFormField(
+                                      validations: const [
+                                        Validators.validatePassword
+                                      ],
+                                      label: tr(LocaleKeys.Auth_Password),
+                                      placeholder:
+                                          tr(LocaleKeys.Auth_EnterPassword),
+                                      obscureText: true,
+                                      onchanged: (_) {
+                                        context
+                                            .read<RegisterScreenCubit>()
+                                            .updateState((p0) =>
+                                                p0.copyWith(password: _));
+                                      }),
+                                  AppTextFormField(
+                                      validations: [
+                                        (data) =>
+                                            Validators.validateConfirmPassword(
+                                                state.password, data)
+                                      ],
+                                      label:
+                                          tr(LocaleKeys.Auth_ConfirmPassword),
+                                      obscureText: true,
+                                      placeholder: tr(
+                                          LocaleKeys.Auth_EnterConfirmPassword),
+                                      onchanged: (_) {
+                                        context
+                                            .read<RegisterScreenCubit>()
+                                            .updateState((p0) => p0.copyWith(
+                                                confirmPassword: _));
+                                      }),
+                                  AppTextFormField(
+                                      validations: const [
+                                        Validators.validateEmail
+                                      ],
+                                      label: tr(LocaleKeys.Auth_Email),
+                                      placeholder:
+                                          tr(LocaleKeys.Auth_EnterEmail),
+                                      onchanged: (_) {
+                                        context
+                                            .read<RegisterScreenCubit>()
+                                            .updateState(
+                                                (p0) => p0.copyWith(email: _));
+                                      }),
+                                  AppButton(
+                                      width: MediaQuery.of(context).size.width,
+                                      title: tr(LocaleKeys.Auth_Register),
+                                      onPressed: () {
+                                        if (_formKey.currentState != null &&
+                                            _formKey.currentState!.validate()) {
+                                          context
+                                              .read<RegisterScreenCubit>()
+                                              .register();
+                                        }
+                                      }),
+                                  Align(
+                                      alignment: Alignment.center,
+                                      child: Column(
+                                        children: [
+                                          AppText(
+                                            tr(LocaleKeys
+                                                .Auth_DoYouHaveAccount),
+                                            fontSize: 15,
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () =>
+                                                Get.toNamed(Routes.login),
+                                            child: AppText(
+                                              tr(LocaleKeys.Auth_Login),
+                                              color: AppColors.darkPurple,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      )),
                                 ],
-                                label: tr(LocaleKeys.Auth_Username),
-                                placeholder: tr(LocaleKeys.Auth_EnterUsername),
-                                onchanged: (_) {
-                                  context
-                                      .read<RegisterScreenCubit>()
-                                      .updateState(
-                                          (p0) => p0.copyWith(username: _));
-                                }),
-                            AppTextFormField(
-                                validations: const [
-                                  Validators.validatePassword
-                                ],
-                                label: tr(LocaleKeys.Auth_Password),
-                                placeholder: tr(LocaleKeys.Auth_EnterPassword),
-                                obscureText: true,
-                                onchanged: (_) {
-                                  context
-                                      .read<RegisterScreenCubit>()
-                                      .updateState(
-                                          (p0) => p0.copyWith(password: _));
-                                }),
-                            AppTextFormField(
-                                validations: [
-                                  (data) => Validators.validateConfirmPassword(
-                                      state.password, data)
-                                ],
-                                label: tr(LocaleKeys.Auth_ConfirmPassword),
-                                obscureText: true,
-                                placeholder:
-                                    tr(LocaleKeys.Auth_EnterConfirmPassword),
-                                onchanged: (_) {
-                                  context
-                                      .read<RegisterScreenCubit>()
-                                      .updateState((p0) =>
-                                          p0.copyWith(confirmPassword: _));
-                                }),
-                            AppTextFormField(
-                                validations: const [Validators.validateEmail],
-                                label: tr(LocaleKeys.Auth_Email),
-                                placeholder: tr(LocaleKeys.Auth_EnterEmail),
-                                onchanged: (_) {
-                                  context
-                                      .read<RegisterScreenCubit>()
-                                      .updateState(
-                                          (p0) => p0.copyWith(email: _));
-                                }),
-                            AppButton(
-                                width: MediaQuery.of(context).size.width,
-                                title: tr(LocaleKeys.Auth_Register),
-                                onPressed: () {
-                                  if (_formKey.currentState != null &&
-                                      _formKey.currentState!.validate()) {
-                                    context
-                                        .read<RegisterScreenCubit>()
-                                        .register();
-                                  }
-                                }),
-                            GestureDetector(
-                              onTap: () => Get.toNamed(Routes.login),
-                              child: Align(
-                                  alignment: Alignment.center,
-                                  child: Wrap(
-                                    spacing: 4,
-                                    children: [
-                                      AppText(
-                                        tr(LocaleKeys.Auth_DoYouHaveAccount),
-                                        fontSize: 15,
-                                      ),
-                                      AppText(
-                                        tr(LocaleKeys.Auth_Login),
-                                        color: AppColors.darkPurple,
-                                        fontSize: 15,
-                                      ),
-                                    ],
-                                  )),
+                              ),
                             ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                          ),
+                        );
+                      });
+                    },
+                  ),
                 ),
               )),
         ),

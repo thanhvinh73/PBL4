@@ -17,19 +17,27 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AppUserState {
   User? get user => throw _privateConstructorUsedError;
+  bool? get checkInternet => throw _privateConstructorUsedError;
+  CameraUrl? get currentCameraUrl => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User? user) initial,
+    required TResult Function(
+            User? user, bool? checkInternet, CameraUrl? currentCameraUrl)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(User? user)? initial,
+    TResult? Function(
+            User? user, bool? checkInternet, CameraUrl? currentCameraUrl)?
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User? user)? initial,
+    TResult Function(
+            User? user, bool? checkInternet, CameraUrl? currentCameraUrl)?
+        initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,9 +69,10 @@ abstract class $AppUserStateCopyWith<$Res> {
           AppUserState value, $Res Function(AppUserState) then) =
       _$AppUserStateCopyWithImpl<$Res, AppUserState>;
   @useResult
-  $Res call({User? user});
+  $Res call({User? user, bool? checkInternet, CameraUrl? currentCameraUrl});
 
   $UserCopyWith<$Res>? get user;
+  $CameraUrlCopyWith<$Res>? get currentCameraUrl;
 }
 
 /// @nodoc
@@ -80,12 +89,22 @@ class _$AppUserStateCopyWithImpl<$Res, $Val extends AppUserState>
   @override
   $Res call({
     Object? user = freezed,
+    Object? checkInternet = freezed,
+    Object? currentCameraUrl = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
+      checkInternet: freezed == checkInternet
+          ? _value.checkInternet
+          : checkInternet // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      currentCameraUrl: freezed == currentCameraUrl
+          ? _value.currentCameraUrl
+          : currentCameraUrl // ignore: cast_nullable_to_non_nullable
+              as CameraUrl?,
     ) as $Val);
   }
 
@@ -100,6 +119,18 @@ class _$AppUserStateCopyWithImpl<$Res, $Val extends AppUserState>
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CameraUrlCopyWith<$Res>? get currentCameraUrl {
+    if (_value.currentCameraUrl == null) {
+      return null;
+    }
+
+    return $CameraUrlCopyWith<$Res>(_value.currentCameraUrl!, (value) {
+      return _then(_value.copyWith(currentCameraUrl: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -110,10 +141,12 @@ abstract class _$$_InitialCopyWith<$Res>
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? user});
+  $Res call({User? user, bool? checkInternet, CameraUrl? currentCameraUrl});
 
   @override
   $UserCopyWith<$Res>? get user;
+  @override
+  $CameraUrlCopyWith<$Res>? get currentCameraUrl;
 }
 
 /// @nodoc
@@ -127,12 +160,22 @@ class __$$_InitialCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
+    Object? checkInternet = freezed,
+    Object? currentCameraUrl = freezed,
   }) {
     return _then(_$_Initial(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
+      checkInternet: freezed == checkInternet
+          ? _value.checkInternet
+          : checkInternet // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      currentCameraUrl: freezed == currentCameraUrl
+          ? _value.currentCameraUrl
+          : currentCameraUrl // ignore: cast_nullable_to_non_nullable
+              as CameraUrl?,
     ));
   }
 }
@@ -140,14 +183,18 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial({this.user});
+  const _$_Initial({this.user, this.checkInternet, this.currentCameraUrl});
 
   @override
   final User? user;
+  @override
+  final bool? checkInternet;
+  @override
+  final CameraUrl? currentCameraUrl;
 
   @override
   String toString() {
-    return 'AppUserState.initial(user: $user)';
+    return 'AppUserState.initial(user: $user, checkInternet: $checkInternet, currentCameraUrl: $currentCameraUrl)';
   }
 
   @override
@@ -155,11 +202,16 @@ class _$_Initial implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.checkInternet, checkInternet) ||
+                other.checkInternet == checkInternet) &&
+            (identical(other.currentCameraUrl, currentCameraUrl) ||
+                other.currentCameraUrl == currentCameraUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, user, checkInternet, currentCameraUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -170,27 +222,33 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User? user) initial,
+    required TResult Function(
+            User? user, bool? checkInternet, CameraUrl? currentCameraUrl)
+        initial,
   }) {
-    return initial(user);
+    return initial(user, checkInternet, currentCameraUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(User? user)? initial,
+    TResult? Function(
+            User? user, bool? checkInternet, CameraUrl? currentCameraUrl)?
+        initial,
   }) {
-    return initial?.call(user);
+    return initial?.call(user, checkInternet, currentCameraUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User? user)? initial,
+    TResult Function(
+            User? user, bool? checkInternet, CameraUrl? currentCameraUrl)?
+        initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(user);
+      return initial(user, checkInternet, currentCameraUrl);
     }
     return orElse();
   }
@@ -225,10 +283,17 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements AppUserState {
-  const factory _Initial({final User? user}) = _$_Initial;
+  const factory _Initial(
+      {final User? user,
+      final bool? checkInternet,
+      final CameraUrl? currentCameraUrl}) = _$_Initial;
 
   @override
   User? get user;
+  @override
+  bool? get checkInternet;
+  @override
+  CameraUrl? get currentCameraUrl;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

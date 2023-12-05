@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MainScreenState {
   String? get errorMessage => throw _privateConstructorUsedError;
   ScreenStatus get status => throw _privateConstructorUsedError;
-  BottomTabs get currentTab => throw _privateConstructorUsedError;
+  MainTabs get currentTab => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MainScreenStateCopyWith<MainScreenState> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $MainScreenStateCopyWith<$Res> {
           MainScreenState value, $Res Function(MainScreenState) then) =
       _$MainScreenStateCopyWithImpl<$Res, MainScreenState>;
   @useResult
-  $Res call({String? errorMessage, ScreenStatus status, BottomTabs currentTab});
+  $Res call({String? errorMessage, ScreenStatus status, MainTabs currentTab});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
       currentTab: null == currentTab
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
-              as BottomTabs,
+              as MainTabs,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$_InitialCopyWith<$Res>
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? errorMessage, ScreenStatus status, BottomTabs currentTab});
+  $Res call({String? errorMessage, ScreenStatus status, MainTabs currentTab});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class __$$_InitialCopyWithImpl<$Res>
       currentTab: null == currentTab
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
-              as BottomTabs,
+              as MainTabs,
     ));
   }
 }
@@ -116,7 +116,7 @@ class _$_Initial implements _Initial {
   const _$_Initial(
       {this.errorMessage,
       this.status = ScreenStatus.init,
-      this.currentTab = BottomTabs.Home});
+      this.currentTab = MainTabs.home});
 
   @override
   final String? errorMessage;
@@ -125,7 +125,7 @@ class _$_Initial implements _Initial {
   final ScreenStatus status;
   @override
   @JsonKey()
-  final BottomTabs currentTab;
+  final MainTabs currentTab;
 
   @override
   String toString() {
@@ -159,14 +159,14 @@ abstract class _Initial implements MainScreenState {
   const factory _Initial(
       {final String? errorMessage,
       final ScreenStatus status,
-      final BottomTabs currentTab}) = _$_Initial;
+      final MainTabs currentTab}) = _$_Initial;
 
   @override
   String? get errorMessage;
   @override
   ScreenStatus get status;
   @override
-  BottomTabs get currentTab;
+  MainTabs get currentTab;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

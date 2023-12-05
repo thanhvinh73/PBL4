@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:client/shared/enum/bottom_tabs.dart';
+import 'package:client/shared/enum/main_tabs.dart';
 import 'package:client/shared/enum/screen_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,6 +10,9 @@ class MainScreenCubit extends Cubit<MainScreenState> {
   MainScreenCubit() : super(const MainScreenState());
 
   void resetErrorMessage() => emit(state.copyWith(errorMessage: null));
+
+  changeTab(MainTabs tab) => emit(state.copyWith(currentTab: tab));
+
   updateState(MainScreenState Function(MainScreenState) onUpdate) =>
       emit(onUpdate(state));
 }

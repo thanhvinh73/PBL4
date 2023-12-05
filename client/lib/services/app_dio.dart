@@ -35,20 +35,23 @@ class AppDio with DioMixin implements Dio {
         handler.next(response);
       },
       onError: (error, handler) async {
-        print("check error in app dio: $error");
-        final String? rfToken = sp.prefs.getString('refresh_token');
+        // final String? rfToken = sp.prefs.getString('refresh_token');
         if (error.response != null) {
           if (error.requestOptions.headers.containsKey('Authorization')) {
             if (error.response?.data is Map &&
                 error.response?.data['error'] is Map &&
                 error.response?.data['error']['code'] == 'ERR.TOK002') {
-              await _refreshToken(rfToken ?? "");
+              Credential? newToken = await _refreshToken();
+              if (newToken != null) {
+                error.requestOptions.headers["Authorization"] =
+                    'Bearer ${newToken.accessToken}';
+                return handler.resolve(await fetch(error.requestOptions));
+              }
             }
             if (error.response?.data is Map &&
                 error.response?.data['error'] is Map &&
                 (error.response?.data['error']['code'] == 'ERR.TOK0101' ||
                     error.response?.data['error']['code'] == 'ERR.TOK0103')) {
-              // TODO: handle error
               sp.prefs.clear();
             }
             handler.next(error);
@@ -64,12 +67,11 @@ class AppDio with DioMixin implements Dio {
   }
 }
 
-Future<Credential?> _refreshToken(String refreshToken) async {
+Future<Credential?> _refreshToken() async {
   try {
     final AuthRepository authRepository = AuthRepository(apis: PublicApi.apis);
     sp.clear();
-    ApiResponse<Credential> res =
-        await authRepository.refreshToken(refreshToken);
+    ApiResponse<Credential> res = await authRepository.refreshToken();
     if (res.data != null) {
       sp.setToken(res.data!.accessToken, res.data!.refreshToken);
       return res.data;

@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
@@ -9,6 +11,7 @@ class User with _$User {
     String? id,
     String? email,
     String? username,
+    String? name,
     @JsonKey(includeFromJson: false, includeToJson: false) String? password,
     @JsonKey(includeFromJson: false, includeToJson: false)
     String? confirmPassword,

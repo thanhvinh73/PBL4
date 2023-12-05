@@ -86,7 +86,10 @@ plt.ylabel('Loss')
 plt.legend()
 plt.show()
 # model.load_weights(os.path.join(
-#     'trained_model', 'action_with_all.keras'))
+#     'trained_model', 'action_85.keras'))
+model.fit(X, y, epochs=80, callbacks=[tb_callback])
+model.save(os.path.join('trained_model', 'action1.keras'))
+
 
 yhat = model.predict(X_test)
 ytrue = np.argmax(y_test, axis=1).tolist()

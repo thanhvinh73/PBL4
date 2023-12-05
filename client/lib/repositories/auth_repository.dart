@@ -20,6 +20,5 @@ class AuthRepository {
       }));
   }
 
-  Future<ApiResponse<Credential>> refreshToken(String refreshToken) =>
-      apis.refreshToken({"refresh_token": refreshToken});
+  Future<ApiResponse<Credential>> refreshToken() => apis.refreshToken();
 }

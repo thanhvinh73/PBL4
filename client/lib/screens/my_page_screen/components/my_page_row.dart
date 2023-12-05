@@ -29,8 +29,8 @@ class MyPageRow extends StatelessWidget {
                 child: SvgPicture.asset(
                   svgUrl,
                   color: AppColors.titleText,
-                  width: 30,
-                  height: 30,
+                  width: 28,
+                  height: 28,
                 )),
             Expanded(
                 flex: 5,

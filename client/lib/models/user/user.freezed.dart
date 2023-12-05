@@ -23,6 +23,7 @@ mixin _$User {
   String? get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? get password => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -42,6 +43,7 @@ abstract class $UserCopyWith<$Res> {
       {String? id,
       String? email,
       String? username,
+      String? name,
       @JsonKey(includeFromJson: false, includeToJson: false) String? password,
       @JsonKey(includeFromJson: false, includeToJson: false)
       String? confirmPassword});
@@ -63,6 +65,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? id = freezed,
     Object? email = freezed,
     Object? username = freezed,
+    Object? name = freezed,
     Object? password = freezed,
     Object? confirmPassword = freezed,
   }) {
@@ -78,6 +81,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       password: freezed == password
           ? _value.password
@@ -101,6 +108,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       {String? id,
       String? email,
       String? username,
+      String? name,
       @JsonKey(includeFromJson: false, includeToJson: false) String? password,
       @JsonKey(includeFromJson: false, includeToJson: false)
       String? confirmPassword});
@@ -118,6 +126,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? id = freezed,
     Object? email = freezed,
     Object? username = freezed,
+    Object? name = freezed,
     Object? password = freezed,
     Object? confirmPassword = freezed,
   }) {
@@ -133,6 +142,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       password: freezed == password
           ? _value.password
@@ -153,6 +166,7 @@ class _$_User implements _User {
       {this.id,
       this.email,
       this.username,
+      this.name,
       @JsonKey(includeFromJson: false, includeToJson: false) this.password,
       @JsonKey(includeFromJson: false, includeToJson: false)
       this.confirmPassword});
@@ -166,6 +180,8 @@ class _$_User implements _User {
   @override
   final String? username;
   @override
+  final String? name;
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String? password;
   @override
@@ -174,7 +190,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, username: $username, password: $password, confirmPassword: $confirmPassword)';
+    return 'User(id: $id, email: $email, username: $username, name: $name, password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -186,6 +202,7 @@ class _$_User implements _User {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
@@ -194,8 +211,8 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, email, username, password, confirmPassword);
+  int get hashCode => Object.hash(
+      runtimeType, id, email, username, name, password, confirmPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -216,6 +233,7 @@ abstract class _User implements User {
       {final String? id,
       final String? email,
       final String? username,
+      final String? name,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final String? password,
       @JsonKey(includeFromJson: false, includeToJson: false)
@@ -229,6 +247,8 @@ abstract class _User implements User {
   String? get email;
   @override
   String? get username;
+  @override
+  String? get name;
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? get password;
