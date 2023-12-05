@@ -37,46 +37,43 @@ class _MainScreenState extends State<MainScreen> with AfterLayoutMixin {
   Widget build(BuildContext context) {
     return AppDismissKeyboard(
       onWillPop: false,
-      child: BlocProvider(
-        create: (context) => MainScreenCubit(),
-        child: MultiBlocListener(
-          listeners: [
-            BlocListener<MainScreenCubit, MainScreenState>(
-              listenWhen: (previous, current) =>
-                  previous.errorMessage != current.errorMessage &&
-                  current.errorMessage != null,
-              listener: (context, state) {
-                showErrorDialog(context,
-                        title: tr(LocaleKeys.Auth_Error),
-                        content: state.errorMessage)
-                    .then((value) =>
-                        context.read<MainScreenCubit>().resetErrorMessage());
-              },
-            ),
-          ],
-          child: BlocSelector<MainScreenCubit, MainScreenState, MainTabs>(
-            selector: (state) => state.currentTab,
-            builder: (context, currentTab) {
-              return AppLayout(
-                resizeToAvoidBottomInset: true,
-                useSafeArea: true,
-                title: context.read<MainScreenCubit>().state.currentTab.label,
-                leading: Builder(builder: (context) {
-                  return GestureDetector(
-                    onTap: Scaffold.of(context).openDrawer,
-                    child: const AppContainer(
-                      margin: EdgeInsets.only(left: 16),
-                      alignment: Alignment.centerLeft,
-                      child: Icon(Icons.menu),
-                    ),
-                  );
-                }),
-                action: [currentTab.action(context) ?? const SizedBox.shrink()],
-                drawer: const DrawerItems(),
-                child: currentTab.widget,
-              );
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<MainScreenCubit, MainScreenState>(
+            listenWhen: (previous, current) =>
+                previous.errorMessage != current.errorMessage &&
+                current.errorMessage != null,
+            listener: (context, state) {
+              showErrorDialog(context,
+                      title: tr(LocaleKeys.Auth_Error),
+                      content: state.errorMessage)
+                  .then((value) =>
+                      context.read<MainScreenCubit>().resetErrorMessage());
             },
           ),
+        ],
+        child: BlocSelector<MainScreenCubit, MainScreenState, MainTabs>(
+          selector: (state) => state.currentTab,
+          builder: (context, currentTab) {
+            return AppLayout(
+              resizeToAvoidBottomInset: true,
+              useSafeArea: true,
+              title: context.read<MainScreenCubit>().state.currentTab.label,
+              leading: Builder(builder: (context) {
+                return GestureDetector(
+                  onTap: Scaffold.of(context).openDrawer,
+                  child: const AppContainer(
+                    margin: EdgeInsets.only(left: 16),
+                    alignment: Alignment.centerLeft,
+                    child: Icon(Icons.menu),
+                  ),
+                );
+              }),
+              action: [currentTab.action(context) ?? const SizedBox.shrink()],
+              drawer: const DrawerItems(),
+              child: currentTab.widget,
+            );
+          },
         ),
       ),
     );

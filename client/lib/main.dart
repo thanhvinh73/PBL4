@@ -1,8 +1,10 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:client/public_providers/app_user_cubit/app_user_cubit.dart';
 import 'package:client/public_providers/page_router_cubit/page_router_cubit.dart';
+import 'package:client/public_providers/web_socket_cubit/web_socket_cubit.dart';
 import 'package:client/router_observer.dart';
 import 'package:client/routes/app_router.dart';
+import 'package:client/screens/main_screen/cubit/main_screen_cubit.dart';
 import 'package:client/shared/utils/shared_preference.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -35,12 +37,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => PageRouterCubit(),
-        ),
-        BlocProvider(
-          create: (context) => AppUserCubit(),
-        ),
+        BlocProvider(create: (context) => PageRouterCubit()),
+        BlocProvider(create: (context) => AppUserCubit()),
+        BlocProvider(create: (context) => MainScreenCubit()),
+        BlocProvider(create: (context) => WebSocketCubit(context: context)),
       ],
       child: Builder(builder: (context) {
         return GetMaterialApp(

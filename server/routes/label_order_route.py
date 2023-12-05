@@ -72,11 +72,11 @@ def change_order(userId):
             }
         }), 403
     
+    label_0 = LabelOrder("",label=req.get("swap_labels")[0]["label"],label_order=req.get("swap_labels")[0]["label_order"])
+    label_1 = LabelOrder("", label=req.get("swap_labels")[1]["label"],label_order=req.get("swap_labels")[1]["label_order"])
     
-    label = LabelOrderDefault.from_string(req.get("swap_labels")[0])
-    label_1 = LabelOrderDefault.from_string(req.get("swap_labels")[1])
-    if label is None or label_1 is None:
+    if label_0 is None or label_1 is None:
         return jsonify({"status": 400, "error":{"code": "ERR.LABEL003", "message": "Not found label!"}}), 400
-    LabelOrder.change_order(userId, label, label_1)
+    LabelOrder.change_order(userId, label_0, label_1)
     return jsonify({"status": 200, "data": LabelOrderSchema().dump(LabelOrder.get_labels_by_userId(userId), many=True)}), 200
 

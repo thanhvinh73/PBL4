@@ -2,7 +2,7 @@ import 'package:client/shared/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  final String title;
+  final String? title;
   final void Function()? onPressed;
   final Color? shadowColor;
   final Color? titleColor;
@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
 
   const AppButton({
     super.key,
-    required this.title,
+    this.title,
     required this.onPressed,
     this.shadowColor,
     this.titleColor,
@@ -63,7 +63,7 @@ class AppButton extends StatelessWidget {
         child: child ??
             Center(
                 child: Text(
-              title,
+              title ?? "",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: onPressed == null

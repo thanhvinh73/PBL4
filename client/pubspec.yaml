@@ -69,6 +69,9 @@ dev_dependencies:
   # For Networking
   retrofit_generator: ^6.0.0+1
 
+  # For socket
+  web_socket_channel: ^2.4.0
+
 flutter_gen:
   output: lib/generated/ # Optional (default: lib/gen/)
   line_length: 80 # Optional (default: 80)

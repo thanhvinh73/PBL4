@@ -45,7 +45,7 @@ class ListActionsScreenCubit extends Cubit<ListActionsScreenState> {
     final cancel = showLoading();
     try {
       await _labelRepository.changeOrder(
-          state.userId, labelOrder1.label!, labelOrder2.label!);
+          state.userId, labelOrder1, labelOrder2);
       emit(state.copyWith(status: ScreenStatus.success));
       cancel();
     } catch (err) {

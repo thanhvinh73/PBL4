@@ -4,6 +4,7 @@ import 'package:client/screens/list_actions_screen/cubit/list_actions_screen_cub
 import 'package:client/shared/enum/screen_status.dart';
 import 'package:client/shared/helpers/banner.helper.dart';
 import 'package:client/shared/utils/app_colors.dart';
+import 'package:client/shared/widgets/app_button.dart';
 import 'package:client/shared/widgets/app_container.dart';
 import 'package:client/shared/widgets/app_text.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -60,31 +61,37 @@ class ListActionsScreen extends StatelessWidget {
                 child: AppContainer(
                   padding: const EdgeInsets.all(16),
                   constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                  child: BlocBuilder<ListActionsScreenCubit,
-                      ListActionsScreenState>(
-                    builder: (context, state) {
-                      return state.labelOrders == null
-                          ? const Center(
-                              child: CircularProgressIndicator(
-                                color: AppColors.darkPurple,
-                              ),
-                            )
-                          : Wrap(
-                              runSpacing: 16,
-                              children: [
-                                AppText(
-                                  "NHÃN HÀNH ĐỘNG",
-                                  color: AppColors.darkPurple,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                ...(state.labelOrders ?? [])
-                                    .map((item) =>
-                                        ListActionItem(labelOrder: item))
-                                    .toList()
-                              ],
-                            );
-                    },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BlocBuilder<ListActionsScreenCubit,
+                          ListActionsScreenState>(
+                        builder: (context, state) {
+                          return state.labelOrders == null
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.darkPurple,
+                                  ),
+                                )
+                              : Wrap(
+                                  runSpacing: 16,
+                                  children: [
+                                    AppText(
+                                      "NHÃN HÀNH ĐỘNG",
+                                      color: AppColors.darkPurple,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    ...(state.labelOrders ?? [])
+                                        .map((item) =>
+                                            ListActionItem(labelOrder: item))
+                                        .toList()
+                                  ],
+                                );
+                        },
+                      ),
+                      AppButton(title: "Nhận diện", onPressed: () {})
+                    ],
                   ),
                 ),
               ),

@@ -40,14 +40,14 @@ class LabelOrder:
         return result
     
     @classmethod
-    def change_order(cls, userId, label: LabelOrderDefault, label_1: LabelOrderDefault):
+    def change_order(cls, userId, label, label_1):
         if label is None or label_1 is None: 
             return
         db = get_db()
         cursor = db.connection.cursor()
-        cursor.execute('UPDATE label_order SET label_order = %s WHERE userId = %s and label = %s', [label_1.value, userId, label.name])
+        cursor.execute('UPDATE label_order SET label_order = %s WHERE userId = %s and label = %s', [label_1.label_order, userId, label.label])
         db.connection.commit()
-        cursor.execute('UPDATE label_order SET label_order = %s WHERE userId = %s and label = %s', [label.value, userId, label_1.name])
+        cursor.execute('UPDATE label_order SET label_order = %s WHERE userId = %s and label = %s', [label.label_order, userId, label_1.label])
         db.connection.commit()
         cursor.close()
 
