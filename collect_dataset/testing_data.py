@@ -55,10 +55,9 @@ def testing_live():
     model = load_model()
     model.load_weights(os.path.join(
         'trained_model', 'actionwithvalid125.keras'))
-        'trained_model', 'actionwithvalid125.keras'))
 
     sequence = []
-    threshold = 0.98
+    threshold = 0.7
     count_frame = 0
     
     cap = cv2.VideoCapture("http://192.168.1.13:81/stream")
@@ -83,24 +82,13 @@ def testing_live():
                                 pinkyTip = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].y
                                 pinkyDip = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_DIP].y
                                 if indexTip <= indexDip  and middleTip <= middleDip and ringTip <= ringDip and pinkyTip > pinkyDip:
-                                indexTip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
-                                indexDip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_DIP].y
-                                middleTip = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP].y
-                                middleDip = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_DIP].y
-                                ringTip = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].y
-                                ringDip = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_DIP].y
-                                pinkyTip = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].y
-                                pinkyDip = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_DIP].y
-                                if indexTip <= indexDip  and middleTip <= middleDip and ringTip <= ringDip and pinkyTip > pinkyDip:
                                     holis = True
-                                    time.sleep(1)
                                     time.sleep(1)
                                 screen_width, screen_height = pyautogui.size()
                                 bbox_xmin = 0.5 - 480 / screen_width
                                 bbox_ymin = 0.5 - 270 / screen_height
                                 bbox_xmax = 0.5 + 480 / screen_width
                                 bbox_ymax = 0.5 + 270 / screen_height
-                                if indexTip <= indexDip and middleTip > middleDip and ringTip > ringDip and pinkyTip > pinkyDip:
                                 if indexTip <= indexDip and middleTip > middleDip and ringTip > ringDip and pinkyTip > pinkyDip:
                                     x = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
                                     y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
@@ -151,7 +139,6 @@ def testing_live():
                             # Reset the sequence for the next 30 frames
                             sequence = []
                         cv2.imshow('OpenCV Feed', image)
-                    # Tắt camera bằng nút q
                     # Tắt camera bằng nút q
                     if cv2.waitKey(10) & 0xFF == ord('q'):
                         break

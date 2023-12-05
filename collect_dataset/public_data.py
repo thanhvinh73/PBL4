@@ -100,16 +100,11 @@ from keras.layers import Dropout
 def load_model():
     model = Sequential()
     model.add(LSTM(16, return_sequences=True,
-    model.add(LSTM(16, return_sequences=True,
                    activation='relu', input_shape=(30, 258)))
     # model.add(LSTM(64, return_sequences=True, activation='relu'))
     # model.add(Dropout(0.2))
     model.add(LSTM(32, return_sequences=False, activation='relu'))
     # model.add(LSTM(64, return_sequences=True, activation='relu'))
-    # model.add(Dropout(0.2))
-    model.add(LSTM(32, return_sequences=False, activation='relu'))
-    # model.add(Dense(64, activation='relu'))
-    model.add(Dense(16, activation='relu'))
     model.add(Dense(16, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
     return model
