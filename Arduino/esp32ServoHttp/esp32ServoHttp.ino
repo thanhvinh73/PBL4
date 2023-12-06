@@ -1,4 +1,3 @@
-
 #include "esp_camera.h"
 #include <WiFi.h>
 #include "esp_timer.h"
@@ -11,8 +10,8 @@
 #include <ESP32Servo.h>
 
 // Replace with your network credentials
-const char* ssid = "Hung_2.4G";
-const char* password = "khongcanso";
+const char* ssid = "nhanpz";
+const char* password = "4chu@nha";
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 
@@ -176,18 +175,27 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
     <h1>ESP32-CAM Pan and Tilt</h1>
     <img src="" id="photo" >
     <table>
-      <tr><td colspan="3" align="center"><button class="button" onmousedown="toggleCheckbox('up');" ontouchstart="toggleCheckbox('up');">Up</button></td></tr>
-      <tr><td align="center"><button class="button" onmousedown="toggleCheckbox('left');" ontouchstart="toggleCheckbox('left');">Left</button></td><td align="center"></td><td align="center"><button class="button" onmousedown="toggleCheckbox('right');" ontouchstart="toggleCheckbox('right');">Right</button></td></tr>
-      <tr><td colspan="3" align="center"><button class="button" onmousedown="toggleCheckbox('down');" ontouchstart="toggleCheckbox('down');">Down</button></td></tr>                   
-    </table>
-   <script>
-   function toggleCheckbox(x) {
-     var xhr = new XMLHttpRequest();
-     xhr.open("GET", "/action?go=" + x, true);
-     xhr.send();
-   }
-   window.onload = document.getElementById("photo").src = window.location.href.slice(0, -1) + ":81/stream";
-  </script>
+      <tr>
+  <td colspan="3" align="center">
+    <input type="range" id="panSlider" min="0" max="180" value="90" oninput="updateSlider('pan', value)">
+    Pan
+  </td>
+</tr>
+<tr>
+  <td colspan="3" align="center">
+    <input type="range" id="tiltSlider" min="0" max="180" value="90" oninput="updateSlider('tilt', value)">
+    Tilt
+  </td>
+</tr>
+<!-- ... -->
+<script>
+  function updateSlider(servo, value) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/action?" + servo.toLowerCase() + "=" + value, true);
+    xhr.send();
+  }
+  window.onload = document.getElementById("photo").src = window.location.href.slice(0, -1) + ":81/stream";
+</script>
   </body>
 </html>
 )rawliteral";
@@ -474,119 +482,84 @@ static esp_err_t stream_handler(httpd_req_t *req)
     return res;
 }
 
-static esp_err_t cmd_handler(httpd_req_t *req){
-  char*  buf;
-  size_t buf_len;
-  char variable[32] = {0,};
-  
-  buf_len = httpd_req_get_url_query_len(req) + 1;
-  if (buf_len > 1) {
-    buf = (char*)malloc(buf_len);
-    if(!buf){
-      httpd_resp_send_500(req);
-      return ESP_FAIL;
-    }
-    if (httpd_req_get_url_query_str(req, buf, buf_len) == ESP_OK) {
-      if (httpd_query_key_value(buf, "go", variable, sizeof(variable)) == ESP_OK) {
-      } else {
+static esp_err_t cmd_handler(httpd_req_t *req) {
+    char* buf;
+    size_t buf_len;
+
+    buf_len = httpd_req_get_url_query_len(req) + 1;
+    if (buf_len > 1) {
+        buf = (char*)malloc(buf_len);
+        if (!buf) {
+            httpd_resp_send_500(req);
+            return ESP_FAIL;
+        }
+
+        if (httpd_req_get_url_query_str(req, buf, buf_len) == ESP_OK) {
+            char param[32];
+            if (httpd_query_key_value(buf, "pan", param, sizeof(param)) == ESP_OK) {
+                int panValue = atoi(param);
+                Serial.println("Pan Value: " + String(panValue));
+                panServo.write(panValue);
+            } else if (httpd_query_key_value(buf, "tilt", param, sizeof(param)) == ESP_OK) {
+                int tiltValue = atoi(param);
+                Serial.println("Tilt Value: " + String(tiltValue));
+                tiltServo.write(tiltValue);
+            } else {
+                free(buf);
+                httpd_resp_send_404(req);
+                return ESP_FAIL;
+            }
+        } else {
+            free(buf);
+            httpd_resp_send_404(req);
+            return ESP_FAIL;
+        }
+
         free(buf);
+    } else {
         httpd_resp_send_404(req);
         return ESP_FAIL;
-      }
-    } else {
-      free(buf);
-      httpd_resp_send_404(req);
-      return ESP_FAIL;
     }
-    free(buf);
-  } else {
-    httpd_resp_send_404(req);
-    return ESP_FAIL;
-  }
 
-  sensor_t * s = esp_camera_sensor_get();
-  //flip the camera vertically
-  //s->set_vflip(s, 1);          // 0 = disable , 1 = enable
-  // mirror effect
-  //s->set_hmirror(s, 1);          // 0 = disable , 1 = enable
-
-  int res = 0;
-  
-  if(!strcmp(variable, "up")) {
-    if(panServoPos <= 170) {
-      panServoPos += 10;
-      panServo.write(panServoPos);
-    }
-    Serial.println(panServoPos);
-    Serial.println("Up");
-  }
-  else if(!strcmp(variable, "left")) {
-    if(tiltServoPos <= 170) {
-      tiltServoPos += 10;
-      tiltServo.write(tiltServoPos);
-    }
-    Serial.println(tiltServoPos);
-    Serial.println("Left");
-  }
-  else if(!strcmp(variable, "right")) {
-    if(tiltServoPos >= 10) {
-      tiltServoPos -= 10;
-      tiltServo.write(tiltServoPos);
-    }
-    Serial.println(tiltServoPos);
-    Serial.println("Right");
-  }
-  else if(!strcmp(variable, "down")) {
-    if(panServoPos >= 10) {
-      panServoPos -= 10;
-      panServo.write(panServoPos);
-    }
-    Serial.println(panServoPos);
-    Serial.println("Down");
-  }
-  else {
-    res = -1;
-  }
-
-  if(res){
-    return httpd_resp_send_500(req);
-  }
-
-  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
-  return httpd_resp_send(req, NULL, 0);
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    return httpd_resp_send(req, NULL, 0);
 }
-
 void startCameraServer(){
-  httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-  config.server_port = 80;
-  httpd_uri_t index_uri = {
-    .uri       = "/",
-    .method    = HTTP_GET,
-    .handler   = index_handler,
-    .user_ctx  = NULL
-  };
+    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+    config.server_port = 80;
 
-  httpd_uri_t cmd_uri = {
+    httpd_uri_t index_uri = {
+        .uri       = "/",
+        .method    = HTTP_GET,
+        .handler   = index_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t cmd_uri = {
     .uri       = "/action",
     .method    = HTTP_GET,
     .handler   = cmd_handler,
     .user_ctx  = NULL
-  };
-  httpd_uri_t stream_uri = {
-    .uri       = "/stream",
-    .method    = HTTP_GET,
-    .handler   = stream_handler,
-    .user_ctx  = NULL
-  };
-  if (httpd_start(&camera_httpd, &config) == ESP_OK) {
-    httpd_register_uri_handler(camera_httpd, &index_uri);
-    httpd_register_uri_handler(camera_httpd, &cmd_uri);
-  }
-  config.server_port += 1;
-  config.ctrl_port += 1;
-  if (httpd_start(&stream_httpd, &config) == ESP_OK) {
-    httpd_register_uri_handler(stream_httpd, &stream_uri);
-  }
+    };
+
+    httpd_uri_t stream_uri = {
+        .uri       = "/stream",
+        .method    = HTTP_GET,
+        .handler   = stream_handler,
+        .user_ctx  = NULL
+    };
+
+    if (httpd_start(&camera_httpd, &config) == ESP_OK) {
+        httpd_register_uri_handler(camera_httpd, &index_uri);
+        httpd_register_uri_handler(camera_httpd, &cmd_uri);
+    }
+
+    config.server_port += 1;
+    config.ctrl_port += 1;
+
+    if (httpd_start(&stream_httpd, &config) == ESP_OK) {
+        httpd_register_uri_handler(stream_httpd, &stream_uri);
+    }
 }
 
 void setup() {
