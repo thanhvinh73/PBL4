@@ -19,9 +19,13 @@ abstract class  LocaleKeys {
   static const App_Menu = 'App.Menu';
   static const App_Tutorial = 'App.Tutorial';
   static const App_NotUpdate = 'App.NotUpdate';
+  static const App_Skip = 'App.Skip';
   static const App = 'App';
-  static const CameraUrl_Active = 'CameraUrl.Active';
-  static const CameraUrl_Inactive = 'CameraUrl.Inactive';
+  static const ActionDescription_Forward = 'ActionDescription.Forward';
+  static const ActionDescription_Backward = 'ActionDescription.Backward';
+  static const ActionDescription_Start = 'ActionDescription.Start';
+  static const ActionDescription_Stop = 'ActionDescription.Stop';
+  static const ActionDescription = 'ActionDescription';
   static const CameraUrl_HintTitle1 = 'CameraUrl.HintTitle1';
   static const CameraUrl_HintTitle2 = 'CameraUrl.HintTitle2';
   static const CameraUrl_HintTitle3 = 'CameraUrl.HintTitle3';
@@ -32,6 +36,20 @@ abstract class  LocaleKeys {
   static const CameraUrl_HintDescription2 = 'CameraUrl.HintDescription2';
   static const CameraUrl_HintDescription3 = 'CameraUrl.HintDescription3';
   static const CameraUrl = 'CameraUrl';
+  static const CameraController_HintTitle1 = 'CameraController.HintTitle1';
+  static const CameraController_HintTitle2 = 'CameraController.HintTitle2';
+  static const CameraController_HintLabelButton1 = 'CameraController.HintLabelButton1';
+  static const CameraController_HintLabelButton2 = 'CameraController.HintLabelButton2';
+  static const CameraController_HintDescription1 = 'CameraController.HintDescription1';
+  static const CameraController_HintDescription2 = 'CameraController.HintDescription2';
+  static const CameraController = 'CameraController';
+  static const LabelAction_HintTitle1 = 'LabelAction.HintTitle1';
+  static const LabelAction_HintTitle2 = 'LabelAction.HintTitle2';
+  static const LabelAction_HintLabelButton1 = 'LabelAction.HintLabelButton1';
+  static const LabelAction_HintLabelButton2 = 'LabelAction.HintLabelButton2';
+  static const LabelAction_HintDescription1 = 'LabelAction.HintDescription1';
+  static const LabelAction_HintDescription2 = 'LabelAction.HintDescription2';
+  static const LabelAction = 'LabelAction';
   static const Profile_NotUpdate = 'Profile.NotUpdate';
   static const Profile_Edit = 'Profile.Edit';
   static const Profile_Name = 'Profile.Name';
@@ -93,6 +111,9 @@ abstract class  LocaleKeys {
   static const Error_ERRLABEL001 = 'Error.ERRLABEL001';
   static const Error_ERRLABEL002 = 'Error.ERRLABEL002';
   static const Error_ERRLABEL003 = 'Error.ERRLABEL003';
+  static const Error_ERRDETECT001 = 'Error.ERRDETECT001';
+  static const Error_ERRDETECT002 = 'Error.ERRDETECT002';
+  static const Error_ERRDETECT003 = 'Error.ERRDETECT003';
   static const Error = 'Error';
 
 }

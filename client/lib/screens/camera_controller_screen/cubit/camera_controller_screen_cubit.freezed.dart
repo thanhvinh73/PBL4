@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'setting_controller_screen_cubit.dart';
+part of 'camera_controller_screen_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,22 +15,23 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SettingControllerScreenState {
+mixin _$CameraControllerScreenState {
   int get pan => throw _privateConstructorUsedError;
   int get tilt => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int pan, int tilt) initial,
+    required TResult Function(int pan, int tilt, String? errorMessage) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int pan, int tilt)? initial,
+    TResult? Function(int pan, int tilt, String? errorMessage)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int pan, int tilt)? initial,
+    TResult Function(int pan, int tilt, String? errorMessage)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,26 +53,26 @@ mixin _$SettingControllerScreenState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SettingControllerScreenStateCopyWith<SettingControllerScreenState>
+  $CameraControllerScreenStateCopyWith<CameraControllerScreenState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SettingControllerScreenStateCopyWith<$Res> {
-  factory $SettingControllerScreenStateCopyWith(
-          SettingControllerScreenState value,
-          $Res Function(SettingControllerScreenState) then) =
-      _$SettingControllerScreenStateCopyWithImpl<$Res,
-          SettingControllerScreenState>;
+abstract class $CameraControllerScreenStateCopyWith<$Res> {
+  factory $CameraControllerScreenStateCopyWith(
+          CameraControllerScreenState value,
+          $Res Function(CameraControllerScreenState) then) =
+      _$CameraControllerScreenStateCopyWithImpl<$Res,
+          CameraControllerScreenState>;
   @useResult
-  $Res call({int pan, int tilt});
+  $Res call({int pan, int tilt, String? errorMessage});
 }
 
 /// @nodoc
-class _$SettingControllerScreenStateCopyWithImpl<$Res,
-        $Val extends SettingControllerScreenState>
-    implements $SettingControllerScreenStateCopyWith<$Res> {
-  _$SettingControllerScreenStateCopyWithImpl(this._value, this._then);
+class _$CameraControllerScreenStateCopyWithImpl<$Res,
+        $Val extends CameraControllerScreenState>
+    implements $CameraControllerScreenStateCopyWith<$Res> {
+  _$CameraControllerScreenStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,6 +84,7 @@ class _$SettingControllerScreenStateCopyWithImpl<$Res,
   $Res call({
     Object? pan = null,
     Object? tilt = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       pan: null == pan
@@ -93,24 +95,28 @@ class _$SettingControllerScreenStateCopyWithImpl<$Res,
           ? _value.tilt
           : tilt // ignore: cast_nullable_to_non_nullable
               as int,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$_InitialCopyWith<$Res>
-    implements $SettingControllerScreenStateCopyWith<$Res> {
+    implements $CameraControllerScreenStateCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int pan, int tilt});
+  $Res call({int pan, int tilt, String? errorMessage});
 }
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$SettingControllerScreenStateCopyWithImpl<$Res, _$_Initial>
+    extends _$CameraControllerScreenStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -120,6 +126,7 @@ class __$$_InitialCopyWithImpl<$Res>
   $Res call({
     Object? pan = null,
     Object? tilt = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$_Initial(
       pan: null == pan
@@ -130,6 +137,10 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value.tilt
           : tilt // ignore: cast_nullable_to_non_nullable
               as int,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -137,7 +148,7 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial({this.pan = 0, this.tilt = 0});
+  const _$_Initial({this.pan = 0, this.tilt = 0, this.errorMessage});
 
   @override
   @JsonKey()
@@ -145,10 +156,12 @@ class _$_Initial implements _Initial {
   @override
   @JsonKey()
   final int tilt;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'SettingControllerScreenState.initial(pan: $pan, tilt: $tilt)';
+    return 'CameraControllerScreenState.initial(pan: $pan, tilt: $tilt, errorMessage: $errorMessage)';
   }
 
   @override
@@ -157,11 +170,13 @@ class _$_Initial implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
             (identical(other.pan, pan) || other.pan == pan) &&
-            (identical(other.tilt, tilt) || other.tilt == tilt));
+            (identical(other.tilt, tilt) || other.tilt == tilt) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pan, tilt);
+  int get hashCode => Object.hash(runtimeType, pan, tilt, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -172,27 +187,27 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int pan, int tilt) initial,
+    required TResult Function(int pan, int tilt, String? errorMessage) initial,
   }) {
-    return initial(pan, tilt);
+    return initial(pan, tilt, errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int pan, int tilt)? initial,
+    TResult? Function(int pan, int tilt, String? errorMessage)? initial,
   }) {
-    return initial?.call(pan, tilt);
+    return initial?.call(pan, tilt, errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int pan, int tilt)? initial,
+    TResult Function(int pan, int tilt, String? errorMessage)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(pan, tilt);
+      return initial(pan, tilt, errorMessage);
     }
     return orElse();
   }
@@ -226,13 +241,16 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements SettingControllerScreenState {
-  const factory _Initial({final int pan, final int tilt}) = _$_Initial;
+abstract class _Initial implements CameraControllerScreenState {
+  const factory _Initial(
+      {final int pan, final int tilt, final String? errorMessage}) = _$_Initial;
 
   @override
   int get pan;
   @override
   int get tilt;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

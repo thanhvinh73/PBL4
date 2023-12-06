@@ -4,7 +4,6 @@ import 'package:after_layout/after_layout.dart';
 import 'package:client/generated/assets.gen.dart';
 import 'package:client/generated/translations.g.dart';
 import 'package:client/public_providers/app_user_cubit/app_user_cubit.dart';
-import 'package:client/public_providers/web_socket_cubit/web_socket_cubit.dart';
 import 'package:client/routes/app_router.dart';
 import 'package:client/screens/connect_to_server_screen/cubit/connect_to_server_screen_cubit.dart';
 import 'package:client/services/apis/api_client.dart';
@@ -103,7 +102,6 @@ class _ConnectToServerScreenState extends State<ConnectToServerScreen>
                           .then((user) {
                         if (user != null) {
                           context.read<AppUserCubit>().updateUser(user);
-                          context.read<WebSocketCubit>().initWebSocket();
                           Get.toNamed(Routes.main);
                           return;
                         }
@@ -153,7 +151,8 @@ class _ConnectToServerScreenState extends State<ConnectToServerScreen>
                             AppTextField(
                               placeholder: "Nhập địa chỉ url của bạn tại đây",
                               controller: _textController,
-                              initValue: "http://10.0.2.2:8080",
+                              initValue:
+                                  "https://4rmv3lht-8080.asse.devtunnels.ms",
                               onChanged: context
                                   .read<ConnectToServerScreenCubit>()
                                   .updateBaseUrl,

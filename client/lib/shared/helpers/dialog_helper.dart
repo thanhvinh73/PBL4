@@ -1,11 +1,14 @@
 import 'package:client/generated/translations.g.dart';
 import 'package:client/models/label_order/label_order.dart';
+import 'package:client/shared/helpers/app_dialog_content/hint_camera_controller_content.dart';
+import 'package:client/shared/helpers/app_dialog_content/hint_label_action_content.dart';
 import 'package:client/shared/helpers/app_dialog_content/hint_show_camera_content.dart';
 import 'package:client/shared/helpers/app_dialog_content/rotate_phone_content.dart';
 import 'package:client/shared/helpers/app_dialog_content/select_label_content.dart';
 import 'package:client/shared/utils/app_colors.dart';
 import 'package:client/shared/widgets/app_button.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Future<LabelOrder?> showSelectLabelDialog(
@@ -47,6 +50,28 @@ Future showHintLiveCameraDialog(BuildContext context) => showDialog(
       ),
     );
 
+Future showHintCameraControllerDialog(BuildContext context) => showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => const Material(
+        color: AppColors.transparent,
+        child: Center(
+          child: HintCameraControllerContentWidget(),
+        ),
+      ),
+    );
+
+Future showHintLabelActionDialog(BuildContext context) => showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => const Material(
+        color: AppColors.transparent,
+        child: Center(
+          child: HintLabelActionContentWidget(),
+        ),
+      ),
+    );
+
 Future<dynamic> showErrorDialog(
   BuildContext context, {
   String? title,
@@ -79,23 +104,29 @@ class ErrorDialogWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(
+          Icons.check_circle_sharp,
+          color: Colors.red,
+          size: 55,
+        ),
+        const SizedBox(height: 8),
         Text(
           title ?? tr(LocaleKeys.Auth_Error),
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: Colors.red,
             fontWeight: FontWeight.w600,
-            fontSize: 20,
+            fontSize: 21,
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
         Text(
           content ?? tr(LocaleKeys.Auth_Error),
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: AppColors.bodyText,
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
           ),
         ),
         const SizedBox(height: 16),
@@ -150,23 +181,29 @@ class ConfirmDialogWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(
+          Icons.check_circle_outline_outlined,
+          color: Colors.green,
+          size: 55,
+        ),
+        const SizedBox(height: 8),
         Text(
           title ?? tr(LocaleKeys.App_Confirm),
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: Colors.green,
             fontWeight: FontWeight.w600,
-            fontSize: 20,
+            fontSize: 21,
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
         Text(
           content ?? tr(LocaleKeys.App_ActionConfirm),
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: AppColors.bodyText,
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
           ),
         ),
         const SizedBox(height: 16),
@@ -231,22 +268,96 @@ class SuccessDialogWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(
+          Icons.check_circle_sharp,
+          color: Colors.green,
+          size: 55,
+        ),
+        const SizedBox(height: 8),
         Text(
           title ?? tr(LocaleKeys.App_Success),
           style: const TextStyle(
             color: Colors.green,
             fontWeight: FontWeight.w600,
-            fontSize: 20,
+            fontSize: 21,
           ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
         Text(
           content ?? tr(LocaleKeys.App_YourActionMakingSuccessfully),
           style: const TextStyle(
-            color: AppColors.bodyText,
-            fontSize: 16,
+              color: AppColors.bodyText,
+              fontSize: 18,
+              fontWeight: FontWeight.w500),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 16),
+        AppButton(
+          color: AppColors.primaryColor,
+          title: tr(LocaleKeys.App_Ok),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ]),
+    );
+  }
+}
+
+Future<dynamic> showInfoDialog(BuildContext context,
+        {String? title, String? content}) =>
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Material(
+          color: Colors.transparent,
+          child: Center(
+              child: ShowInfoWidget(
+            title: title,
+            content: content,
+          )),
+        );
+      },
+    );
+
+class ShowInfoWidget extends StatelessWidget {
+  final String? title;
+  final String? content;
+  const ShowInfoWidget({super.key, this.title, this.content});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Column(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(
+          Icons.warning_amber_rounded,
+          color: Colors.deepOrange,
+          size: 55,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title ?? tr(LocaleKeys.App_Success),
+          style: const TextStyle(
+            color: Colors.deepOrange,
+            fontWeight: FontWeight.w600,
+            fontSize: 21,
           ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          content ?? tr(LocaleKeys.App_YourActionMakingSuccessfully),
+          style: const TextStyle(
+              color: AppColors.bodyText,
+              fontSize: 18,
+              fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),

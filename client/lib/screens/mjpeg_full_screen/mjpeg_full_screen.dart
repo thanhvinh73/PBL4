@@ -16,17 +16,17 @@ import '../../shared/utils/app_colors.dart';
 import '../../shared/widgets/app_mjpeg.dart';
 import '../main_screen/cubit/main_screen_cubit.dart';
 
-enum MjpegFullScreenOption { detech, settingController }
+enum MjpegFullScreenOption { detech, cameraController }
 
 extension MjpegFullScreenOptionExt on MjpegFullScreenOption {
   String get label => {
         MjpegFullScreenOption.detech: "Nhận diện hành động",
-        MjpegFullScreenOption.settingController: "Điều chỉnh camera",
+        MjpegFullScreenOption.cameraController: "Điều chỉnh camera",
       }[this]!;
 
   Icon get icon => {
         MjpegFullScreenOption.detech: const Icon(Icons.star_rate_rounded),
-        MjpegFullScreenOption.settingController:
+        MjpegFullScreenOption.cameraController:
             const Icon(Icons.settings_rounded),
       }[this]!;
 }
@@ -105,10 +105,10 @@ class _MjpegFullScreenState extends State<MjpegFullScreen>
                             .read<MainScreenCubit>()
                             .changeTab(MainTabs.action);
                         break;
-                      case MjpegFullScreenOption.settingController:
+                      case MjpegFullScreenOption.cameraController:
                         context
                             .read<MainScreenCubit>()
-                            .changeTab(MainTabs.settingController);
+                            .changeTab(MainTabs.cameraController);
                         Get.back();
                         break;
                       default:

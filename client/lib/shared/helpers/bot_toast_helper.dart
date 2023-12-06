@@ -32,12 +32,13 @@ Function() showLoading({
 }
 
 class AppLoadingWidget extends StatelessWidget {
-  const AppLoadingWidget({Key? key}) : super(key: key);
+  const AppLoadingWidget({Key? key, this.color = AppColors.white})
+      : super(key: key);
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: CircularProgressIndicator(color: AppColors.white));
+    return Center(child: CircularProgressIndicator(color: color));
   }
 }
 

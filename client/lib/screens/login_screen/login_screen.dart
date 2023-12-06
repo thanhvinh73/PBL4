@@ -16,8 +16,6 @@ import 'package:client/generated/translations.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 
-import '../../public_providers/web_socket_cubit/web_socket_cubit.dart';
-
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -60,7 +58,6 @@ class LoginScreen extends StatelessWidget {
                     listener: (context, state) {
                       if (state.user != null) {
                         context.read<AppUserCubit>().updateUser(state.user);
-                        context.read<WebSocketCubit>().initWebSocket();
                         Get.toNamed(Routes.main);
                       }
                     },

@@ -1,17 +1,13 @@
-from keras.layers import Dropout
-import os
 import numpy as np
 import cv2
+from helpers.app_data.main_action_enum import MainAction, get_main_action
 import mediapipe as mp
 from keras.models import Sequential
 from keras.layers import LSTM, Dense, SimpleRNN
-from moviepy.editor import VideoFileClip
-import moviepy.video.fx.all as vfx
-from main_action_enum import get_main_action, MainAction
 
 no_sequences = 135
 sequence_length = 30
-actions = np.array(["Forward", "Backward", "Start", 'Stop'])
+actions = np.array(["FORWARD", "BACKWARD", "START",'STOP'])
 
 
 mp_holistic = mp.solutions.holistic
@@ -97,7 +93,7 @@ def extract_keypoints(results):
     )
     return np.concatenate([pose, lh, rh])
 
-
+from keras.layers import Dropout
 def load_model():
     model = Sequential()
     model.add(LSTM(16, return_sequences=True,
@@ -110,11 +106,10 @@ def load_model():
     model.add(Dense(actions.shape[0], activation='softmax'))
     return model
 
-
 def load_model_rnn():
     model = Sequential()
     model.add(SimpleRNN(16, return_sequences=True,
-                        activation='relu', input_shape=(30, 258)))
+                   activation='relu', input_shape=(30, 258)))
     # model.add(SimpleRNN(64, return_sequences=True, activation='relu'))
     # model.add(Dropout(0.2))
     model.add(SimpleRNN(32, return_sequences=False, activation='relu'))
@@ -122,7 +117,6 @@ def load_model_rnn():
     model.add(Dense(16, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
     return model
-
 
 def check_video_values(action: str, sequence: str, input_video_path: str):
     cap = cv2.VideoCapture(input_video_path)
@@ -132,57 +126,9 @@ def check_video_values(action: str, sequence: str, input_video_path: str):
         f"Action: {action} - file: {sequence}.mp4 - fps: {original_fps} - total_frames: {original_total_frames}")
 
 
-def change_fps_color_size(data_input_path: str, data_output_path: str, total_videos: int):
-    target_width = 900
-    target_height = 600
-    for action in actions:
-        for sequence in range(0, 10):
-            input_video_path = os.path.join(
-                data_input_path, action, "{}.mp4".format(sequence))
-            output_video_path = f'{data_output_path}/{action}/{sequence}.mp4'
-
-            cap = cv2.VideoCapture(input_video_path)
-
-            # Check video's original values
-            check_video_values(action, sequence, input_video_path)
-
-            new_fps = 15
-
-            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-            out = cv2.VideoWriter(output_video_path, fourcc,
-                                  new_fps, (target_width, target_height))
-
-            # Change Fps, color, size of video
-            while cap.isOpened():
-                ret, frame = cap.read()
-                if not ret:
-                    break
-                frame = cv2.resize(frame, (target_width, target_height))
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                out.write(frame)
-
-            cap.release()
-            out.release()
-            cv2.destroyAllWindows()
 
 
-def change_duration(data_input_path: str, data_output_path: str, total_videos: int):
-    for action in actions:
-        for sequence in range(0, 10):
-            input_video_path = f'{data_input_path}/{action}/{sequence}.mp4'
-            output_video_path = f'{data_output_path}/Final_Result/{action}/{sequence}.mp4'
-
-            video = VideoFileClip(input_video_path)
-            original_duration = video.duration
-            target_duration = 2
-
-            # Change speed of video
-            speed_change_video = video.fx(
-                vfx.speedx, original_duration / target_duration)
-            speed_change_video.write_videofile(output_video_path)
-            check_video_values(action, sequence, output_video_path)
 
 
-def normalize_video(data_input_path: str, data_output_path: str, total_videos: int):
-    change_fps_color_size(data_input_path, data_output_path, total_videos)
-    change_duration(data_output_path, data_output_path, total_videos)
+
+

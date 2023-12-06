@@ -8,55 +8,48 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-enum HintShowCameraDescription { description1, description2, description3 }
+enum HintLabelActionDescription { description1, description2 }
 
-extension HintShowCameraDescriptionExt on HintShowCameraDescription {
+extension HintLabelActionDescriptionExt on HintLabelActionDescription {
   SvgPicture get svgPicture => {
-        HintShowCameraDescription.description1:
-            Assets.icons.pcHintCameraSelectUrl.svg(),
-        HintShowCameraDescription.description2: Assets.icons.pcHintCamera.svg(),
-        HintShowCameraDescription.description3:
-            Assets.icons.pcHintCameraChangePosition.svg()
+        HintLabelActionDescription.description1:
+            Assets.icons.pcLabelActionDes1.svg(),
+        HintLabelActionDescription.description2:
+            Assets.icons.pcLabelActionDes2.svg(),
       }[this]!;
 
   String get buttonLabel => {
-        HintShowCameraDescription.description1:
-            tr(LocaleKeys.CameraUrl_HintLabelButton1),
-        HintShowCameraDescription.description2:
-            tr(LocaleKeys.CameraUrl_HintLabelButton2),
-        HintShowCameraDescription.description3:
-            tr(LocaleKeys.CameraUrl_HintLabelButton3)
+        HintLabelActionDescription.description1:
+            tr(LocaleKeys.LabelAction_HintLabelButton1),
+        HintLabelActionDescription.description2:
+            tr(LocaleKeys.LabelAction_HintLabelButton2),
       }[this]!;
 
   String get title => {
-        HintShowCameraDescription.description1:
-            tr(LocaleKeys.CameraUrl_HintTitle1),
-        HintShowCameraDescription.description2:
-            tr(LocaleKeys.CameraUrl_HintTitle2),
-        HintShowCameraDescription.description3:
-            tr(LocaleKeys.CameraUrl_HintTitle3)
+        HintLabelActionDescription.description1:
+            tr(LocaleKeys.LabelAction_HintTitle1),
+        HintLabelActionDescription.description2:
+            tr(LocaleKeys.LabelAction_HintTitle2),
       }[this]!;
 
   String get description => {
-        HintShowCameraDescription.description1:
-            tr(LocaleKeys.CameraUrl_HintDescription1),
-        HintShowCameraDescription.description2:
-            tr(LocaleKeys.CameraUrl_HintDescription2),
-        HintShowCameraDescription.description3:
-            tr(LocaleKeys.CameraUrl_HintDescription3)
+        HintLabelActionDescription.description1:
+            tr(LocaleKeys.LabelAction_HintDescription1),
+        HintLabelActionDescription.description2:
+            tr(LocaleKeys.LabelAction_HintDescription2),
       }[this]!;
 }
 
-class HintShowCameraContentWidget extends StatefulWidget {
-  const HintShowCameraContentWidget({super.key});
+class HintLabelActionContentWidget extends StatefulWidget {
+  const HintLabelActionContentWidget({super.key});
 
   @override
-  State<HintShowCameraContentWidget> createState() =>
-      _HintShowCameraContentWidgetState();
+  State<HintLabelActionContentWidget> createState() =>
+      _HintLabelActionContentWidgetState();
 }
 
-class _HintShowCameraContentWidgetState
-    extends State<HintShowCameraContentWidget> {
+class _HintLabelActionContentWidgetState
+    extends State<HintLabelActionContentWidget> {
   late final PageController _pageController;
   int currentIndex = 0;
 
@@ -103,7 +96,7 @@ class _HintShowCameraContentWidgetState
                 });
               },
               controller: _pageController,
-              children: HintShowCameraDescription.values
+              children: HintLabelActionDescription.values
                   .map((item) => _buildItem(item))
                   .toList(),
             ),
@@ -114,7 +107,7 @@ class _HintShowCameraContentWidgetState
               Wrap(
                 spacing: 8,
                 children: [
-                  ...HintShowCameraDescription.values
+                  ...HintLabelActionDescription.values
                       .asMap()
                       .entries
                       .map((e) => CircleAvatar(
@@ -127,7 +120,7 @@ class _HintShowCameraContentWidgetState
                 ],
               ),
               AppButton(
-                  title: HintShowCameraDescription.values
+                  title: HintLabelActionDescription.values
                       .elementAt(currentIndex)
                       .buttonLabel,
                   borderRadius: 50,
@@ -135,7 +128,7 @@ class _HintShowCameraContentWidgetState
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   onPressed: () {
                     if (currentIndex ==
-                        HintShowCameraDescription.values.length - 1) {
+                        HintLabelActionDescription.values.length - 1) {
                       Navigator.pop(context);
 
                       return;
@@ -151,7 +144,7 @@ class _HintShowCameraContentWidgetState
     );
   }
 
-  Widget _buildItem(HintShowCameraDescription item) {
+  Widget _buildItem(HintLabelActionDescription item) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

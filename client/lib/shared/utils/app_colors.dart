@@ -5,7 +5,7 @@ class AppColors {
   static const Color bgColor = Color(0xFFF5F5F5);
   static const Color bodyText = Color(0xff666666);
   static const Color titleText = Color(0xff333333);
-  static const Color bgPurple = Color(0xffF1EAFF);
+  static const Color bgPurple = Color.fromRGBO(241, 234, 255, 1);
   static const Color lightPurple = Color(0xFFB15EFF);
   static const Color primaryColor = Color(0xff713ABE);
   static const Color darkPurple = Color(0xff5B0888);

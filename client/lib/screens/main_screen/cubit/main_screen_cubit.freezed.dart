@@ -116,7 +116,7 @@ class _$_Initial implements _Initial {
   const _$_Initial(
       {this.errorMessage,
       this.status = ScreenStatus.init,
-      this.currentTab = MainTabs.home});
+      this.currentTab = MainTabs.tutorial});
 
   @override
   final String? errorMessage;

@@ -6,6 +6,7 @@ from routes.presentation_controller_route import presentation_controller_bp
 from routes.mediapipe import mediapipe_bp
 from routes.camera_url_route import camera_url_bp
 from routes.label_order_route import label_order_bp
+from routes.detection_route import detection_bp
 from config import Config
 from utils import  init_db, jwt
 from models.user import User
@@ -17,6 +18,7 @@ def create_app():
     CORS(app)
     app.config['CORS_HEADERS'] = Config.CORS_HEADERS
     app.config["JWT_SECRET_KEY"] = "45a88190df62c88fdf9f3492" 
+    app.config['SECRET_KEY'] = 'secret!'
 
     #initialize exts
     init_db(app)
@@ -29,6 +31,7 @@ def create_app():
     app.register_blueprint(mediapipe_bp, url_prefix="/api/mediapipe")
     app.register_blueprint(camera_url_bp, url_prefix="/api/camera-url")
     app.register_blueprint(label_order_bp, url_prefix="/api/label-order")
+    app.register_blueprint(detection_bp, url_prefix="/api/detection")
 
     
     @jwt.user_lookup_loader
@@ -87,7 +90,7 @@ def create_app():
                 "message": "Token has been revoked!",
             }
         }), 401
-
+        
     return app
 
 if (__name__) == "__main__":
@@ -102,4 +105,5 @@ if (__name__) == "__main__":
                 "message": "URL is not found!"
             }
         }), 400
+
     app.run(debug=True, port=8080)

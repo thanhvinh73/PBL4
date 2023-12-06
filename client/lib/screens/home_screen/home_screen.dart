@@ -18,8 +18,14 @@ import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 
 import '../../shared/widgets/app_text_field.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final Debouncer _debouncer =
       Debouncer(delay: const Duration(milliseconds: 300));
 
@@ -29,19 +35,35 @@ class HomeScreen extends StatelessWidget {
       onWillPop: false,
       child: BlocProvider(
         create: (context) => HomeScreenCubit()..search(""),
-        child: BlocListener<HomeScreenCubit, HomeScreenState>(
-          listenWhen: (previous, current) =>
-              previous.errorMessage != current.errorMessage &&
-              current.errorMessage != null,
-          listener: (context, state) {
-            showErrorDialog(context,
-                    title: tr(LocaleKeys.Auth_Error),
-                    content: state.errorMessage)
-                .then((value) =>
-                    context.read<HomeScreenCubit>().resetErrorMessage());
-          },
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<HomeScreenCubit, HomeScreenState>(
+              listenWhen: (previous, current) =>
+                  previous.errorMessage != current.errorMessage &&
+                  current.errorMessage != null,
+              listener: (context, state) {
+                showErrorDialog(context,
+                        title: tr(LocaleKeys.Auth_Error),
+                        content: state.errorMessage)
+                    .then((value) =>
+                        context.read<HomeScreenCubit>().resetErrorMessage());
+              },
+            ),
+            BlocListener<HomeScreenCubit, HomeScreenState>(
+              listenWhen: (previous, current) =>
+                  previous.currentUrl != current.currentUrl,
+              listener: (context, state) {
+                context.read<AppUserCubit>().updateState(
+                    (p0) => p0.copyWith(currentCameraUrl: state.currentUrl));
+              },
+            ),
+          ],
           child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
             builder: (context, state) {
+              final appUserCameraUrl =
+                  context.read<AppUserCubit>().state.currentCameraUrl;
+              context.read<HomeScreenCubit>().updateState(
+                  (p0) => p0.copyWith(currentUrl: appUserCameraUrl));
               return LayoutBuilder(builder: (context, constrainst) {
                 return RefreshIndicator(
                   onRefresh: () => context.read<HomeScreenCubit>().search(null),
@@ -57,7 +79,9 @@ class HomeScreen extends StatelessWidget {
                           selector: (state) => state.currentUrl,
                           builder: (context, currentCameraUrl) {
                             return AppMjpeg(
-                              url: currentCameraUrl?.url ?? "",
+                              url: currentCameraUrl?.url ??
+                                  appUserCameraUrl?.url ??
+                                  "",
                               width: MediaQuery.of(context).size.width,
                               showFullScreen: true,
                               height: 250,
@@ -80,21 +104,12 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   children: [
-                        //     AppText(
-                        //       "Nhấn giữ để đổi trạng thái của đường dẫn",
-                        //       color: AppColors.titleText,
-                        //     )
-                        //   ],
-                        // ),
-
                         BlocSelector<HomeScreenCubit, HomeScreenState,
                             List<CameraUrl>>(
                           selector: (state) => state.cameraUrls,
                           builder: (context, cameraUrls) {
                             return Wrap(
+                              runSpacing: 16,
                               children: cameraUrls.isNullOrEmpty
                                   ? [_buildEmptyListUrl(context)]
                                   : cameraUrls
@@ -105,12 +120,16 @@ class HomeScreen extends StatelessWidget {
                                                   .read<HomeScreenCubit>()
                                                   .updateState((p0) => p0
                                                       .copyWith(currentUrl: e));
+                                            },
+                                            onRemove: () {
                                               context
-                                                  .read<AppUserCubit>()
+                                                  .read<HomeScreenCubit>()
                                                   .updateState((p0) =>
                                                       p0.copyWith(
-                                                          currentCameraUrl: e));
+                                                          currentUrl: null));
                                             },
+                                            isSelected:
+                                                e.id == state.currentUrl?.id,
                                             onLongPress: () {
                                               showConfirmDialog(
                                                 context,

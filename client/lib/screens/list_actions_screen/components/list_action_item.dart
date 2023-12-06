@@ -1,5 +1,6 @@
 import 'package:client/models/label_order/label_order.dart';
 import 'package:client/screens/list_actions_screen/cubit/list_actions_screen_cubit.dart';
+import 'package:client/shared/enum/label_order.dart';
 import 'package:client/shared/helpers/dialog_helper.dart';
 import 'package:client/shared/utils/app_colors.dart';
 import 'package:client/shared/widgets/app_container.dart';
@@ -43,8 +44,8 @@ class ListActionItem extends StatelessWidget {
           ),
           Expanded(
               child: AppText(
-            labelOrder.label!.name.toUpperCase(),
-            fontSize: 16,
+            labelOrder.label!.description,
+            fontSize: 17,
             fontWeight: FontWeight.w500,
           )),
           AppPopupMenu<ActionOption>(

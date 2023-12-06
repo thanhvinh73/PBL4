@@ -8,10 +8,14 @@
 #include "soc/rtc_cntl_reg.h"    // disable brownout problems
 #include "esp_http_server.h"
 #include <ESP32Servo.h>
+#include <HTTPClient.h>
 
 // Replace with your network credentials
-const char* ssid = "nhanpz";
-const char* password = "4chu@nha";
+const char* ssid = "DOI TUI CO DON";
+const char* password = "12345679@";
+
+String serverHost = "https://4rmv3lht-8080.asse.devtunnels.ms/api";
+bool isCreatedCameraUrl = false;
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 
@@ -626,6 +630,36 @@ void setup() {
   startCameraServer();
 }
 
+void createCameraUrl() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin((serverHost + "/camera-url").c_str());
+    Serial.println(serverHost + "/camera-url");
+
+    http.addHeader("Content-Type", "application/json");
+    http.addHeader("Accept", "*/*");
+
+    String body = "{\"url\": \"" + WiFi.localIP().toString() + "\", \"ssid\": \"" + String(ssid) + "\"}";
+    int httpResponseCode = http.POST(body);
+
+    if (httpResponseCode > 0) {
+      Serial.println("HTTP Response code: " + httpResponseCode);
+      String payload = http.getString();
+      Serial.println(payload);
+      isCreatedCameraUrl = true;
+    } else {
+      Serial.print("Error code: ");
+      Serial.println(http.errorToString(httpResponseCode));
+    }
+    http.end();
+  } else {
+    Serial.println("WiFi Disconnected");
+  }
+}
+
 void loop() {
-  
+  if (!isCreatedCameraUrl) {
+    createCameraUrl();
+  }
+  delay(5000);
 }

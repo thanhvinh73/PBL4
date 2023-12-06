@@ -1,5 +1,6 @@
 import 'package:client/models/camera_url/camera_url.dart';
 import 'package:client/shared/utils/app_colors.dart';
+import 'package:client/shared/widgets/app_icon_button.dart';
 import 'package:client/shared/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +11,15 @@ class UrlRowItem extends StatelessWidget {
     super.key,
     this.onTap,
     required this.cameraUrl,
+    this.onRemove,
     this.onLongPress,
+    this.isSelected = false,
   });
   final VoidCallback? onTap;
+  final VoidCallback? onRemove;
   final VoidCallback? onLongPress;
   final CameraUrl cameraUrl;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +50,14 @@ class UrlRowItem extends StatelessWidget {
               ],
             ),
           ),
+          if (isSelected) ...[
+            const SizedBox(width: 12),
+            AppIconButton(
+              onTap: () => onRemove?.call(),
+              icon: Icons.close,
+              size: 25,
+            )
+          ]
         ]),
       ),
     );
