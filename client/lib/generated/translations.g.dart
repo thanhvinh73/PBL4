@@ -20,6 +20,8 @@ abstract class  LocaleKeys {
   static const App_Tutorial = 'App.Tutorial';
   static const App_NotUpdate = 'App.NotUpdate';
   static const App_Skip = 'App.Skip';
+  static const App_Back = 'App.Back';
+  static const App_Continue = 'App.Continue';
   static const App = 'App';
   static const ActionDescription_Forward = 'ActionDescription.Forward';
   static const ActionDescription_Backward = 'ActionDescription.Backward';
@@ -50,6 +52,14 @@ abstract class  LocaleKeys {
   static const LabelAction_HintDescription1 = 'LabelAction.HintDescription1';
   static const LabelAction_HintDescription2 = 'LabelAction.HintDescription2';
   static const LabelAction = 'LabelAction';
+  static const Tutorial_Step1 = 'Tutorial.Step1';
+  static const Tutorial_Step2 = 'Tutorial.Step2';
+  static const Tutorial_Step3 = 'Tutorial.Step3';
+  static const Tutorial_StepDescription1 = 'Tutorial.StepDescription1';
+  static const Tutorial_StepDescription2 = 'Tutorial.StepDescription2';
+  static const Tutorial_StepDescription3 = 'Tutorial.StepDescription3';
+  static const Tutorial_GettingStarted = 'Tutorial.GettingStarted';
+  static const Tutorial = 'Tutorial';
   static const Profile_NotUpdate = 'Profile.NotUpdate';
   static const Profile_Edit = 'Profile.Edit';
   static const Profile_Name = 'Profile.Name';

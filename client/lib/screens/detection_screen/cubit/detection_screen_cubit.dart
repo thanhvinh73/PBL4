@@ -28,16 +28,6 @@ class DetectionScreenCubit extends Cubit<DetectionScreenState> {
     try {
       await PublicApi.apis.detect(state.userId, {"camera_url": state.url});
       cancel();
-      emit(state.copyWith(waiting: true));
-      int secondes = 6;
-      emit(state.copyWith(second: secondes));
-      Timer.periodic(const Duration(seconds: 1), (timer) {
-        if (secondes == 0) {
-          timer.cancel();
-        }
-        emit(state.copyWith(second: secondes -= 1));
-      });
-      emit(state.copyWith(waiting: false));
     } catch (err) {
       cancel();
       emit(state.copyWith(errorMessage: parseError(err)));

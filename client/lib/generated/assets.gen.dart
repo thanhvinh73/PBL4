@@ -62,6 +62,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/pc_no_data.svg
   SvgGenImage get pcNoData => const SvgGenImage('assets/icons/pc_no_data.svg');
 
+  /// File path: assets/icons/pc_tutorial_step1.svg
+  SvgGenImage get pcTutorialStep1 =>
+      const SvgGenImage('assets/icons/pc_tutorial_step1.svg');
+
+  /// File path: assets/icons/pc_tutorial_step2.svg
+  SvgGenImage get pcTutorialStep2 =>
+      const SvgGenImage('assets/icons/pc_tutorial_step2.svg');
+
+  /// File path: assets/icons/pc_tutorial_step3.svg
+  SvgGenImage get pcTutorialStep3 =>
+      const SvgGenImage('assets/icons/pc_tutorial_step3.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         icErrorWarningFill,
@@ -76,7 +88,10 @@ class $AssetsIconsGen {
         pcHintCameraSelectUrl,
         pcLabelActionDes1,
         pcLabelActionDes2,
-        pcNoData
+        pcNoData,
+        pcTutorialStep1,
+        pcTutorialStep2,
+        pcTutorialStep3
       ];
 }
 

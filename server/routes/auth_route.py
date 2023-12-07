@@ -6,6 +6,7 @@ from flask_jwt_extended import (create_access_token,
                                 get_jwt_identity)
 from werkzeug.security import generate_password_hash
 from models.user import User
+from models.label_order import LabelOrder
 from models.token_block_list import TokenBlockList
 
 from utils import uniqueid, valid_request
@@ -31,7 +32,7 @@ def register():
         email=req.get("email")
     )
     new_user.save()
-        
+    LabelOrder.create_default_label_order(new_user.id)
     return jsonify({"status": 200, "data": new_user.toJson()}), 200
 
 @auth_bp.route("/refresh_token", methods=["POST"])

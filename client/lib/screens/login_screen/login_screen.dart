@@ -97,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                                       validations: const [
                                         Validators.validateNotEmpty
                                       ],
-                                      initValue: "vinh2",
+                                      initValue: "vinhthanh",
                                       onchanged: (_) {
                                         context
                                             .read<LoginScreenCubit>()
@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                                       validations: const [
                                         Validators.validatePassword
                                       ],
-                                      initValue: "password@1A",
+                                      initValue: "123456Aa",
                                       obscureText: true,
                                       onchanged: (_) {
                                         context

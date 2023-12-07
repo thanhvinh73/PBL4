@@ -5,11 +5,22 @@ import 'package:client/shared/helpers/app_dialog_content/hint_label_action_conte
 import 'package:client/shared/helpers/app_dialog_content/hint_show_camera_content.dart';
 import 'package:client/shared/helpers/app_dialog_content/rotate_phone_content.dart';
 import 'package:client/shared/helpers/app_dialog_content/select_label_content.dart';
+import 'package:client/shared/helpers/app_dialog_content/waiting_content.dart';
 import 'package:client/shared/utils/app_colors.dart';
 import 'package:client/shared/widgets/app_button.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+Future<LabelOrder?> showWaitingDialog(BuildContext context,
+    {required int seconds}) {
+  return showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      return Center(child: WaitingContentWidget(seconds: seconds));
+    },
+  );
+}
 
 Future<LabelOrder?> showSelectLabelDialog(
   BuildContext context, {
@@ -105,7 +116,7 @@ class ErrorDialogWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         const Icon(
-          Icons.check_circle_sharp,
+          Icons.error,
           color: Colors.red,
           size: 55,
         ),
@@ -211,8 +222,10 @@ class ConfirmDialogWidget extends StatelessWidget {
           children: [
             Expanded(
               child: AppButton(
-                color: AppColors.primaryColor,
+                color: AppColors.white,
+                borderColor: AppColors.primaryColor,
                 title: tr(LocaleKeys.App_Cancel),
+                titleColor: AppColors.primaryColor,
                 onPressed: () {
                   Navigator.of(context).pop(false);
                   onReject?.call();

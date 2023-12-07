@@ -10,12 +10,12 @@ import 'package:client/shared/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum ActionOption { detail, changeOrder }
+enum ActionOption { changeOrder }
 
 extension ActionOptionExt on ActionOption {
   String get label => {
-        ActionOption.detail: "Xem chi tiết",
-        ActionOption.changeOrder: "Thay đổi thứ tự"
+        // ActionOption.detail: "Xem chi tiết",
+        ActionOption.changeOrder: "Thay đổi lệnh hành động"
       }[this]!;
 }
 
@@ -70,7 +70,6 @@ class ListActionItem extends StatelessWidget {
                     }
                   });
                   break;
-                case ActionOption.detail:
                 default:
               }
             },

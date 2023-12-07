@@ -8,7 +8,7 @@
     "Success": "Thành công",
     "YourActionMakingSuccessfully": "Hành động của bạn đã thực hiện thành công!",
     "Logout": "Đăng xuất",
-    "Home": "Hiển thị video",
+    "Home": "Hiển thị Camera",
     "SettingController": "Thiết lập điều khiển",
     "ChangeAction": "Hành động",
     "Account": "Tài khoản",
@@ -18,7 +18,9 @@
     "Menu": "Menu",
     "Tutorial": "Hướng dẫn sử dụng",
     "NotUpdate": "Chưa cập nhật",
-    "Skip": "Bỏ qua"
+    "Skip": "Bỏ qua",
+    "Back": "Quay lại",
+    "Continue": "Tiếp tục"
   },
   "ActionDescription": {
     "Forward": "Chuyển tiếp",
@@ -27,7 +29,7 @@
     "Stop": "Kết thúc"
   },
   "CameraUrl": {
-    "HintTitle1": "Lựa chọn đường dẫn",
+    "HintTitle1": "Lựa chọn camera",
     "HintTitle2": "Hiển thị camera",
     "HintTitle3": "Điều chỉnh camera",
     "HintLabelButton1": "Tiếp tục",
@@ -52,6 +54,15 @@
     "HintLabelButton2": "Kết thúc",
     "HintDescription1": "Tất cả các lệnh điều khiển được hiển thị tại đây",
     "HintDescription2": "Bạn có thể thay đổi lệnh điều khiển của các hành động"
+  },
+  "Tutorial": {
+    "Step1": "Bước 1: Lựa chọn camera",
+    "Step2": "Bước 2: Điều chỉnh camera",
+    "Step3": "Bước 3: Bắt đầu nhận diện",
+    "StepDescription1": "Đầu tiên, bạn hãy lựa chọn camera mà bạn muốn sử dụng. Camera này phải được kết nối với hệ thống!",
+    "StepDescription2": "Điều chỉnh góc quay của camera hoặc vị trí đứng của bạn để hệ thống có thể nhận diện tốt nhất",
+    "StepDescription3": "Khi đã hoàn thành các bước phía trước thì hãy bắt đầu nhận diện ngay! Nếu gặp khó khăn trong quá trình sử dụng, hãy sử dụng tính năng gợi ý trên góc phải màn hình để biết thêm thông tin",
+    "GettingStarted": "Bắt đầu ngay"
   },
   "Profile": {
     "NotUpdate": "Hồ sơ của bạn chưa được cập nhật!",

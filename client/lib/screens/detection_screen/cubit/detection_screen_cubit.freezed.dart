@@ -21,26 +21,24 @@ mixin _$DetectionScreenState {
   String get userId => throw _privateConstructorUsedError;
   int get pan => throw _privateConstructorUsedError;
   int get tilt => throw _privateConstructorUsedError;
-  bool get waiting => throw _privateConstructorUsedError;
-  int get second => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? errorMessage, String url, String userId,
-            int pan, int tilt, bool waiting, int second)
+    required TResult Function(
+            String? errorMessage, String url, String userId, int pan, int tilt)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? errorMessage, String url, String userId, int pan,
-            int tilt, bool waiting, int second)?
+    TResult? Function(
+            String? errorMessage, String url, String userId, int pan, int tilt)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? errorMessage, String url, String userId, int pan,
-            int tilt, bool waiting, int second)?
+    TResult Function(
+            String? errorMessage, String url, String userId, int pan, int tilt)?
         initial,
     required TResult orElse(),
   }) =>
@@ -74,13 +72,7 @@ abstract class $DetectionScreenStateCopyWith<$Res> {
       _$DetectionScreenStateCopyWithImpl<$Res, DetectionScreenState>;
   @useResult
   $Res call(
-      {String? errorMessage,
-      String url,
-      String userId,
-      int pan,
-      int tilt,
-      bool waiting,
-      int second});
+      {String? errorMessage, String url, String userId, int pan, int tilt});
 }
 
 /// @nodoc
@@ -102,8 +94,6 @@ class _$DetectionScreenStateCopyWithImpl<$Res,
     Object? userId = null,
     Object? pan = null,
     Object? tilt = null,
-    Object? waiting = null,
-    Object? second = null,
   }) {
     return _then(_value.copyWith(
       errorMessage: freezed == errorMessage
@@ -126,14 +116,6 @@ class _$DetectionScreenStateCopyWithImpl<$Res,
           ? _value.tilt
           : tilt // ignore: cast_nullable_to_non_nullable
               as int,
-      waiting: null == waiting
-          ? _value.waiting
-          : waiting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      second: null == second
-          ? _value.second
-          : second // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -147,13 +129,7 @@ abstract class _$$_InitialCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? errorMessage,
-      String url,
-      String userId,
-      int pan,
-      int tilt,
-      bool waiting,
-      int second});
+      {String? errorMessage, String url, String userId, int pan, int tilt});
 }
 
 /// @nodoc
@@ -171,8 +147,6 @@ class __$$_InitialCopyWithImpl<$Res>
     Object? userId = null,
     Object? pan = null,
     Object? tilt = null,
-    Object? waiting = null,
-    Object? second = null,
   }) {
     return _then(_$_Initial(
       errorMessage: freezed == errorMessage
@@ -195,14 +169,6 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value.tilt
           : tilt // ignore: cast_nullable_to_non_nullable
               as int,
-      waiting: null == waiting
-          ? _value.waiting
-          : waiting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      second: null == second
-          ? _value.second
-          : second // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -215,9 +181,7 @@ class _$_Initial implements _Initial {
       required this.url,
       required this.userId,
       this.pan = 0,
-      this.tilt = 0,
-      this.waiting = false,
-      this.second = 0});
+      this.tilt = 0});
 
   @override
   final String? errorMessage;
@@ -231,16 +195,10 @@ class _$_Initial implements _Initial {
   @override
   @JsonKey()
   final int tilt;
-  @override
-  @JsonKey()
-  final bool waiting;
-  @override
-  @JsonKey()
-  final int second;
 
   @override
   String toString() {
-    return 'DetectionScreenState.initial(errorMessage: $errorMessage, url: $url, userId: $userId, pan: $pan, tilt: $tilt, waiting: $waiting, second: $second)';
+    return 'DetectionScreenState.initial(errorMessage: $errorMessage, url: $url, userId: $userId, pan: $pan, tilt: $tilt)';
   }
 
   @override
@@ -253,14 +211,12 @@ class _$_Initial implements _Initial {
             (identical(other.url, url) || other.url == url) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.pan, pan) || other.pan == pan) &&
-            (identical(other.tilt, tilt) || other.tilt == tilt) &&
-            (identical(other.waiting, waiting) || other.waiting == waiting) &&
-            (identical(other.second, second) || other.second == second));
+            (identical(other.tilt, tilt) || other.tilt == tilt));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, errorMessage, url, userId, pan, tilt, waiting, second);
+  int get hashCode =>
+      Object.hash(runtimeType, errorMessage, url, userId, pan, tilt);
 
   @JsonKey(ignore: true)
   @override
@@ -271,33 +227,33 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? errorMessage, String url, String userId,
-            int pan, int tilt, bool waiting, int second)
+    required TResult Function(
+            String? errorMessage, String url, String userId, int pan, int tilt)
         initial,
   }) {
-    return initial(errorMessage, url, userId, pan, tilt, waiting, second);
+    return initial(errorMessage, url, userId, pan, tilt);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? errorMessage, String url, String userId, int pan,
-            int tilt, bool waiting, int second)?
+    TResult? Function(
+            String? errorMessage, String url, String userId, int pan, int tilt)?
         initial,
   }) {
-    return initial?.call(errorMessage, url, userId, pan, tilt, waiting, second);
+    return initial?.call(errorMessage, url, userId, pan, tilt);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? errorMessage, String url, String userId, int pan,
-            int tilt, bool waiting, int second)?
+    TResult Function(
+            String? errorMessage, String url, String userId, int pan, int tilt)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(errorMessage, url, userId, pan, tilt, waiting, second);
+      return initial(errorMessage, url, userId, pan, tilt);
     }
     return orElse();
   }
@@ -337,9 +293,7 @@ abstract class _Initial implements DetectionScreenState {
       required final String url,
       required final String userId,
       final int pan,
-      final int tilt,
-      final bool waiting,
-      final int second}) = _$_Initial;
+      final int tilt}) = _$_Initial;
 
   @override
   String? get errorMessage;
@@ -351,10 +305,6 @@ abstract class _Initial implements DetectionScreenState {
   int get pan;
   @override
   int get tilt;
-  @override
-  bool get waiting;
-  @override
-  int get second;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
