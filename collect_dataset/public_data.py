@@ -114,9 +114,9 @@ def load_model_rnn():
     model.add(SimpleRNN(16, return_sequences=True,
                    activation='relu', input_shape=(30, 258)))
     # model.add(SimpleRNN(64, return_sequences=True, activation='relu'))
-    # model.add(Dropout(0.2))
+    model.add(Dropout(0.2))
     model.add(SimpleRNN(32, return_sequences=False, activation='relu'))
-    # model.add(Dense(64, activation='relu'))
+    model.add(Dense(64, activation='relu'))
     model.add(Dense(16, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
     return model
