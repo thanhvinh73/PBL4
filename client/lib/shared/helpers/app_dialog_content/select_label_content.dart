@@ -1,4 +1,5 @@
 import 'package:client/models/label_order/label_order.dart';
+import 'package:client/shared/enum/label_order.dart';
 import 'package:client/shared/widgets/app_container.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,7 @@ class SelectLabelContent extends StatelessWidget {
                             const SizedBox(width: 8),
                             Expanded(
                                 child: AppText(
-                              e.label!.name.toUpperCase(),
+                              e.label!.description,
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             )),

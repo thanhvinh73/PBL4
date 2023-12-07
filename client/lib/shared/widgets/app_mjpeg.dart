@@ -36,13 +36,14 @@ class _AppMjpegState extends State<AppMjpeg> {
         ClipRRect(
           borderRadius: BorderRadius.circular(4),
           child: Mjpeg(
-            stream: "http://${widget.url}",
+            stream: "http://${widget.url}:81/stream",
             isLive: true,
             fit: BoxFit.cover,
             height: widget.height,
             width: widget.width,
-            loading: (context) => const AppLoadingWidget(),
-            timeout: const Duration(seconds: 5),
+            loading: (context) =>
+                const AppLoadingWidget(color: AppColors.darkPurple),
+            timeout: const Duration(seconds: 30),
             error: (context, error, stack) {
               debugPrint("MJPEG-ERROR: ${error.toString()}");
               if (error.toString().isEmptyOrNull) {
@@ -76,9 +77,10 @@ class _AppMjpegState extends State<AppMjpeg> {
             right: 4,
             bottom: 4,
             child: AppIconButton(
-              onTap: () {
-                Get.toNamed(Routes.mjpegFullScreen,
-                    arguments: "http://${widget.url}");
+              onTap: () async {
+                await Get.toNamed(Routes.mjpegFullScreen,
+                    arguments: widget.url);
+                setState(() {});
               },
               icon: Icons.fullscreen,
               color: AppColors.bgPurple,

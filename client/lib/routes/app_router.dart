@@ -1,5 +1,5 @@
 import 'package:client/screens/connect_to_server_screen/connect_to_server_screen.dart';
-import 'package:client/screens/home_screen/home_screen.dart';
+import 'package:client/screens/detection_screen/detection_screen.dart';
 import 'package:client/screens/login_screen/login_screen.dart';
 import 'package:client/screens/mjpeg_full_screen/mjpeg_full_screen.dart';
 import 'package:client/screens/no_internet_screen/no_internet_screen.dart';
@@ -16,7 +16,6 @@ class Routes {
   static String splash = "/splash";
   static String connectToServer = "/connect-to-server";
   static String main = "/main";
-  static String home = "/home";
   static String account = "/account";
   static String login = "/login";
   static String register = "/register";
@@ -25,6 +24,7 @@ class Routes {
   static String mjpegFullScreen = "/mjpeg-full-screen";
   static String noInternetScreen = "/no-internet-screen";
   static String tutorialScreen = "/tutorial-screen";
+  static String detectionScreen = "/detection-screen";
 
   static final Map<String, Widget Function(BuildContext)> routes = {
     splash: (context) {
@@ -36,7 +36,6 @@ class Routes {
     main: (context) {
       return const MainScreen();
     },
-    home: (context) => HomeScreen(),
     login: (context) => LoginScreen(),
     register: (context) => RegisterScreen(),
     profileScreen: (context) => const ProfileScreen(),
@@ -49,6 +48,9 @@ class Routes {
       return MjpegFullScreen(url: url);
     },
     noInternetScreen: (context) => const NoInternetScreen(),
-    tutorialScreen: (context) => const TutorialScreen()
+    tutorialScreen: (context) => const TutorialScreen(),
+    detectionScreen: (context) {
+      return const DetectionScreen();
+    }
   };
 }

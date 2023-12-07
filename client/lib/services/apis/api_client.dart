@@ -67,4 +67,12 @@ abstract class APIClient {
   @PATCH("/api/label-order/{userId}/change-order")
   Future<ApiResponse<List<LabelOrder>>> changeLabelOrder(
       @Path("userId") String userId, @Body() Map<String, dynamic> body);
+
+  // Detection
+  @POST("/api/detection/{userId}")
+  Future<ApiResponse> detect(
+      @Path("userId") String userId, @Body() Map<String, dynamic> body);
+
+  @PATCH("/api/detection/cancel")
+  Future<ApiResponse> cancelDetection();
 }

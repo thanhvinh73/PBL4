@@ -19,6 +19,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  flutter_launcher_icons: ^0.13.1
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.5
   get: ^4.6.5
@@ -43,6 +44,7 @@ dependencies:
   cached_network_image: ^3.2.3
   after_layout: ^1.2.0
   connectivity_plus: ^5.0.2
+  uuid: ^4.2.1
 
   # Camera
   camera: ^0.10.5+5
@@ -53,6 +55,9 @@ dependencies:
   # For video
   video_player: ^2.8.1
   chewie: ^1.7.4
+
+  # For socket
+  web_socket_channel: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -69,8 +74,10 @@ dev_dependencies:
   # For Networking
   retrofit_generator: ^6.0.0+1
 
-  # For socket
-  web_socket_channel: ^2.4.0
+flutter_launcher_icons:
+  ios: true
+  android: true
+  image_path: "assets/images/app_logo.png"
 
 flutter_gen:
   output: lib/generated/ # Optional (default: lib/gen/)
@@ -90,3 +97,4 @@ flutter:
     - assets/translations/
     - assets/icons/
     - assets/lotties/
+    - assets/videos/

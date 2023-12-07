@@ -1,5 +1,4 @@
 import 'package:client/models/credential/credential.dart';
-import 'package:client/repositories/auth_repository.dart';
 import 'package:client/services/api_response/api_response.dart';
 import 'package:client/services/public_api.dart';
 import 'package:client/shared/extensions/string_ext.dart';
@@ -19,14 +18,17 @@ class AppDio with DioMixin implements Dio {
         });
     if (kDebugMode) {
       interceptors.add(
-        PrettyDioLogger(requestBody: true),
+        PrettyDioLogger(requestBody: true, requestHeader: true),
       );
     }
 
     interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
-        final String? token = sp.prefs.getString('access_token');
+        String? token = sp.prefs.getString('access_token');
+        debugPrint("CHECK IS_RF_TOKEN: ${sp.isRefreshToken}");
+        if (sp.isRefreshToken) token = sp.refreshToken;
         if (token.isNotEmptyOrNull) {
+          debugPrint("DIO-CHECK-TOKEN: $token");
           options.headers.putIfAbsent('Authorization', () => 'Bearer $token');
         }
         return handler.next(options);
@@ -35,7 +37,6 @@ class AppDio with DioMixin implements Dio {
         handler.next(response);
       },
       onError: (error, handler) async {
-        // final String? rfToken = sp.prefs.getString('refresh_token');
         if (error.response != null) {
           if (error.requestOptions.headers.containsKey('Authorization')) {
             if (error.response?.data is Map &&
@@ -65,19 +66,30 @@ class AppDio with DioMixin implements Dio {
     ));
     httpClientAdapter = HttpClientAdapter();
   }
-}
+  Future<Credential?> _refreshToken() async {
+    try {
+      String? rfToken = sp.refreshToken;
+      if (rfToken.isEmptyOrNull) return null;
 
-Future<Credential?> _refreshToken() async {
-  try {
-    final AuthRepository authRepository = AuthRepository(apis: PublicApi.apis);
-    sp.clear();
-    ApiResponse<Credential> res = await authRepository.refreshToken();
-    if (res.data != null) {
-      sp.setToken(res.data!.accessToken, res.data!.refreshToken);
-      return res.data;
+      await sp.prefs.setBool("is_refresh_token", true);
+      final result = await fetch<Map<String, dynamic>>(RequestOptions(
+        path: "${PublicApi.baseUrl}/api/auth/refresh_token",
+        method: "POST",
+      ));
+
+      await sp.clear();
+      final value = ApiResponse<Credential>.fromJson(result.data!,
+          (json) => Credential.fromJson(json as Map<String, dynamic>));
+
+      await sp.prefs.setBool("is_refresh_token", false);
+      if (value.data != null) {
+        await sp.setToken(value.data!.accessToken, value.data!.refreshToken);
+        return value.data;
+      }
+      return null;
+    } catch (err) {
+      await sp.prefs.setBool("is_refresh_token", false);
+      return null;
     }
-    return null;
-  } catch (err) {
-    return null;
   }
 }

@@ -14,12 +14,21 @@ import 'package:client/shared/widgets/app_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 
+import '../../routes/app_router.dart';
+import '../../shared/widgets/app_button.dart';
 import '../../shared/widgets/app_text_field.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final Debouncer _debouncer =
       Debouncer(delay: const Duration(milliseconds: 300));
 
@@ -29,19 +38,35 @@ class HomeScreen extends StatelessWidget {
       onWillPop: false,
       child: BlocProvider(
         create: (context) => HomeScreenCubit()..search(""),
-        child: BlocListener<HomeScreenCubit, HomeScreenState>(
-          listenWhen: (previous, current) =>
-              previous.errorMessage != current.errorMessage &&
-              current.errorMessage != null,
-          listener: (context, state) {
-            showErrorDialog(context,
-                    title: tr(LocaleKeys.Auth_Error),
-                    content: state.errorMessage)
-                .then((value) =>
-                    context.read<HomeScreenCubit>().resetErrorMessage());
-          },
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<HomeScreenCubit, HomeScreenState>(
+              listenWhen: (previous, current) =>
+                  previous.errorMessage != current.errorMessage &&
+                  current.errorMessage != null,
+              listener: (context, state) {
+                showErrorDialog(context,
+                        title: tr(LocaleKeys.Auth_Error),
+                        content: state.errorMessage)
+                    .then((value) =>
+                        context.read<HomeScreenCubit>().resetErrorMessage());
+              },
+            ),
+            BlocListener<HomeScreenCubit, HomeScreenState>(
+              listenWhen: (previous, current) =>
+                  previous.currentUrl != current.currentUrl,
+              listener: (context, state) {
+                context.read<AppUserCubit>().updateState(
+                    (p0) => p0.copyWith(currentCameraUrl: state.currentUrl));
+              },
+            ),
+          ],
           child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
             builder: (context, state) {
+              final appUserCameraUrl =
+                  context.read<AppUserCubit>().state.currentCameraUrl;
+              context.read<HomeScreenCubit>().updateState(
+                  (p0) => p0.copyWith(currentUrl: appUserCameraUrl));
               return LayoutBuilder(builder: (context, constrainst) {
                 return RefreshIndicator(
                   onRefresh: () => context.read<HomeScreenCubit>().search(null),
@@ -51,85 +76,116 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       constraints:
                           BoxConstraints(minHeight: constrainst.maxHeight),
-                      child: Wrap(runSpacing: 16, children: [
-                        BlocSelector<HomeScreenCubit, HomeScreenState,
-                            CameraUrl?>(
-                          selector: (state) => state.currentUrl,
-                          builder: (context, currentCameraUrl) {
-                            return AppMjpeg(
-                              url: currentCameraUrl?.url ?? "",
-                              width: MediaQuery.of(context).size.width,
-                              showFullScreen: true,
-                              height: 250,
-                            );
-                          },
-                        ),
-                        AppTextField(
-                          onChanged: (_) {
-                            _debouncer.call(() {
-                              context.read<HomeScreenCubit>().search(_);
-                            });
-                          },
-                          placeholder: "Nhập tên wifi",
-                          suffixIcon: const AppContainer(
-                            margin: EdgeInsets.only(right: 16),
-                            child: Icon(
-                              Icons.search,
-                              color: AppColors.titleText,
-                              size: 25,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Wrap(runSpacing: 16, children: [
+                            BlocSelector<HomeScreenCubit, HomeScreenState,
+                                CameraUrl?>(
+                              selector: (state) => state.currentUrl,
+                              builder: (context, currentCameraUrl) {
+                                return AppMjpeg(
+                                  url: currentCameraUrl?.url ??
+                                      appUserCameraUrl?.url ??
+                                      "",
+                                  width: MediaQuery.of(context).size.width,
+                                  showFullScreen: true,
+                                  height: 250,
+                                );
+                              },
                             ),
-                          ),
-                        ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   children: [
-                        //     AppText(
-                        //       "Nhấn giữ để đổi trạng thái của đường dẫn",
-                        //       color: AppColors.titleText,
-                        //     )
-                        //   ],
-                        // ),
-
-                        BlocSelector<HomeScreenCubit, HomeScreenState,
-                            List<CameraUrl>>(
-                          selector: (state) => state.cameraUrls,
-                          builder: (context, cameraUrls) {
-                            return Wrap(
-                              children: cameraUrls.isNullOrEmpty
-                                  ? [_buildEmptyListUrl(context)]
-                                  : cameraUrls
-                                      .map((e) => UrlRowItem(
-                                            cameraUrl: e,
-                                            onTap: () {
-                                              context
-                                                  .read<HomeScreenCubit>()
-                                                  .updateState((p0) => p0
-                                                      .copyWith(currentUrl: e));
-                                              context
-                                                  .read<AppUserCubit>()
-                                                  .updateState((p0) =>
-                                                      p0.copyWith(
-                                                          currentCameraUrl: e));
-                                            },
-                                            onLongPress: () {
-                                              showConfirmDialog(
-                                                context,
-                                                title: e.url,
-                                                content:
-                                                    "Bạn có chắc muốn tắt trạng thái hoạt động của đường dẫn này ",
-                                                onAccept: () {
+                            AppTextField(
+                              onChanged: (_) {
+                                _debouncer.call(() {
+                                  context.read<HomeScreenCubit>().search(_);
+                                });
+                              },
+                              placeholder: "Nhập tên wifi",
+                              suffixIcon: const AppContainer(
+                                margin: EdgeInsets.only(right: 16),
+                                child: Icon(
+                                  Icons.search,
+                                  color: AppColors.titleText,
+                                  size: 25,
+                                ),
+                              ),
+                            ),
+                            BlocSelector<HomeScreenCubit, HomeScreenState,
+                                List<CameraUrl>>(
+                              selector: (state) => state.cameraUrls,
+                              builder: (context, cameraUrls) {
+                                return Wrap(
+                                  runSpacing: 16,
+                                  children: cameraUrls.isNullOrEmpty
+                                      ? [_buildEmptyListUrl(context)]
+                                      : cameraUrls
+                                          .map((e) => UrlRowItem(
+                                                cameraUrl: e,
+                                                onTap: () {
                                                   context
                                                       .read<HomeScreenCubit>()
-                                                      .inactiveUrl(e.id);
+                                                      .updateState((p0) =>
+                                                          p0.copyWith(
+                                                              currentUrl: e));
                                                 },
-                                              );
-                                            },
-                                          ))
-                                      .toList(),
-                            );
-                          },
-                        ),
-                      ]),
+                                                onRemove: () {
+                                                  context
+                                                      .read<HomeScreenCubit>()
+                                                      .updateState((p0) =>
+                                                          p0.copyWith(
+                                                              currentUrl:
+                                                                  null));
+                                                },
+                                                isSelected: e.id ==
+                                                    state.currentUrl?.id,
+                                                onLongPress: () {
+                                                  showConfirmDialog(
+                                                    context,
+                                                    title: e.url,
+                                                    content:
+                                                        "Bạn có chắc muốn tắt trạng thái hoạt động của đường dẫn này ",
+                                                    onAccept: () {
+                                                      context
+                                                          .read<
+                                                              HomeScreenCubit>()
+                                                          .inactiveUrl(e.id);
+                                                    },
+                                                  );
+                                                },
+                                              ))
+                                          .toList(),
+                                );
+                              },
+                            ),
+                          ]),
+                          if (state.currentUrl != null)
+                            AppButton(
+                                title: "Nhận diện",
+                                onPressed: () {
+                                  // if ((context
+                                  //             .read<AppUserCubit>()
+                                  //             .state
+                                  //             .currentCameraUrl ??
+                                  //         const CameraUrl())
+                                  //     .url
+                                  //     .isEmptyOrNull) {
+                                  //   showInfoDialog(context,
+                                  //           title: "Chưa có đường dẫn camera",
+                                  //           content:
+                                  //               "Bạn chưa sử dụng đường dẫn camera nào, vui lòng chọn đường dẫn ở trang hiển thị video.")
+                                  //       .then((value) {});
+                                  //   return;
+                                  // }
+                                  showConfirmDialog(context,
+                                      title: "Nhận diện hành động",
+                                      content:
+                                          "Khi vào chế độ nhận điện bạn sẽ không thể thực hiện các tính năng khác",
+                                      onAccept: () {
+                                    Get.toNamed(Routes.detectionScreen);
+                                  });
+                                })
+                        ],
+                      ),
                     ),
                   ),
                 );

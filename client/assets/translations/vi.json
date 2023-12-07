@@ -2,13 +2,13 @@
   "App": {
     "Cancel": "Hủy",
     "Confirm": "Xác nhận",
-    "Ok": "Ok",
+    "Ok": "Tiếp tục",
     "Close": "Đóng",
     "ActionConfirm": "Bạn có chắc chắn thực hiện hành động này?",
     "Success": "Thành công",
     "YourActionMakingSuccessfully": "Hành động của bạn đã thực hiện thành công!",
     "Logout": "Đăng xuất",
-    "Home": "Hiển thị video",
+    "Home": "Hiển thị Camera",
     "SettingController": "Thiết lập điều khiển",
     "ChangeAction": "Hành động",
     "Account": "Tài khoản",
@@ -17,20 +17,52 @@
     "LogoutConfirm": "Bạn có chắc chắn muốn đăng xuất khỏi ứng dụng không?",
     "Menu": "Menu",
     "Tutorial": "Hướng dẫn sử dụng",
-    "NotUpdate": "Chưa cập nhật"
+    "NotUpdate": "Chưa cập nhật",
+    "Skip": "Bỏ qua",
+    "Back": "Quay lại",
+    "Continue": "Tiếp tục"
+  },
+  "ActionDescription": {
+    "Forward": "Chuyển tiếp",
+    "Backward": "Quay lui",
+    "Start": "Trình chiếu",
+    "Stop": "Kết thúc"
   },
   "CameraUrl": {
-    "Active": "Đang hoạt động",
-    "Inactive": "Không hoạt động",
-    "HintTitle1": "Lựa chọn đường dẫn",
-    "HintTitle2": "Hiển thị video",
+    "HintTitle1": "Lựa chọn camera",
+    "HintTitle2": "Hiển thị camera",
     "HintTitle3": "Điều chỉnh camera",
     "HintLabelButton1": "Tiếp tục",
     "HintLabelButton2": "Tiếp tục",
     "HintLabelButton3": "Kết thúc",
-    "HintDescription1": "Hãy lựa chọn đường dẫn video thích hợp từ camera mà bạn muốn sử dụng. Có thể sử dụng tính năng tìm kiếm đường dẫn dựa theo tên wifi mà camera đó đang kết nối.",
-    "HintDescription2": "Mục đích của việc hiển thị video từ camera là giúp bạn có thể quan sát được vị trí của bản thân.",
-    "HintDescription3": "Để có ứng dụng của chúng tôi nhận diện tốt hơn, bạn vui lòng điều chỉnh camera sao cho vị trí của bạn ở chính giữa khung hình nhé!"
+    "HintDescription1": "Hãy lựa chọn đường dẫn video thích hợp từ camera mà bạn muốn sử dụng. Có thể sử dụng tính năng tìm kiếm đường dẫn dựa theo tên wifi mà camera đó đang kết nối",
+    "HintDescription2": "Lựa chọn camera giúp bạn có thể quan sát được vị trí của bản thân",
+    "HintDescription3": "Để ứng dụng của chúng tôi nhận diện tốt hơn, bạn vui lòng điều chỉnh camera sao cho vị trí của bạn ở chính giữa khung hình nhé!"
+  },
+  "CameraController": {
+    "HintTitle1": "Trục ngang - Trục dọc",
+    "HintTitle2": "Nút điều khiển",
+    "HintLabelButton1": "Tiếp tục",
+    "HintLabelButton2": "Kết thúc",
+    "HintDescription1": "Camera có thể quay theo hai chiều ngang và dọc",
+    "HintDescription2": "Tương ứng với mỗi chiều quay sẽ có hai nút điều khiển giúp quay camera"
+  },
+  "LabelAction": {
+    "HintTitle1": "Lệnh điều khiển",
+    "HintTitle2": "Tùy chỉnh hành động",
+    "HintLabelButton1": "Tiếp tục",
+    "HintLabelButton2": "Kết thúc",
+    "HintDescription1": "Tất cả các lệnh điều khiển được hiển thị tại đây",
+    "HintDescription2": "Bạn có thể thay đổi lệnh điều khiển của các hành động"
+  },
+  "Tutorial": {
+    "Step1": "Bước 1: Lựa chọn camera",
+    "Step2": "Bước 2: Điều chỉnh camera",
+    "Step3": "Bước 3: Bắt đầu nhận diện",
+    "StepDescription1": "Đầu tiên, bạn hãy lựa chọn camera mà bạn muốn sử dụng. Camera này phải được kết nối với hệ thống!",
+    "StepDescription2": "Điều chỉnh góc quay của camera hoặc vị trí đứng của bạn để hệ thống có thể nhận diện tốt nhất",
+    "StepDescription3": "Khi đã hoàn thành các bước phía trước thì hãy bắt đầu nhận diện ngay! Nếu gặp khó khăn trong quá trình sử dụng, hãy sử dụng tính năng gợi ý trên góc phải màn hình để biết thêm thông tin",
+    "GettingStarted": "Bắt đầu ngay"
   },
   "Profile": {
     "NotUpdate": "Hồ sơ của bạn chưa được cập nhật!",
@@ -95,6 +127,9 @@
     "ERRURL004": "Tạo đường dẫn camera thất bại!",
     "ERRLABEL001": "Các nhãn mặc định đã được khởi tạo cho người dùng này!",
     "ERRLABEL002": "Hai nhãn được đổi với nhau không được trống!",
-    "ERRLABEL003": "Không tìm thấy nhãn!"
+    "ERRLABEL003": "Không tìm thấy nhãn!",
+    "ERRDETECT001": "Mã người dùng và đường dẫn camera không được trống!",
+    "ERRDETECT002": "Bạn không phải là người đang trình bày",
+    "ERRDETECT003": "Bạn chưa thực hiện phần nhận diện nên không thể kết thúc chúng!"
   }
 }

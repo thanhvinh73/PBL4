@@ -51,8 +51,28 @@ class $AssetsIconsGen {
   SvgGenImage get pcHintCameraSelectUrl =>
       const SvgGenImage('assets/icons/pc_hint_camera_select_url.svg');
 
+  /// File path: assets/icons/pc_label_action_des1.svg
+  SvgGenImage get pcLabelActionDes1 =>
+      const SvgGenImage('assets/icons/pc_label_action_des1.svg');
+
+  /// File path: assets/icons/pc_label_action_des2.svg
+  SvgGenImage get pcLabelActionDes2 =>
+      const SvgGenImage('assets/icons/pc_label_action_des2.svg');
+
   /// File path: assets/icons/pc_no_data.svg
   SvgGenImage get pcNoData => const SvgGenImage('assets/icons/pc_no_data.svg');
+
+  /// File path: assets/icons/pc_tutorial_step1.svg
+  SvgGenImage get pcTutorialStep1 =>
+      const SvgGenImage('assets/icons/pc_tutorial_step1.svg');
+
+  /// File path: assets/icons/pc_tutorial_step2.svg
+  SvgGenImage get pcTutorialStep2 =>
+      const SvgGenImage('assets/icons/pc_tutorial_step2.svg');
+
+  /// File path: assets/icons/pc_tutorial_step3.svg
+  SvgGenImage get pcTutorialStep3 =>
+      const SvgGenImage('assets/icons/pc_tutorial_step3.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
@@ -66,7 +86,12 @@ class $AssetsIconsGen {
         pcHintCamera,
         pcHintCameraChangePosition,
         pcHintCameraSelectUrl,
-        pcNoData
+        pcLabelActionDes1,
+        pcLabelActionDes2,
+        pcNoData,
+        pcTutorialStep1,
+        pcTutorialStep2,
+        pcTutorialStep3
       ];
 }
 
@@ -80,6 +105,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/pc_ai.jpg
   AssetGenImage get pcAi => const AssetGenImage('assets/images/pc_ai.jpg');
 
+  /// File path: assets/images/pc_camera_controller_des1.jpg
+  AssetGenImage get pcCameraControllerDes1 =>
+      const AssetGenImage('assets/images/pc_camera_controller_des1.jpg');
+
+  /// File path: assets/images/pc_camera_controller_des2.jpg
+  AssetGenImage get pcCameraControllerDes2 =>
+      const AssetGenImage('assets/images/pc_camera_controller_des2.jpg');
+
   /// File path: assets/images/pc_fetch_api.png
   AssetGenImage get pcFetchApi =>
       const AssetGenImage('assets/images/pc_fetch_api.png');
@@ -89,8 +122,14 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/pc_no_internet.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [imageLoading, pcAi, pcFetchApi, pcNoInternet];
+  List<AssetGenImage> get values => [
+        imageLoading,
+        pcAi,
+        pcCameraControllerDes1,
+        pcCameraControllerDes2,
+        pcFetchApi,
+        pcNoInternet
+      ];
 }
 
 class $AssetsLottiesGen {
@@ -114,6 +153,25 @@ class $AssetsTranslationsGen {
   List<String> get values => [vi];
 }
 
+class $AssetsVideosGen {
+  const $AssetsVideosGen();
+
+  /// File path: assets/videos/backward.mp4
+  String get backward => 'assets/videos/backward.mp4';
+
+  /// File path: assets/videos/forward.mp4
+  String get forward => 'assets/videos/forward.mp4';
+
+  /// File path: assets/videos/start.mp4
+  String get start => 'assets/videos/start.mp4';
+
+  /// File path: assets/videos/stop.mp4
+  String get stop => 'assets/videos/stop.mp4';
+
+  /// List of all assets
+  List<String> get values => [backward, forward, start, stop];
+}
+
 class Assets {
   Assets._();
 
@@ -121,6 +179,7 @@ class Assets {
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
+  static const $AssetsVideosGen videos = $AssetsVideosGen();
 }
 
 class AssetGenImage {

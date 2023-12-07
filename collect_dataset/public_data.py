@@ -1,3 +1,4 @@
+from keras.layers import Dropout
 import os
 import numpy as np
 import cv2
@@ -10,7 +11,7 @@ from main_action_enum import get_main_action, MainAction
 
 no_sequences = 135
 sequence_length = 30
-actions = np.array(["Forward", "Backward", "Start",'Stop'])
+actions = np.array(["Forward", "Backward", "Start", 'Stop'])
 
 
 mp_holistic = mp.solutions.holistic
@@ -18,7 +19,7 @@ mp_drawing = mp.solutions.drawing_utils  # Drawing utilities
 
 
 def mediapipe_detection(image, model):
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image.flags.writeable = False
     results = model.process(image)
@@ -96,7 +97,7 @@ def extract_keypoints(results):
     )
     return np.concatenate([pose, lh, rh])
 
-from keras.layers import Dropout
+
 def load_model():
     model = Sequential()
     model.add(LSTM(16, return_sequences=True,
@@ -109,10 +110,11 @@ def load_model():
     model.add(Dense(actions.shape[0], activation='softmax'))
     return model
 
+
 def load_model_rnn():
     model = Sequential()
     model.add(SimpleRNN(16, return_sequences=True,
-                   activation='relu', input_shape=(30, 258)))
+                        activation='relu', input_shape=(30, 258)))
     # model.add(SimpleRNN(64, return_sequences=True, activation='relu'))
     model.add(Dropout(0.2))
     model.add(SimpleRNN(32, return_sequences=False, activation='relu'))
@@ -120,6 +122,7 @@ def load_model_rnn():
     model.add(Dense(16, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
     return model
+
 
 def check_video_values(action: str, sequence: str, input_video_path: str):
     cap = cv2.VideoCapture(input_video_path)
@@ -133,7 +136,7 @@ def change_fps_color_size(data_input_path: str, data_output_path: str, total_vid
     target_width = 900
     target_height = 600
     for action in actions:
-        for sequence in range(0,10):
+        for sequence in range(0, 10):
             input_video_path = os.path.join(
                 data_input_path, action, "{}.mp4".format(sequence))
             output_video_path = f'{data_output_path}/{action}/{sequence}.mp4'
@@ -165,7 +168,7 @@ def change_fps_color_size(data_input_path: str, data_output_path: str, total_vid
 
 def change_duration(data_input_path: str, data_output_path: str, total_videos: int):
     for action in actions:
-        for sequence in range(0,10):
+        for sequence in range(0, 10):
             input_video_path = f'{data_input_path}/{action}/{sequence}.mp4'
             output_video_path = f'{data_output_path}/Final_Result/{action}/{sequence}.mp4'
 

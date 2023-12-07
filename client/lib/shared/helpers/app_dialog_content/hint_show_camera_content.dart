@@ -88,7 +88,7 @@ class _HintShowCameraContentWidgetState
             child: GestureDetector(
               onTap: Navigator.of(context).pop,
               child: AppText(
-                "Bỏ qua",
+                tr(LocaleKeys.App_Skip),
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.w500,
                 padding: const EdgeInsets.only(bottom: 8),
@@ -113,16 +113,18 @@ class _HintShowCameraContentWidgetState
             children: [
               Wrap(
                 spacing: 8,
-                children: HintShowCameraDescription.values
-                    .asMap()
-                    .entries
-                    .map((e) => CircleAvatar(
-                          backgroundColor: e.key == currentIndex
-                              ? AppColors.darkPurple
-                              : AppColors.bgPurple,
-                          radius: 8,
-                        ))
-                    .toList(),
+                children: [
+                  ...HintShowCameraDescription.values
+                      .asMap()
+                      .entries
+                      .map((e) => CircleAvatar(
+                            backgroundColor: e.key == currentIndex
+                                ? AppColors.darkPurple
+                                : AppColors.bgPurple,
+                            radius: 8,
+                          ))
+                      .toList(),
+                ],
               ),
               AppButton(
                   title: HintShowCameraDescription.values
@@ -135,6 +137,7 @@ class _HintShowCameraContentWidgetState
                     if (currentIndex ==
                         HintShowCameraDescription.values.length - 1) {
                       Navigator.pop(context);
+
                       return;
                     }
                     _pageController.animateToPage(currentIndex + 1,
@@ -168,8 +171,12 @@ class _HintShowCameraContentWidgetState
                   color: AppColors.titleText,
                   padding: const EdgeInsets.only(bottom: 8),
                 ),
-                AppText(item.description,
-                    fontSize: 17, color: AppColors.bodyText),
+                AppText(
+                  item.description,
+                  fontSize: 17,
+                  color: AppColors.bodyText,
+                  padding: const EdgeInsets.only(bottom: 4),
+                ),
               ],
             ))
       ],

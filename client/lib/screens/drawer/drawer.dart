@@ -123,8 +123,9 @@ class _DrawerItemsState extends State<DrawerItems> {
                                       size: 25,
                                     ),
                                     onTap: () {
-                                      context.read<MainScreenCubit>().changeTab(
-                                          MainTabs.settingController);
+                                      context
+                                          .read<MainScreenCubit>()
+                                          .changeTab(MainTabs.cameraController);
                                       Get.back();
                                     },
                                   ),
@@ -148,6 +149,12 @@ class _DrawerItemsState extends State<DrawerItems> {
                                       Icons.wb_incandescent_sharp,
                                       size: 25,
                                     ),
+                                    onTap: () {
+                                      context
+                                          .read<MainScreenCubit>()
+                                          .changeTab(MainTabs.tutorial);
+                                      Get.back();
+                                    },
                                   ),
                                 ],
                               ),
