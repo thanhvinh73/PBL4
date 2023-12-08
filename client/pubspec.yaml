@@ -77,7 +77,7 @@ dev_dependencies:
 flutter_launcher_icons:
   ios: true
   android: true
-  image_path: "assets/images/app_logo.png"
+  image_path: "assets/images/app_logo.jpg"
 
 flutter_gen:
   output: lib/generated/ # Optional (default: lib/gen/)

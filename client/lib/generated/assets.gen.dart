@@ -98,6 +98,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/app_logo.png
+  AssetGenImage get appLogo =>
+      const AssetGenImage('assets/images/app_logo.png');
+
   /// File path: assets/images/image_loading.png
   AssetGenImage get imageLoading =>
       const AssetGenImage('assets/images/image_loading.png');
@@ -123,6 +127,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        appLogo,
         imageLoading,
         pcAi,
         pcCameraControllerDes1,

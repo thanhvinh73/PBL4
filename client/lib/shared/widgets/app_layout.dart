@@ -31,6 +31,7 @@ class AppLayout extends StatefulWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation =
         FloatingActionButtonLocation.centerDocked,
+    this.leadingWidth,
   });
   final bool useSafeArea;
   final Widget child;
@@ -51,6 +52,7 @@ class AppLayout extends StatefulWidget {
   final Future<bool> Function()? onWillPop;
   final FloatingActionButton? floatingActionButton;
   final FloatingActionButtonLocation floatingActionButtonLocation;
+  final double? leadingWidth;
 
   @override
   State<AppLayout> createState() => _AppLayoutState();
@@ -92,7 +94,7 @@ class _AppLayoutState extends State<AppLayout> with AfterLayoutMixin {
                 statusBarIconBrightness: Brightness.dark,
                 systemStatusBarContrastEnforced: true,
               ),
-              leadingWidth: widget.leading != null ? 85 : null,
+              leadingWidth: widget.leading != null ? widget.leadingWidth : null,
               leading: Builder(
                 builder: (context) {
                   return widget.leading ??
