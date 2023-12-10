@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-12-10T01:56:41.581Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0" etag="5chG295azaZQ4NeuIIbW" version="22.1.7" type="github" pages="6">
+<mxfile host="app.diagrams.net" modified="2023-12-10T03:16:51.233Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0" etag="3ROGcYtNunqK1yFtg2Qm" version="22.1.7" type="github" pages="6">
   <diagram name="ERD" id="lMEs5e1A_-VOneBFKFSz">
     <mxGraphModel dx="996" dy="614" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -369,7 +369,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="syDYdaDRhqQtvbaVzXfY" name="Normalize video">
-    <mxGraphModel dx="1742" dy="1423" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2060" dy="1423" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -396,15 +396,6 @@
           <mxGeometry x="0.097" y="-3" relative="1" as="geometry">
             <mxPoint x="-10" y="-13" as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="jPcfezLMeEfAjSiFVYbm-15" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="350" y="110" width="210" height="120" as="geometry" />
-        </mxCell>
-        <mxCell id="jPcfezLMeEfAjSiFVYbm-4" value="Trích xuất đặc trưng" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="jPcfezLMeEfAjSiFVYbm-15">
-          <mxGeometry x="30" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="jPcfezLMeEfAjSiFVYbm-14" value="&lt;ul&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;136 pose lankmarks&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;63 left-hand landmarks&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;63 right-handmarks&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="jPcfezLMeEfAjSiFVYbm-15">
-          <mxGeometry y="60" width="210" height="60" as="geometry" />
         </mxCell>
         <mxCell id="jPcfezLMeEfAjSiFVYbm-30" value="" style="group" vertex="1" connectable="0" parent="1">
           <mxGeometry x="-310" y="-10" width="390" height="180" as="geometry" />
@@ -449,7 +440,13 @@
           <mxGeometry width="195.56" height="110" as="geometry" />
         </mxCell>
         <mxCell id="jPcfezLMeEfAjSiFVYbm-23" value="&lt;ul&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Kích thước: 900 x 600&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;FPS: 15&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Thời lượng: 2s&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Hệ màu: BGR&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="jPcfezLMeEfAjSiFVYbm-32">
-          <mxGeometry x="179.99999999999997" width="210" height="60" as="geometry" />
+          <mxGeometry x="180" width="178" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jPcfezLMeEfAjSiFVYbm-4" value="Trích xuất đặc trưng" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jPcfezLMeEfAjSiFVYbm-14" value="&lt;ul&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;136 pose lankmarks&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;63 left-hand landmarks&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;63 right-handmarks&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="170" width="179" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
