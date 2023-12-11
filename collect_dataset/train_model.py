@@ -66,27 +66,27 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_wei
 tb_callback = TensorBoard(log_dir=os.path.join('Logs'))
 from keras.optimizers import Adam
 optimizer = Adam(learning_rate=0.0001)
-model = load_model()
+model = load_model_rnn()
 model.compile(optimizer=optimizer, loss='categorical_crossentropy',
               metrics=['categorical_accuracy'])
 model.summary()
-# history = model.fit(X_train, y_train, epochs= 150, callbacks=[tb_callback], validation_split=0.2)
+history = model.fit(X_train, y_train, epochs= 25, callbacks=[tb_callback], validation_split=0.2)
 # validation_data=(X_val,y_val)
-# model.save(os.path.join('trained_model', 'actionwithvalidlstm.keras'))
-# plt.plot(history.history['categorical_accuracy'], label='Train Categorical Accuracy')
-# plt.plot(history.history['val_categorical_accuracy'], label='Validation Categorical Accuracy')
-# plt.xlabel('Epochs')
-# plt.ylabel('Categorical Accuracy')
-# plt.legend()
-# plt.show()
-# plt.plot(history.history['loss'], label='Train Loss')
-# plt.plot(history.history['val_loss'], label='Valid Loss')
-# plt.xlabel('Epochs')
-# plt.ylabel('Loss')
-# plt.legend()
-# plt.show()
-model.load_weights(os.path.join(
-    'trained_model', 'actionwithvalid125.keras'))
+model.save(os.path.join('trained_model', 'actionwithvalidlstm.keras'))
+plt.plot(history.history['categorical_accuracy'], label='Train Categorical Accuracy')
+plt.plot(history.history['val_categorical_accuracy'], label='Validation Categorical Accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Categorical Accuracy')
+plt.legend()
+plt.show()
+plt.plot(history.history['loss'], label='Train Loss')
+plt.plot(history.history['val_loss'], label='Valid Loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+# model.load_weights(os.path.join(
+#     'trained_model', 'actionwithvalidtest2.keras'))
 
 
 yhat = model.predict(X_test)
@@ -102,8 +102,8 @@ for i, class_name in enumerate(class_names):
     row = i // 2
     col = i % 2
     sns.heatmap(conf_mat[i], annot=True, fmt='d', cmap='viridis',
-                xticklabels=["True Negative", "True Positive"],
-                yticklabels=["True Negative", "True Positive"],
+                xticklabels=["Negative", "Positive"],
+                yticklabels=["Negative", "Positive"],
                 annot_kws={"size": 16},
                 ax=axes[row, col])
     axes[row, col].set_title(f'Confusion Matrix for Class {class_name}')
