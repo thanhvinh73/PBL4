@@ -18,7 +18,7 @@ def testing_espservo():
     last_predict = ""
     threshold = 0.7
 
-    cap = cv2.VideoCapture("http://192.168.1.126:81/stream")
+    cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 900)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
@@ -41,15 +41,21 @@ def testing_espservo():
                             ringDip = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_DIP]
                             pinkyTip = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP]
                             pinkyDip = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_DIP]
-                            indexTip_x, indexTip_y = int(indexTip.x * frame.shape[1]), int(indexTip.y * frame.shape[0])
-                            middleTip_x, middleTip_y = int(middleTip.x * frame.shape[1]), int(middleTip.y * frame.shape[0])
-                            ringTip_x, ringTip_y = int(ringTip.x * frame.shape[1]), int(ringTip.y * frame.shape[0])
-                            distance_indexmid = math.sqrt((middleTip_x - indexTip_x)**2 + (middleTip_y - indexTip_y)**2)
-                            distance_indexring = math.sqrt((ringTip_x - middleTip_x)**2 + (ringTip_y - middleTip_y)**2)
+                            indexTip_x, indexTip_y = int(
+                                indexTip.x * frame.shape[1]), int(indexTip.y * frame.shape[0])
+                            middleTip_x, middleTip_y = int(
+                                middleTip.x * frame.shape[1]), int(middleTip.y * frame.shape[0])
+                            ringTip_x, ringTip_y = int(
+                                ringTip.x * frame.shape[1]), int(ringTip.y * frame.shape[0])
+                            distance_indexmid = math.sqrt(
+                                (middleTip_x - indexTip_x)**2 + (middleTip_y - indexTip_y)**2)
+                            distance_indexring = math.sqrt(
+                                (ringTip_x - middleTip_x)**2 + (ringTip_y - middleTip_y)**2)
                             if (indexTip.y <= indexDip.y and middleTip.y <= middleDip.y and ringTip.y <= ringDip.y and pinkyTip.y > pinkyDip.y and distance_indexmid > 30):
                                 holis = True
                                 time.sleep(1)
-                    cv2.putText(image, last_predict, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+                    cv2.putText(image, last_predict, (10, 30),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
                     cv2.imshow('OpenCV Feed', image)
                 else:
                     image, results = mediapipe_detection(frame, holistic)
@@ -80,5 +86,7 @@ def testing_espservo():
                     break
             cap.release()
             cv2.destroyAllWindows()
+
+
 if __name__ == "__main__":
     testing_espservo()

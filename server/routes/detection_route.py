@@ -9,6 +9,7 @@ import mediapipe as mp
 import numpy as np
 from flask import Blueprint, jsonify, request
 from helpers.app_data.public_data import draw_styled_landmarks, extract_keypoints, load_model, mediapipe_detection, mp_drawing, mp_holistic
+from helpers.enums.label_order import LabelOrderDefault
 from models.label_order import LabelOrder
 from utils import valid_request
 
@@ -150,15 +151,15 @@ def model_detection(url: str, actions: list):
                             if res[np.argmax(res)] > threshold:
                                 predicted_action = actions[np.argmax(res)]
                                 print(predicted_action, res[np.argmax(res)], np.argmax(res))
-                                match np.argmax(res):
-                                    case 0:
-                                        pyautogui.press('right')
-                                    case 1:
-                                        pyautogui.press('left')
-                                    case 2: 
-                                        pyautogui.hotkey('alt','f5')
-                                    case 3:
-                                        pyautogui.press('esc')    
+                                match predicted_action:
+                                    case LabelOrderDefault.FORWARD.name:
+                                        pyautogui.press(keys=pyautogui.RIGHT)
+                                    case LabelOrderDefault.BACKWARD.name:
+                                        pyautogui.press(keys=pyautogui.LEFT)
+                                    case LabelOrderDefault.START.name: 
+                                        pyautogui.press(keys='f5')
+                                    case LabelOrderDefault.STOP.name:
+                                        pyautogui.press(keys='esc')
                                     
                                 holis = False
                             else: print("NONE")

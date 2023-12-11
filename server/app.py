@@ -3,7 +3,6 @@ from flask_cors import CORS
 from routes.auth_route import auth_bp
 from routes.users_route import user_bp
 from routes.presentation_controller_route import presentation_controller_bp
-from routes.mediapipe import mediapipe_bp
 from routes.camera_url_route import camera_url_bp
 from routes.label_order_route import label_order_bp
 from routes.detection_route import detection_bp
@@ -28,7 +27,6 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(user_bp, url_prefix="/api/users")
     app.register_blueprint(presentation_controller_bp, url_prefix="/api/presentation-controller")
-    app.register_blueprint(mediapipe_bp, url_prefix="/api/mediapipe")
     app.register_blueprint(camera_url_bp, url_prefix="/api/camera-url")
     app.register_blueprint(label_order_bp, url_prefix="/api/label-order")
     app.register_blueprint(detection_bp, url_prefix="/api/detection")
