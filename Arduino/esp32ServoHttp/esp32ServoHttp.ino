@@ -11,8 +11,8 @@
 #include <HTTPClient.h>
 
 // Replace with your network credentials
-const char* ssid = "DOI TUI CO DON";
-const char* password = "12345679@";
+const char* ssid = "nhanpz";
+const char* password = "4chu@nha";
 
 String serverHost = "https://4rmv3lht-8080.asse.devtunnels.ms/api";
 bool isCreatedCameraUrl = false;

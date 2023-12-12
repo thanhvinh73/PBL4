@@ -78,6 +78,7 @@ def model_detection(url: str, actions: list):
         'helpers/trained_model', 'actionwithvalid125.keras'))
     
     sequence = []
+    last_predict = ""
     threshold = 0.7
     count_frame = 0
     
@@ -111,36 +112,8 @@ def model_detection(url: str, actions: list):
                                 if (indexTip.y <= indexDip.y and middleTip.y <= middleDip.y and ringTip.y <= ringDip.y and pinkyTip.y > pinkyDip.y and distance_indexmid > 30):
                                     holis = True
                                     time.sleep(1)
-                                screen_width, screen_height = pyautogui.size()
-                                bbox_xmin = 0.5 - 480 / screen_width
-                                bbox_ymin = 0.5 - 270 / screen_height
-                                bbox_xmax = 0.5 + 480 / screen_width
-                                bbox_ymax = 0.5 + 270 / screen_height
-                                if indexTip <= indexDip and middleTip > middleDip and ringTip > ringDip and pinkyTip > pinkyDip:
-                                    x = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
-                                    y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
-                                    rel_x = x - bbox_xmin
-                                    rel_y = y - bbox_ymin
-                                    scaled_x = rel_x * scaling_factor
-                                    scaled_y = rel_y * scaling_factor
-                                    final_x = bbox_xmin + scaled_x
-                                    final_y = bbox_ymin + scaled_y
-                                    if final_x < 0:
-                                        final_x = 0
-                                    elif final_x > 1:
-                                        final_x = 1
-
-                                    if final_y < 0:
-                                        final_y = 0
-                                    elif final_y > 1:
-                                        final_y = 1
-                                    if bbox_xmin <= x <= bbox_xmax and bbox_ymin <= y <= bbox_ymax:
-                                        pyautogui.moveTo(
-                                            final_x * screen_width, final_y * screen_height)
-                                    else:
-                                        pass
-                                cv2.rectangle(image, (int(bbox_xmin * image.shape[1]), int(bbox_ymin * image.shape[0])), (int(
-                                    bbox_xmax * image.shape[1]), int(bbox_ymax * image.shape[0])), (0, 255, 0), 2)
+                        cv2.putText(image, last_predict, (10, 30),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
                         cv2.imshow('OpenCV Feed', image)
                     else:
                         image, results = mediapipe_detection(frame, holistic)

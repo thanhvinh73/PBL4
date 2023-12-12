@@ -18,7 +18,7 @@ def testing_espservo():
     last_predict = ""
     threshold = 0.7
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("http://192.168.60.158:81/stream")
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 900)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
