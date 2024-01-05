@@ -11,10 +11,10 @@
 #include <HTTPClient.h>
 
 // Replace with your network credentials
-const char* ssid = "nhanpz";
-const char* password = "4chu@nha";
+const char* ssid = "Bwifi";
+const char* password = "12345678";
 
-String serverHost = "https://4rmv3lht-8080.asse.devtunnels.ms/api";
+String serverHost = "https://lvw2bpcf-8080.asse.devtunnels.ms/api";
 bool isCreatedCameraUrl = false;
 
 #define PART_BOUNDARY "123456789000000000000987654321"
@@ -124,8 +124,8 @@ bool isCreatedCameraUrl = false;
   #error "Camera model not selected"
 #endif
 
-#define PAN_PIN 14
-#define TILT_PIN 15
+#define PAN_PIN 15
+#define TILT_PIN 13
 
 #define SERVO_STEP   5
 Servo panServo;
