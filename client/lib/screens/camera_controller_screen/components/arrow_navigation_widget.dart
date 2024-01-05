@@ -21,8 +21,8 @@ class ArrowNavigationWidget extends StatefulWidget {
 }
 
 class _ArrowNavigationWidgetState extends State<ArrowNavigationWidget> {
-  int pan = 0;
-  int tilt = 0;
+  int pan = 90;
+  int tilt = 90;
   int maxAngle = 180;
   Timer? _timerPan;
   Timer? _timerTilt;

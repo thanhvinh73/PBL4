@@ -151,8 +151,6 @@ class _ConnectToServerScreenState extends State<ConnectToServerScreen>
                             AppTextField(
                               placeholder: "Nhập địa chỉ url của bạn tại đây",
                               controller: _textController,
-                              initValue:
-                                  "https://4rmv3lht-8080.asse.devtunnels.ms",
                               onChanged: context
                                   .read<ConnectToServerScreenCubit>()
                                   .updateBaseUrl,

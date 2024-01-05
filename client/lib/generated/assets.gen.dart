@@ -98,9 +98,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/app_logo.png
+  /// File path: assets/images/app_logo.jpg
   AssetGenImage get appLogo =>
-      const AssetGenImage('assets/images/app_logo.png');
+      const AssetGenImage('assets/images/app_logo.jpg');
 
   /// File path: assets/images/image_loading.png
   AssetGenImage get imageLoading =>
@@ -158,25 +158,6 @@ class $AssetsTranslationsGen {
   List<String> get values => [vi];
 }
 
-class $AssetsVideosGen {
-  const $AssetsVideosGen();
-
-  /// File path: assets/videos/backward.mp4
-  String get backward => 'assets/videos/backward.mp4';
-
-  /// File path: assets/videos/forward.mp4
-  String get forward => 'assets/videos/forward.mp4';
-
-  /// File path: assets/videos/start.mp4
-  String get start => 'assets/videos/start.mp4';
-
-  /// File path: assets/videos/stop.mp4
-  String get stop => 'assets/videos/stop.mp4';
-
-  /// List of all assets
-  List<String> get values => [backward, forward, start, stop];
-}
-
 class Assets {
   Assets._();
 
@@ -184,7 +165,6 @@ class Assets {
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
-  static const $AssetsVideosGen videos = $AssetsVideosGen();
 }
 
 class AssetGenImage {
